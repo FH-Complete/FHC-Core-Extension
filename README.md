@@ -1,2 +1,2 @@
 # FHC-Core-Extension
-Template for FH-Complete Core Extension
+This Repository is a Template for new FH-Complete Core Extensions
