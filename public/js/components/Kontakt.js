@@ -3,19 +3,11 @@ export const Kontakt = {
 		return {
 			kontakte: [
 				{
-					uid: 'hainberg',
-					vorname: 'Cristina',
-					nachname: 'Hainberger',
-					email: 'hainberg@technikum-wien.at',
-					phone: '',
-					raum: 'F3.04'
-				},
-				{
-					uid: 'oesi',
-					vorname: 'Andreas',
-					nachname: 'Österreicher',
-					email: 'oesi@technikum-wien.at',
-					phone: '+43 1 333 40 77 - 8427',
+					uid: 'uid',
+					vorname: 'Vorname',
+					nachname: 'Nachname',
+					email: 'uid@technikum-wien.at',
+					phone: '+43 1 333 40 77 - 0000',
 					raum: 'F3.04'
 				}
 			]
