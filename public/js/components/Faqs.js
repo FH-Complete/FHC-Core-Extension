@@ -18,9 +18,10 @@ export const Faqs = {
 		}
 	},
 	template: `
-	<div class="row">
+	<div class="row mb-3">
 		<div class="col-md-12">
 			<div class="card">
+			<div class="card-header card-title"><h5>FAQs</h5></div>
 				<div class="accordion accordion-flush" id="accordionFlushExample">
 					<div class="accordion-item" v-for="(faq, index) in faqs" :key="index">
 						<h2 class="accordion-header" :id="'flush-heading' + index">
