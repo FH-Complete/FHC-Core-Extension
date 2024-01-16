@@ -17,7 +17,7 @@ export const Kontakt = {
 	<div class="row mb-3">
 		<div class="col-md-12">
 			<div class="card">
-				<div class="card-header card-title"><h5>Kontakt</h5></div>
+				<div class="card-header"><h5>Kontakt</h5></div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item p-4" v-for="kontakt in kontakte" :key="kontakt">
 						<div v-show="kontakt.nachname !== undefined && kontakt.nachname !== ''">
