@@ -22,7 +22,7 @@ export const BaseLayout = {
 		<header v-if="title">
 			<h1 class="h2 mb-5">{{ title }}<span class="fhc-subtitle">{{ subtitle }}</span></h1>
 		</header>
-		<div class="row gx-3">
+		<div class="row gx-5">
 			<main :class="mainGridCols">
 				<slot name="main">{{ mainGridCols }}</slot>
 			</main>
