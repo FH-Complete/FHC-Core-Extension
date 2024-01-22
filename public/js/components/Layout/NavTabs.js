@@ -47,7 +47,7 @@ export const NavTabs = {
 			<div id="navTabs">
 				<ul class="nav nav-tabs" class="mb-5">
 					<li class="nav-item" v-for="tab in tabs" :key="tab">
-						<a :class="['nav-link', { active: currentTab === tab }]" @click="changeTab(tab)">{{ tab }}</a>
+						<a :class="['nav-link', { active: currentTab === tab }]" class="cursor-pointer" @click="changeTab(tab)">{{ tab }}</a>
 					</li>
 				</ul>
 				<component :is="currentTab"></component>
