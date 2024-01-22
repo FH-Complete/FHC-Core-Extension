@@ -17,11 +17,19 @@
 
 import {CoreNavigationCmpt} from '../../../../public/js/components/navigation/Navigation.js';
 import {BaseLayout} from "./components/Layout/BaseLayout.js";
+import {NavTabs} from "./components/Layout/NavTabs.js";
+import {Status} from "./components/Status.js";
+import {Faqs} from "./components/Faqs.js";
+import {Kontakt} from "./components/Kontakt.js";
 
 export const FhcTemplate = {
 	components: {
 		CoreNavigationCmpt,
-		BaseLayout
+		BaseLayout,
+		NavTabs,
+		Status,
+		Faqs,
+		Kontakt
 	},
 	data: function() {
 		return {
@@ -42,8 +50,14 @@ export const FhcTemplate = {
 		:mainCols="mainCols"
 		:asideCols="asideCols"
 		:alignToCoreNav="true">
-		<template #main></template>
-      	<template #aside></template>
+		<template #main>
+			<nav-tabs></nav-tabs>	
+		</template>
+      	<template #aside>
+      		<status></status>
+      		<faqs></faqs>
+      		<kontakt></kontakt>
+		</template>
 	</base-layout>
 	`
 };
