@@ -1,18 +1,18 @@
 <?php
 // Add Header-Menu-Entry to all Pages
-$config['navigation_header']['*']['MyExtension'] = array(
-		'link' => site_url('extensions/FHC-Core-Extension/MyExtension'),
+$config['navigation_header']['*']['FhcTemplate'] = array(
+		'link' => site_url('extensions/FHC-Core-Extension/FhcTemplate'),
 		'icon' => '',
-		'description' => 'MyExtension',
+		'description' => 'FhcTemplate',
 		'sort' => 1
 	);
 
 // Add Header-Menu-Entry to Extension Page with DropDown
-$config['navigation_header']['extensions/FHC-Core-Extension/MyExtension/index'] = array(
+$config['navigation_header']['extensions/FHC-Core-Extension/FhcTemplate/index'] = array(
 		'FHC-Core-Extension-Advanced-Menu' => array(
 		'link' => '#',
 		'icon' => '',
-		'description' => 'Additional Extension Options',
+		'description' => 'FHC Template',
 		'sort' => 10,
 		'children'=> array(
 			'sub1' => array(
@@ -35,15 +35,15 @@ $config['navigation_header']['extensions/FHC-Core-Extension/MyExtension/index'] 
 	));
 
 // Add Side-Menu-Entry to Main Page
-$config['navigation_menu']['Vilesci/index']['administration']['children']['MyExtension'] = array(
-		'link' => site_url('extensions/FHC-Core-Extension/MyExtension'),
+$config['navigation_menu']['Vilesci/index']['administration']['children']['FhcTemplate'] = array(
+		'link' => site_url('extensions/FHC-Core-Extension/FhcTemplate'),
 		'icon' => 'cubes',
-		'description' => 'My Extension',
+		'description' => 'FHC Example Template',
 		'expand' => true
 );
 
 // Add Side-Menu-Entry to Extension Page
-$config['navigation_menu']['extensions/FHC-Core-Extension/MyExtension/index'] = array(
+$config['navigation_menu']['extensions/FHC-Core-Extension/FhcTemplate/index'] = array(
 	'Back' => array(
 		'link' => site_url(),
 		'description' => 'Zurück',
