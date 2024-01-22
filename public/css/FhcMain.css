@@ -13,3 +13,9 @@
     margin: 0 0 0 250px;
     padding: 30px 30px;
 }
+
+/* Same style for all action buttons in Tabulator action column */
+.btn-action {
+    max-width: 45px;
+    max-height: 45px;
+}
