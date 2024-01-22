@@ -2,8 +2,14 @@ export const BaseLayout = {
 	props: {
 		title: '',
 		subtitle: '',
-		mainCols: [],
-		asideCols: [],
+		mainCols: {
+			type: Array,
+			default: []
+		},
+		asideCols: {
+			type: Array,
+			default: []
+		},
 		alignToCoreNav: false,
 	},
 	computed: {
