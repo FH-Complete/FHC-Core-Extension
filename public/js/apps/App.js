@@ -26,7 +26,5 @@ const app = Vue.createApp({
 
 app
 	.use(primevue.config.default, {zIndex: {overlay: 9999}})
-	.use(primevue.toastservice)
-	.use(primevue.confirmationservice)
 	.use(FhcAlert)
 	.mount('#main');
