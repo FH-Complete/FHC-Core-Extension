@@ -1,14 +1,15 @@
 export const Kontakt = {
-	data: function () {
-		return {
-			kontakte: [
+	props: {
+		kontakte:  {
+			type: Array,
+			default: () => [
 				{
-					uid: 'uid',
-					vorname: 'Vorname',
-					nachname: 'Nachname',
-					email: 'uid@technikum-wien.at',
-					phone: '+43 1 333 40 77 - 0000',
-					raum: 'F3.04'
+					uid: '',
+					vorname: '',
+					nachname: '',
+					email: '',
+					phone: '',
+					raum: ''
 				}
 			]
 		}

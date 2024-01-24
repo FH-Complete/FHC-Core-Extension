@@ -1,22 +1,15 @@
 export const Faqs = {
-	data: function () {
-		return {
-			faqs: [
-				{
-					title: 'FAQ 1',
-					text: 'Answering FAQ 1'
-				},
-				{
-					title: 'FAQ 2',
-					text: 'Answering FAQ 2'
-				},
-				{
-					title: 'FAQ 3',
-					text: 'Answering FAQ 3'
-				},
-			]
-		}
-	},
+		props: {
+			faqs: {
+				type: Array,
+				default: () => [
+					{
+						title: '',
+						text: ''
+					}
+				]
+			}
+		},
 	template: `
 	<div class="row mb-3">
 		<div class="col-md-12">

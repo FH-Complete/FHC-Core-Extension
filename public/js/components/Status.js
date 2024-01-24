@@ -2,11 +2,11 @@ export const Status = {
 	props: {
 		statusText: {
 			type: String,
-			default: 'Genehmigt'
+			default: 'Neu'
 		},
 		statusClass: {
 			type: String,
-			default: 'success'
+			default: 'info'
 		},
 		showStatusIcon: {
 			type: Boolean,

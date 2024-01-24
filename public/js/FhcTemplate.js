@@ -37,6 +37,32 @@ export const FhcTemplate = {
 			appSubtitle: "FHC Example Template",
 			mainCols: [9],
 			asideCols: [3],
+			faqs: [
+				{
+					title: 'FAQ 1',
+					text: 'Answering FAQ 1'
+				},
+				{
+					title: 'FAQ 2',
+					text: 'Answering FAQ 2'
+				},
+				{
+					title: 'FAQ 3',
+					text: 'Answering FAQ 3'
+				}
+			],
+			kontakte: [
+				{
+					uid: 'uid',
+					vorname: 'Vorname',
+					nachname: 'Nachname',
+					email: 'uid@technikum-wien.at',
+					phone: '+43 1 333 40 77 - 0000',
+					raum: 'F3.04'
+				}
+			],
+			statusText: 'Genehmigt',
+			statusClass: 'success'
 		}
 	},
 	template: `
@@ -54,9 +80,9 @@ export const FhcTemplate = {
 			<nav-tabs></nav-tabs>	
 		</template>
       	<template #aside>
-      		<status></status>
-      		<faqs></faqs>
-      		<kontakt></kontakt>
+      		<status :statusText="statusText" :statusClass="statusClass"></status>
+      		<faqs :faqs="faqs"></faqs>
+      		<kontakt :kontakte="kontakte"></kontakt>
 		</template>
 	</base-layout>
 	`
