@@ -28,9 +28,13 @@ export const Tabulator = {
 	],
 	methods: {
 		addData(){
+			this.modalTitel = 'Datensatz anlegen';
 			this.$refs.modalContainer.show();
 		},
-		editData(id) { this.$fhcAlert.alertInfo('ID' + id + ' edit')},
+		editData(id) {
+			this.modalTitel = 'Datensatz ändern';
+			this.$refs.modalContainer.show();
+		},
 		manipulateData(id) {this.$fhcAlert.alertInfo('ID' + id + ' do some Action')  },
 		async deleteData(id) {
 			if (await this.$fhcAlert.confirmDelete() === false) return;
@@ -39,6 +43,7 @@ export const Tabulator = {
 	},
 	data: function() {
 		return {
+			modalTitel: '',
 			tabulatorOptions: {
 				index: 'id',	// Unique ID
 				maxHeight: "100%",
@@ -253,10 +258,10 @@ export const Tabulator = {
 	
 	<!-- Modal -->
 	<bs-modal ref="modalContainer" class="bootstrap-prompt" v-bind="$props" @hidden-bs-modal="onHiddenBsModal">
-		<template #title>Datensatz anlegen</template>
+		<template #title>{{ modalTitel }}</template>
 		<template #default>Content</template>
 		<template v-slot:footer>
-			<button type="button" class="btn btn-primary" @click="onBsModalSave">Datensatz anlegen</button>
+			<button type="button" class="btn btn-primary" @click="onBsModalSave">Speichern</button>
 		</template>
 	</bs-modal>
 `
