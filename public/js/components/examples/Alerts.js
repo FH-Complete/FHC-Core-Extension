@@ -76,30 +76,39 @@ export const Alerts = {
 		}
 	},
 	template: `
-	<div class="row-col mb-5">
-		<h2 class="h5">Enable core FhcAlert Plugin in your App</h2><br>
+	<h2 class="h3">Alert Plugin</h2>
+	<p class="lead">Use FhcAlert core plugin to popup alerts from anywhere inside your app. <br>
+		Use it to display same look&feel <b>success, info, attention and error messages</b> to the user, also to <b>ask user for confirmation</b> before deleting data.
+		You can use <b>multiple alerts</b> to create message stacks, e.g. to display multiple notifications.</p>
+	
+	
+	<div class="row-col my-5">
+		<h3 class="h4">Enable FhcAlert Core Plugin in your App</h3>
+		<p class="">FhcAlert core plugin is using <a href="https://primevue.org/toast/" target="_blank">PrimeVue Toast</a> and <a href="https://primevue.org/confirmdialog/" target="_blank">PrimeVue ConfirmDialog</a> Components. They are installed and initialized inside the plugin. <br>
+		To use it, import FhcAlert core plugin once into your app, to then use it from anywhere inside your app.</p>
 		<div class="card card-body bg-light">
-			<pre>
-				<code style="white-space: pre-line">
-				/* Import plugin into your app */
-				import FhcAlert from '../../../../js/plugin/FhcAlert.js';
+			<code><pre>
 				
-				const app = Vue.createApp({
-					components: {
-						// components
-					}
-				});
+<span class="text-muted">// Import plugin into your app</span>
+import FhcAlert from '../../../../js/plugin/FhcAlert.js';
+
+const app = Vue.createApp({
+	components: {
+		// components
+	}
+});
 				
-				/* Use plugin in your app */
-				app
-					.use(FhcAlert)
-				 	.mount('#main');
-				</code>
-			</pre>
+<span class="text-muted">// Use plugin in your app</span>
+app
+	.use(FhcAlert)
+	.mount('#main');
+				
+				</pre>
+			</code>
 		</div>
 	</div>
 	<div class="row g-3 mb-5">
-		<h2 class="h5">Use FhcAlert Plugin from anywhere inside your App</h2><br>
+		<h3 class="h4">Use FhcAlert Plugin from anywhere inside your App</h3><br>
 		<div class="col-9">
 			<div class="card card-body bg-light">
 				<code>this.$fhcAlert.alertSuccess('Success');</code>
@@ -158,10 +167,11 @@ export const Alerts = {
 		</div>
 		<div class="col-9">
 			<div class="card card-body bg-light">
-				<pre>async confirmDelete(){
-if (await this.$fhcAlert.confirmDelete() === false) return;
+				<code><pre>
+async confirmDelete(){
+	if (await this.$fhcAlert.confirmDelete() === false) return;
 }
-				</pre>
+				</pre></code>
 			</div>
 		</div>
 		<div class="col-3">
@@ -169,12 +179,14 @@ if (await this.$fhcAlert.confirmDelete() === false) return;
 		</div>
 				<div class="col-9">
 			<div class="card card-body bg-light">
-				<pre>let msgArr = [
-Message A',
-Message B',
-Message C'
+				<code><pre>
+let msgArr = [
+	Message A',
+	Message B',
+	Message C'
 ]
-this.$fhcAlert.alertMultiple(msgArr);</code></pre>
+
+this.$fhcAlert.alertMultiple(msgArr);</pre></code>
 			</div>
 		</div>
 		<div class="col-3">
@@ -182,14 +194,15 @@ this.$fhcAlert.alertMultiple(msgArr);</code></pre>
 		</div>
 		<div class="col-9">
 			<div class="card card-body bg-light">
-								<pre>let msgArr = [
-'Message A',
-'Message B',
-'Message C'
+								<code><pre>
+let msgArr = [
+	'Message A',
+	'Message B',
+	'Message C'
 ]
 
 this.$fhcAlert.alertMultiple(msgArr, 'success', 'Sticky success messages', true);
-				</pre>
+				</pre></code>
 			</div>
 		</div>
 		<div class="col-3">
@@ -200,21 +213,18 @@ this.$fhcAlert.alertMultiple(msgArr, 'success', 'Sticky success messages', true)
 		<h2 class="h5">Example 1: Display Info Alert on Success and handle System Error</h2><br>
 		<div class="mb-3"><button class="btn btn-primary" @click="getFullName">Namen anzeigen</button></div>
 		<div class="card card-body bg-light">
-			<code>
-				&lt;button class="btn btn-primary" @click="getFullName"&gt;Namen anzeigen&lt;/button&gt;
-			</code>
-			<pre>
-				<code style="white-space: pre-line">
-				/* Explain */
-				getFullName(){
-				  CoreRESTClient
-					.get('/extensions/FHC-Core-Extension/FhcTemplate/getFullName')
-					.then(result => result.data)
-					.then(result => { this.$fhcAlert.alertInfo('Mein Name ist ' + CoreRESTClient.getData(result)); })
-					.catch(error => { this.$fhcAlert.handleSystemError(error); });
-				}
-				</code>
+			<code><pre>
+&lt;button class="btn btn-primary" @click="getFullName"&gt;Namen anzeigen&lt;/button&gt;
+			
+getFullName(){
+  CoreRESTClient
+	.get('/extensions/FHC-Core-Extension/FhcTemplate/getFullName')
+	.then(result => result.data)	<span class="text-muted">// Avoid async error message</span>
+	.then(result => { this.$fhcAlert.alertInfo('Mein Name ist ' + CoreRESTClient.getData(result)); })<span class="text-muted">// Alert on success</span>
+	.catch(error => { this.$fhcAlert.handleSystemError(error); });<span class="text-muted">	// Alert on failure</span>
+}
 			</pre>
+			</code>
 		</div>
 	</div>
 	<div class="row-col mb-5">
@@ -222,21 +232,21 @@ this.$fhcAlert.alertMultiple(msgArr, 'success', 'Sticky success messages', true)
 		<div class="mb-3"><button class="btn btn-danger" @click="deleteData(123)">Datensatz löschen</button></div>
 		<div class="card card-body bg-light">
 		<code>
-			&lt;button class="btn btn-danger" @click="deleteData(123)"&gt;Datensatz löschen&lt;/button&gt;
-		</code>
-		<pre>
-			<code style="white-space: pre-line">
-			/* Explain */
-			async deleteData(id){
-				if (await this.$fhcAlert.confirmDelete() === false) return;
-	
-				CoreRESTClient
-					.post('/extensions/FHC-Core-Extension/FhcTemplate/deleteData/' + id)
-					.then(result => { this.$fhcAlert.alertSuccess('Datensatz ' + CoreRESTClient.getData(result.data) + ' gelöscht!') })
-					.catch(error => { this.$fhcAlert.handleSystemError(error); });
-			}
-			</code>
+			<pre>
+&lt;button class="btn btn-danger" @click="deleteData(123)"&gt;Datensatz löschen&lt;/button&gt;
+
+<span class="text-muted">// You need async to await the users confirmation</span>
+async deleteData(id){
+	if (await this.$fhcAlert.confirmDelete() === false) return;<span class="text-muted">	// Don't forget to await!</span>
+
+	<span class="text-muted">// Confirmed! You can go on...</span>
+	CoreRESTClient
+		.post('/extensions/FHC-Core-Extension/FhcTemplate/deleteData/' + id)
+		.then(result => { this.$fhcAlert.alertSuccess('Datensatz ' + CoreRESTClient.getData(result.data) + ' gelöscht!') })
+		.catch(error => { this.$fhcAlert.handleSystemError(error); });
+}
 		</pre>
+				</code>
 	</div>
 	</div>
 `
