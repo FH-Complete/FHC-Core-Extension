@@ -16,12 +16,14 @@
  */
 
 // Import Tab Sites
+import {Layout} from "../../components/examples/Layout.js";
 import {Tabulator} from "../../components/examples/Tabulator.js";
 import {Alerts} from "../../components/examples/Alerts.js";
 import {Icons} from "../../components/examples/Icons.js";
 
 export const NavTabs = {
 	components: {
+		Layout,
 		Tabulator,
 		Alerts,
 		Icons
@@ -30,6 +32,7 @@ export const NavTabs = {
 		return {
 			currentTab: 'Tabulator',
 			tabs: [
+				'Layout',
 				'Tabulator',
 				'Alerts',
 				'Icons'
