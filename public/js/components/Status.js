@@ -36,7 +36,7 @@ export const Status = {
 	template: `
 	<div class="row">
 		<div class="col-md-12">
-			<div :class="'alert alert-' + statusClass" class="fw-bold" role="alert">
+			<div :class="'alert alert-' + statusClass" role="alert">
 				<i :class="statusIcon"></i>{{ statusText }}
 			</div>
 		</div>
