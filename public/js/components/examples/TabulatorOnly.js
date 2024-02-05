@@ -17,8 +17,8 @@
 import {CoreFilterCmpt} from '../../../../../js/components/filter/Filter.js';
 import BsModal from '../../../../../js/components/Bootstrap/Modal.js';
 
-export const Tabulator = {
-	componentName: 'Tabulator',
+export const TabulatorOnly = {
+	componentName: 'TabulatorOnly',
 	components: {
 		CoreFilterCmpt,
 		BsModal
@@ -93,6 +93,7 @@ export const Tabulator = {
 						}
 					},
 					{
+						// TODO umändern, da dms_id eigene row ist in query
 						title: 'File',
 						field: 'datei',
 						headerFilter: true,
@@ -110,6 +111,7 @@ export const Tabulator = {
 						tooltip: (e, cell) =>  cell.getData().datei.titel	// Overwrite table option tooltip, which will return the datei-object
 					},
 					{title: 'Anmerkung', field: 'anmerkung', headerFilter: true},
+					// TODO value array als function oder als data?
 					{
 						title: 'Liste',
 						field: 'liste',
@@ -232,6 +234,7 @@ export const Tabulator = {
 	},
 	template: `
 	<!-- Tabelle -->
+	<h3 class="h4">Tabulator without Filter (table-only)</h3>
 	<core-filter-cmpt 
 		ref="myTabulator"
 		:table-only="true"
@@ -261,7 +264,7 @@ export const Tabulator = {
 		<template #title>{{ modalTitel }}</template>
 		<template #default>Content</template>
 		<template v-slot:footer>
-			<button type="button" class="btn btn-primary" @click="onBsModalSave">Speichern</button>
+			<button type="button" class="btn btn-primary" @click="onBsModalSave">{{ modalTitel }}</button>
 		</template>
 	</bs-modal>
 `
