@@ -15,10 +15,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {BaseLayout} from "../Layout/BaseLayout.js";
+import {docLayoutBase} from "../docs/docLayoutBase.js";
+import {docLayoutBaseSide} from "../docs/docLayoutBaseSide.js";
+import {docLayoutLiveExample} from "../docs/docLayoutLiveExample.js";
 
 export const Layout = {
 	components: {
-		BaseLayout
+		BaseLayout,
+		docLayoutBase,
+		docLayoutBaseSide,
+		docLayoutLiveExample
 	},
 	data: () => {
 		return {
@@ -27,9 +33,6 @@ export const Layout = {
 			mainCols: [9],
 			asideCols: [3]
 		}
-	},
-	methods: {
-
 	},
 	template: `
 	<h2 class="h3">Base Layout Templates</h2>
@@ -49,34 +52,14 @@ export const Layout = {
 				</template>
 			</base-layout>
 		</div>
-		<div class="card card-body bg-light mt-3">
-			<code><pre>
-<span class="text-muted">// Import the BaseLayout Component</span>
-import {BaseLayout} from "../Layout/BaseLayout.js";
-
-export const myComponent = {
-	components: { BaseLayout },
-	data: () => {
-		return {
-			appTitle: "Title",
-			appSubtitle: "Subtitle"
-	}
-},
-
-&lt;base-layout
-	:title="appTitle"
-	:subtitle="appSubtitle"&gt;
-	&lt;template #main&gt;	
-		<span class="text-muted">// Your main content (components) goes here</span>
-	&lt;/template&gt;
-&lt;/base-layout&gt;			
-			</pre></code>
-		</div>
-	</div>	
+		<!-- Documentation -->
+		<doc-layout-base></doc-layout-base>
+	</div>
+		
 	<div class="row-cols my-5">
 		<h3 class="h4">Base Layout + Side Content</h3>
 		<div class="row-col card card-body p-4  mt-3">
-		<base-layout
+			<base-layout
 			:title="appTitle"
 			:subtitle="appSubtitle"
 			:mainCols="mainCols"
@@ -92,113 +75,26 @@ export const myComponent = {
 					<h5>#aside slot</h5>
 					asideCols: 3 cols (you can adapt)
 				</div>
-				<div class="card card-body mb-3">
-					Place your side-widgets here
-				</div>
-				<div class="card card-body mb-3">
-					Place your side-widgets here
-				</div>
+				<div class="card card-body mb-3">Place your side-widgets here</div>
+				<div class="card card-body mb-3">Place your side-widgets here</div>
 			</template>
 		</base-layout>
-	</div>
-	<div class="card card-body bg-light mt-3">
-			<code><pre>
-<span class="text-muted">// Import the BaseLayout Component</span>
-import {BaseLayout} from "../Layout/BaseLayout.js";
-
-export const myComponent = {
-	components: { BaseLayout },
-	data: () => {
-		return {
-			appTitle: "Title",
-			appSubtitle: "Subtitle",
-			mainCols: [9],
-			asideCols: [3]
-	}
-},
-
-&lt;base-layout
-	:title="appTitle"
-	:subtitle="appSubtitle"&gt;
-	:mainCols="mainCols"
-	:asideCols="asideCols"
-	:alignToCoreNav="true"
-	&lt;template #main&gt;	
-		<span class="text-muted">// Your main content (components) goes here</span>
-	&lt;/template&gt;
-	&lt;template #aside&gt;
-		<span class="text-muted">// Your side content (components, widgets) goes here</span>
-	&lt;/template&gt;
-&lt;/base-layout&gt;			
-			</pre></code>
 		</div>
+		<!-- Documentation -->
+		<doc-layout-base-side></doc-layout-base-side>
 	</div>
+	
 	<div class="row-cols my-5">
 		<h3 class="h4">Live Example</h3>
 		<h5 class="h6">This page</h3>
-		
-	<div class="card card-body bg-light mt-3">
-			<code><pre>
-<span class="text-muted">// Import the BaseLayout Component</span>
-import {CoreNavigationCmpt} from '../../../../public/js/components/navigation/Navigation.js';
-import {BaseLayout} from "./components/Layout/BaseLayout.js";
-import {NavTabs} from "./components/Layout/NavTabs.js";
-import {Status} from "./components/Status.js";
-import {Faqs} from "./components/Faqs.js";
-import {Kontakt} from "./components/Kontakt.js";
-
-export const FhcTemplate = {
-	components: { 
-		CoreNavigationCmpt,
-		BaseLayout,
-		NavTabs,
-		Status,
-		Faqs,
-		Kontakt
-	 },
-	data: () => {
-		return {
-			appTitle: "Title",
-			appSubtitle: "Subtitle",
-			mainCols: [9],
-			asideCols: [3],
-			faqs: [],
-			kontakte: [],
-			statusText: '',
-			statusClass: ''
-	}
-},
-
-<span class="text-muted">// FHC Core Navigation</span>
-&lt;core-navigation-cmpt&gt;&lt;/core-navigation-cmpt&gt;
-	
-<span class="text-muted">// Base Layout</span>
-&lt;base-layout
-	:title="appTitle"
-	:subtitle="appSubtitle"&gt;
-	:mainCols="mainCols"
-	:asideCols="asideCols"
-	:alignToCoreNav="true"&gt;
-	
-	<span class="text-muted">// Main Content</span>
-	&lt;template #main&gt;	
-		&lt;nav-tabs&gt;&lt;/nav-tabs&gt;	<span class="text-muted">// App Navigation Tabs</span>	
-	&lt;/template&gt;
-	
-	<span class="text-muted">// Side Content</span>
-	&lt;template #aside&gt;
-		&lt;status :statusText="statusText" :statusClass="statusClass"&gt;&lt;/status&gt;
-		&lt;faqs :faqs="faqs"&gt;&lt;/faqs&gt;
-		&lt;kontakt :kontakte="kontakte"&gt;&lt;/kontakt&gt;
-	&lt;/template&gt;
-&lt;/base-layout&gt;			
-			</pre></code>
-		</div>
+		<!-- Documentation -->
+		<doc-layout-live-example></doc-layout-live-example>
 	</div>
+	
 	<div class="row-cols my-5">
 		<h3 class="h4">Base Layout + Side Content + Navigation Tabs</h3>
 		<div class="row-col card card-body p-4">
-		<base-layout
+			<base-layout
 			:title="appTitle"
 			:subtitle="appSubtitle"
 			:mainCols="mainCols"
@@ -217,8 +113,7 @@ export const FhcTemplate = {
 				</div>
 			</template>
 		</base-layout>
-	</div>
-	</div>
-   
+		</div>
+	</div>  
 `
 };
