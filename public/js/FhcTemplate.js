@@ -35,6 +35,7 @@ export const FhcTemplate = {
 		return {
 			appTitle: "FHC-Template",
 			appSubtitle: "FHC Example Template",
+			appSideMenuEntries: {},
 			mainCols: [9],
 			asideCols: [3],
 			faqs: [
@@ -67,7 +68,7 @@ export const FhcTemplate = {
 	},
 	template: `
 	<!-- Navigation -->
-	<core-navigation-cmpt></core-navigation-cmpt>
+	<core-navigation-cmpt :add-side-menu-entries="appSideMenuEntries"></core-navigation-cmpt>
 
 	<!-- Content -->
 	<base-layout
@@ -77,7 +78,7 @@ export const FhcTemplate = {
 		:asideCols="asideCols"
 		:alignToCoreNav="true">
 		<template #main>
-			<nav-tabs></nav-tabs>	
+			<nav-tabs @new-filter-entry="appSideMenuEntries = $event"></nav-tabs>	
 		</template>
       	<template #aside>
       		<status :statusText="statusText" :statusClass="statusClass"></status>

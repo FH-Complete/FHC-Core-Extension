@@ -17,28 +17,32 @@
 
 // Import Tab Sites
 import {Layout} from "../../components/examples/Layout.js";
-import {Tabulator} from "../../components/examples/Tabulator.js";
+import {TabulatorOnly} from "../examples/TabulatorOnly.js";
+import {TabulatorFilter} from "../examples/TabulatorFilter.js";
 import {Alerts} from "../../components/examples/Alerts.js";
 import {Icons} from "../../components/examples/Icons.js";
 
 export const NavTabs = {
 	components: {
 		Layout,
-		Tabulator,
+		TabulatorOnly,
+		TabulatorFilter,
 		Alerts,
 		Icons
 	},
 	data: function() {
 		return {
-			currentTab: 'Tabulator',
+			currentTab: 'TabulatorFilter',
 			tabs: [
 				'Layout',
-				'Tabulator',
+				'TabulatorOnly',
+				'TabulatorFilter',
 				'Alerts',
 				'Icons'
 			]
 		}
 	},
+	emits: [ 'newFilterEntry' ],
 	methods: {
 		changeTab(tab){
 			this.currentTab = tab;
@@ -53,7 +57,7 @@ export const NavTabs = {
 						<a :class="['nav-link', { active: currentTab === tab }]" class="cursor-pointer" @click="changeTab(tab)">{{ tab }}</a>
 					</li>
 				</ul>
-				<component :is="currentTab"></component>
+				<component :is="currentTab" @new-filter-entry="$emit('newFilterEntry', $event)"></component>
 			</div>	
   		</div>
   	</div>

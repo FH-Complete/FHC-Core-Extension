@@ -27,5 +27,25 @@ $config['navigation_menu']['extensions/FHC-Core-Extension/FhcTemplate/index'] = 
 		'link' => site_url('extensions/FHC-Core-Extension/FhcTemplate'),
 		'description' => 'FHC Template',
 		'icon' => ''
-	)
+	),
+//	'Example1' => array(
+//		'link' => site_url('extensions/FHC-Core-Extension/templates/Tmplt'),
+//		'description' => 'Base Template',
+//		'icon' => ''
+//	),
+//	'Example2' => array(
+//		'link' => site_url('extensions/FHC-Core-Extension/templates/TmpltSidecol'),
+//		'description' => 'Base Template + Side Column',
+//		'icon' => ''
+//	),
+//	'Example3' => array(
+//		'link' => site_url('extensions/FHC-Core-Extension/templates/TmpltNavtabs'),
+//		'description' => 'Base Template + NavTabs',
+//		'icon' => ''
+//	),
+//	'Example4' => array(
+//		'link' => site_url('extensions/FHC-Core-Extension/templates/TmpltVerticalsplit'),
+//		'description' => 'Base Template + Vertical Split',
+//		'icon' => ''
+//	),
 );
