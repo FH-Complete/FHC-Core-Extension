@@ -18,13 +18,15 @@ import {CoreFilterCmpt} from '../../../../../js/components/filter/Filter.js';
 import {CoreRESTClient} from '../../../../../../public/js/RESTClient.js';
 import BsModal from '../../../../../js/components/Bootstrap/Modal.js';
 import {docTabulatorOnly} from "../docs/docTabulatorOnly.js";
+import {docTabulatorOptions} from "../docs/docTabulatorOptions.js";
 
 export const TabulatorOnly = {
 	componentName: 'TabulatorOnly',
 	components: {
 		CoreFilterCmpt,
 		BsModal,
-		docTabulatorOnly
+		docTabulatorOnly,
+		docTabulatorOptions
 	},
 	mixins: [
 		BsModal
@@ -210,6 +212,7 @@ export const TabulatorOnly = {
 	
 	<!-- Code Documentation -->
 	<doc-tabulator-only></doc-tabulator-only>
+	<doc-tabulator-options></doc-tabulator-options>
 	
 	<!-- Modal -->
 	<bs-modal ref="modalContainer" class="bootstrap-prompt" v-bind="$props" @hidden-bs-modal="onHiddenBsModal">

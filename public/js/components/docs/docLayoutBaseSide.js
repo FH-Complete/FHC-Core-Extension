@@ -21,7 +21,7 @@ export const myComponent = {
 	:subtitle="appSubtitle"&gt;
 	:mainCols="mainCols"
 	:asideCols="asideCols"
-	:alignToCoreNav="true"
+	:alignToCoreNav="true" <span class="text-muted">// True to offset to the right of the Core Navigation side-menu</span>
 	&lt;template #main&gt;	
 		<span class="text-muted">// Your main content (components) goes here</span>
 	&lt;/template&gt;
