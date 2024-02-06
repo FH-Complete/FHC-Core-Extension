@@ -182,7 +182,7 @@ export const TabulatorFilter = {
 	<bs-modal ref="modalContainer" class="bootstrap-prompt" v-bind="$props" @hidden-bs-modal="onHiddenBsModal">
 		<template #title>{{ modalTitel }}</template>
 		<template #default>Content</template>
-		<template v-slot:footer>
+		<template #footer>
 			<button type="button" class="btn btn-primary" @click="onBsModalSave">{{ modalTitel }}</button>
 		</template>
 	</bs-modal>

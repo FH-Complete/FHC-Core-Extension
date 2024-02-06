@@ -17,7 +17,8 @@ class FhcTemplate extends Auth_Controller
 				'index' => 'admin:rw',
 				'getFullName' => 'admin:rw',
 				'deleteData' => 'admin:rw',
-				'getAnrechnungstatusList' => 'admin:rw'
+				'getAnrechnungstatusList' => 'admin:rw',
+				'getTestData' => 'admin:rw'
 			)
 		);
 	}
@@ -48,6 +49,75 @@ class FhcTemplate extends Auth_Controller
 	{
 		// Pseudo success object mit retval
 		$this->outputJsonSuccess($id);
+	}
+
+	public function getTestData()
+	{
+		// Pseudo success object mit retval
+		$this->outputJsonSuccess(array(
+			array(
+				'id'=> 1,
+				'coreData'=> 'Person A',
+				'number'=> 10,
+				'text'=> 'Test String',
+				'datum'=> '2024-01-01',
+				'money'=> 3000.50,
+				'bool'=> true,
+				'datei'=> array ( 'titel'=> 'A Datei.pdf', 'dms_id'=> 100 ),
+				'anmerkung'=> '' +
+					'Langer Text kann mit tooltip gelesen werden. Langer Text kann mit tooltip gelesen werden. ' +
+					'Langer Text kann mit tooltip gelesen werden. Langer Text kann mit tooltip gelesen werden.',
+				'liste'=> 'Neu'
+			),
+			array(
+				'id'=> 2,
+				'coreData'=> 'Person A',
+				'number'=> 10,
+				'text'=> 'Test String',
+				'datum'=> '2024-01-02',
+				'money'=> 3000.50,
+				'bool'=> false,
+				'datei'=> array( 'titel'=> 'B Datei.pdf', 'dms_id'=> 101 ),
+				'anmerkung'=> 'Langer Text kann mit tooltip gelesen werden',
+				'liste'=> 'Genehmigt'
+			),
+			array(
+				'id'=> 3,
+				'coreData'=> 'Person A',
+				'number'=> 10,
+				'text'=> 'Test String',
+				'datum'=> '2024-01-03',
+				'money'=> 3000.50,
+				'bool'=> true,
+				'datei'=> array( 'titel'=> 'C Datei.pdf', 'dms_id'=> 102 ),
+				'anmerkung'=> 'Langer Text kann mit tooltip gelesen werden',
+				'liste'=> 'Abgelehnt'
+			),
+			array(
+				'id'=> 4,
+				'coreData'=> 'Person A',
+				'number'=> 10,
+				'text'=> 'Test String',
+				'datum'=> '2024-01-01',
+				'money'=> 3000.50,
+				'bool'=> true,
+				'datei'=> array( 'titel'=> 'D Datei.pdf', 'dms_id'=> 103 ),
+				'anmerkung'=> 'Langer Text kann mit tooltip gelesen werden',
+				'liste'=> 'Neu'
+			),
+			array(
+				'id'=> 5,
+				'coreData'=> 'Person B',
+				'number'=> 10,
+				'text'=> 'Test String',
+				'datum'=> '2024-01-02',
+				'money'=> 3000.50,
+				'bool'=> false,
+				'datei'=> array( 'titel'=> 'E Datei.pdf', 'dms_id'=> 104 ),
+				'anmerkung'=> 'Langer Text kann mit tooltip gelesen werden',
+				'liste'=> 'Genehmigt'
+			),
+		));
 	}
 
 	public function getAnrechnungstatusList()

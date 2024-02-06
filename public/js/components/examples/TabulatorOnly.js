@@ -15,6 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {CoreFilterCmpt} from '../../../../../js/components/filter/Filter.js';
+import {CoreRESTClient} from '../../../../../../public/js/RESTClient.js';
 import BsModal from '../../../../../js/components/Bootstrap/Modal.js';
 
 export const TabulatorOnly = {
@@ -27,6 +28,13 @@ export const TabulatorOnly = {
 		BsModal
 	],
 	methods: {
+		setInitTableData(){
+			CoreRESTClient
+				.get('/extensions/FHC-Core-Extension/FhcTemplate/getTestData')
+				.then(result => result.data)
+				.then(result => { this.$refs.myTabulator.tabulator.setData(CoreRESTClient.getData(result))} )
+				.catch(error => { this.$fhcAlert.handleSystemError(error); });
+		},
 		addData(){
 			this.modalTitel = 'Datensatz anlegen';
 			this.$refs.modalContainer.show();
@@ -35,11 +43,13 @@ export const TabulatorOnly = {
 			this.modalTitel = 'Datensatz ändern';
 			this.$refs.modalContainer.show();
 		},
-		manipulateData(id) {this.$fhcAlert.alertInfo('ID' + id + ' do some Action')  },
+		manipulateData(id) { this.$fhcAlert.alertInfo('ID' + id + ' do some Action') },
 		async deleteData(id) {
 			if (await this.$fhcAlert.confirmDelete() === false) return;
 			this.$fhcAlert.alertSuccess('ID' + id + ' deleted')
-		}
+		},
+		acceptData(){ this.$fhcAlert.alertSuccess('Accepted')},
+		rejectData(){ this.$fhcAlert.alertSuccess('Rejected')}
 	},
 	data: function() {
 		return {
@@ -162,74 +172,9 @@ export const TabulatorOnly = {
 		}
 	},
 	mounted(){
-		this.$refs.myTabulator.tabulator.on("tableBuilt", (e, row) =>
-		{
-			let testDataArr = [
-				{
-					id: 1,
-					coreData: 'Person A',
-					number: 10,
-					text: 'Test String',
-					datum: '2024-01-01',
-					money: 3000.50,
-					bool: true,
-					datei: { titel: 'A Datei.pdf', dms_id: 100 },
-					anmerkung: '' +
-						'Langer Text kann mit tooltip gelesen werden. Langer Text kann mit tooltip gelesen werden. ' +
-						'Langer Text kann mit tooltip gelesen werden. Langer Text kann mit tooltip gelesen werden.',
-					liste: 'Neu'
-				},
-				{
-					id: 2,
-					coreData: 'Person A',
-					number: 10,
-					text: 'Test String',
-					datum: '2024-01-02',
-					money: 3000.50,
-					bool: false,
-					datei: { titel: 'B Datei.pdf', dms_id: 101 },
-					anmerkung: 'Langer Text kann mit tooltip gelesen werden',
-					liste: 'Genehmigt'
-				},
-				{
-					id: 3,
-					coreData: 'Person A',
-					number: 10,
-					text: 'Test String',
-					datum: '2024-01-03',
-					money: 3000.50,
-					bool: true,
-					datei: { titel: 'C Datei.pdf', dms_id: 102 },
-					anmerkung: 'Langer Text kann mit tooltip gelesen werden',
-					liste: 'Abgelehnt'
-				},
-				{
-					id: 4,
-					coreData: 'Person A',
-					number: 10,
-					text: 'Test String',
-					datum: '2024-01-01',
-					money: 3000.50,
-					bool: true,
-					datei: { titel: 'D Datei.pdf', dms_id: 103 },
-					anmerkung: 'Langer Text kann mit tooltip gelesen werden',
-					liste: 'Neu'
-				},
-				{
-					id: 5,
-					coreData: 'Person B',
-					number: 10,
-					text: 'Test String',
-					datum: '2024-01-02',
-					money: 3000.50,
-					bool: false,
-					datei: { titel: 'E Datei.pdf', dms_id: 104 },
-					anmerkung: 'Langer Text kann mit tooltip gelesen werden',
-					liste: 'Genehmigt'
-				}
-			];
-			let emptyDataArr = [];
-			this.$refs.myTabulator.tabulator.setData(testDataArr);
+		// Set initial table data
+		this.$refs.myTabulator.tabulator.on('tableBuilt', (e, row) => {
+			this.setInitTableData();
 		});
 	},
 	template: `
@@ -246,8 +191,8 @@ export const TabulatorOnly = {
 		@click:new="addData"
 		:reload="true">
 		<template #actions>
-			<button class="btn btn-primary">Datensatz genehmigen</button>
-			<button class="btn btn-danger">Datensatz ablehnen</button>
+			<button class="btn btn-primary" @click="acceptData">Datensatz genehmigen</button>
+			<button class="btn btn-danger" @click="rejectData">Datensatz ablehnen</button>
 		 	<div class="d-flex gap-2 align-items-baseline">
 				<select class="form-select" aria-label="Default select example">
   					<option selected>Aktion wählen...</option>
@@ -263,7 +208,7 @@ export const TabulatorOnly = {
 	<bs-modal ref="modalContainer" class="bootstrap-prompt" v-bind="$props" @hidden-bs-modal="onHiddenBsModal">
 		<template #title>{{ modalTitel }}</template>
 		<template #default>Content</template>
-		<template v-slot:footer>
+		<template #footer>
 			<button type="button" class="btn btn-primary" @click="onBsModalSave">{{ modalTitel }}</button>
 		</template>
 	</bs-modal>
