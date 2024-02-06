@@ -17,12 +17,20 @@
 import {CoreFilterCmpt} from '../../../../../js/components/filter/Filter.js';
 import BsModal from '../../../../../js/components/Bootstrap/Modal.js';
 import {CoreRESTClient} from '../../../../../../public/js/RESTClient.js';
+import {docTabulatorFilter} from "../docs/docTabulatorFilter.js";
+import {docTabulatorFilterParentCmpt} from "../docs/docTabulatorFilterParentCmpt.js";
+import {docTabulatorFilterDataset} from "../docs/docTabulatorFilterDataset.js";
+import {docTabulatorFilterFiltersupdate} from "../docs/docTabulatorFilterFiltersupdate.js";
 
 export const TabulatorFilter = {
 	componentName: 'TabulatorFilter',
 	components: {
 		CoreFilterCmpt,
-		BsModal
+		BsModal,
+		docTabulatorFilter,
+		docTabulatorFilterParentCmpt,
+		docTabulatorFilterDataset,
+		docTabulatorFilterFiltersupdate
 	},
 	mixins: [ BsModal ],
 	emits: [ 'newFilterEntry'],
@@ -177,6 +185,12 @@ export const TabulatorFilter = {
 			<button class="btn btn-danger">Ablehnen</button>
 		</template>
 	</core-filter-cmpt>
+	
+	<!-- Code Documentation -->
+	<doc-tabulator-filter-parent-cmpt></doc-tabulator-filter-parent-cmpt>
+	<doc-tabulator-filter></doc-tabulator-filter>
+	<doc-tabulator-filter-dataset></doc-tabulator-filter-dataset>
+	<doc-tabulator-filter-filtersupdate></doc-tabulator-filter-filtersupdate>
 	
 	<!-- Modal -->
 	<bs-modal ref="modalContainer" class="bootstrap-prompt" v-bind="$props" @hidden-bs-modal="onHiddenBsModal">
