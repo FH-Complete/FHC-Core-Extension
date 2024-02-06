@@ -17,12 +17,14 @@
 import {CoreFilterCmpt} from '../../../../../js/components/filter/Filter.js';
 import {CoreRESTClient} from '../../../../../../public/js/RESTClient.js';
 import BsModal from '../../../../../js/components/Bootstrap/Modal.js';
+import {docTabulatorOnly} from "../docs/docTabulatorOnly.js";
 
 export const TabulatorOnly = {
 	componentName: 'TabulatorOnly',
 	components: {
 		CoreFilterCmpt,
-		BsModal
+		BsModal,
+		docTabulatorOnly
 	},
 	mixins: [
 		BsModal
@@ -62,7 +64,7 @@ export const TabulatorOnly = {
 				rowHeight: 60,		// Condense table
 				placeholder: "Keine Daten vorhanden",	// TODO move to core
 				columnDefaults:{
-					tooltip:true,	// Useful to display long text like Anmerkungen / Notizen / etc.
+					tooltip:true,	// Useful to display long text like Anmerkungen / Notizen / etc.  // TODO move to core
 				},
 				columns: [
 					{
@@ -172,14 +174,16 @@ export const TabulatorOnly = {
 		}
 	},
 	mounted(){
-		// Set initial table data
 		this.$refs.myTabulator.tabulator.on('tableBuilt', (e, row) => {
 			this.setInitTableData();
 		});
 	},
 	template: `
-	<!-- Tabelle -->
+	<!-- Tabulator (table-only) -->
 	<h3 class="h4">Tabulator without Filter (table-only)</h3>
+	<p class="lead mb-4">Tabulator without Filter will render your table with the select columns functionality ( <i class="fa fa-table-columns"></i> )  by default.<br>
+	You can easily add an Add-Button, Refresh-Button and Action-Buttons to handle multiple rows at once. Column formatters are used to keep same look&feel.
+	</p>
 	<core-filter-cmpt 
 		ref="myTabulator"
 		:table-only="true"
@@ -203,6 +207,9 @@ export const TabulatorOnly = {
 			</div>
 		</template>
 	</core-filter-cmpt>
+	
+	<!-- Code Documentation -->
+	<doc-tabulator-only></doc-tabulator-only>
 	
 	<!-- Modal -->
 	<bs-modal ref="modalContainer" class="bootstrap-prompt" v-bind="$props" @hidden-bs-modal="onHiddenBsModal">
