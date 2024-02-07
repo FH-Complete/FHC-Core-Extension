@@ -187,15 +187,15 @@ export const TabulatorOnly = {
 	</p>
 	<core-filter-cmpt 
 		ref="myTabulator"
-		:table-only="true"
+		table-only="true"
 		:side-menu="false"
 		:tabulator-options="tabulatorOptions"
 		:tabulator-events="[{ event: 'tableBuilt', handler: setInitTableData }]"
-		:new-btn-label="'Datensatz'"
-		:new-btn-show="true"
-		:new-btn-class="btn-primary"
+		new-btn-label="Datensatz"
+		new-btn-show="true"
+		new-btn-class="btn-primary"
 		@click:new="addData"
-		:reload="true">
+		reload="true">
 		<template #actions>
 			<button class="btn btn-primary" @click="acceptData">Datensatz genehmigen</button>
 			<button class="btn btn-danger" @click="rejectData">Datensatz ablehnen</button>

@@ -26,14 +26,6 @@ export const Layout = {
 		docLayoutBaseSide,
 		docTabulatorFilterChildCmpt: docTabulatorFilter
 	},
-	data: () => {
-		return {
-			appTitle: "Title",
-			appSubtitle: "Subtitle",
-			mainCols: [9],
-			asideCols: [3]
-		}
-	},
 	template: `
 	<h2 class="h3">Base Layout Templates</h2>
 	<p class="lead">Use Base Layout Component to structure your site with <b>title, subtitle, main content area</b> and, if you need so, <b>side content area</b> and <b>navigation tabs</b>.</p>
@@ -42,8 +34,8 @@ export const Layout = {
 		<h3 class="h4">Base Layout</h3>
 		<div class="row-col card card-body p-4 mt-3">
 			<base-layout
-				:title="appTitle"
-				:subtitle="appSubtitle">
+				title="Title"
+				subtitle="Subtitle">
 				<template #main>			
 					<div class="row-col card card-body h-100">
 						<h5>#main slot</h5>
@@ -60,10 +52,10 @@ export const Layout = {
 		<h3 class="h4">Base Layout + Side Content</h3>
 		<div class="row-col card card-body p-4  mt-3">
 			<base-layout
-			:title="appTitle"
-			:subtitle="appSubtitle"
-			:mainCols="mainCols"
-			:asideCols="asideCols">
+			title="Title"
+			subtitle="Subtitle"
+			mainCols="9"
+			asideCols="3">
 			<template #main>			
 				<div class="row-col card card-body h-100">
 					<h5>#main slot</h5>
@@ -88,10 +80,10 @@ export const Layout = {
 <!--		<h3 class="h4">Base Layout + Side Content + Navigation Tabs</h3>-->
 <!--		<div class="row-col card card-body p-4">-->
 <!--			<base-layout-->
-<!--			:title="appTitle"-->
-<!--			:subtitle="appSubtitle"-->
-<!--			:mainCols="mainCols"-->
-<!--			:asideCols="asideCols">-->
+<!--			title="appTitle"-->
+<!--			subtitle="appSubtitle"-->
+<!--			mainCols="9"-->
+<!--			asideCols="3">-->
 <!--			<template #main>-->
 <!--				<nav-tabs :tabs="tabs"></nav-tabs>			-->
 <!--				<div class="row-col card card-body h-100">-->

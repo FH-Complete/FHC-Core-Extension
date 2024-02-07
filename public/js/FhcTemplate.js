@@ -29,11 +29,7 @@ export const FhcTemplate = {
 	},
 	data: function() {
 		return {
-			appTitle: "FHC-Template",
-			appSubtitle: "FHC Example Template",
 			appSideMenuEntries: {},
-			mainCols: [9],
-			asideCols: [3],
 			faqs: [
 				{
 					title: 'FAQ 1',
@@ -56,11 +52,11 @@ export const FhcTemplate = {
 
 	<!-- Content -->
 	<base-layout
-		:title="appTitle"
-		:subtitle="appSubtitle"
-		:mainCols="mainCols"
-		:asideCols="asideCols"
-		:alignToCoreNav="true">
+		title="FHC-Template"
+		subtitle="FHC Example Template"
+		mainCols="9"
+		asideCols="3"
+		alignToCoreNav="true">
 		<template #main>
 			<nav-tabs @new-filter-entry="appSideMenuEntries = $event"></nav-tabs>	
 		</template>

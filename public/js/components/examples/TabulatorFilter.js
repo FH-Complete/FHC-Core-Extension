@@ -171,9 +171,9 @@ export const TabulatorFilter = {
 		:side-menu="false"
 		:tabulator-options="tabulatorOptions"
 		:tabulator-events="[{ event: 'cellEdited', handler: changeAnrechnungstatus }]"
-		:new-btn-label="'Anrechnung'"
-		:new-btn-show="true"
-		:new-btn-class="btn-primary"
+		new-btn-label="'Anrechnung'"
+		new-btn-show="true"
+		new-btn-class="btn-primary"
 		@click:new="addAnrechnung"
 		@nw-new-entry="$emit('newFilterEntry', $event)">
 		<template #actions>
