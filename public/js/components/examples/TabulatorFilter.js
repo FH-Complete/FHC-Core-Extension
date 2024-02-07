@@ -171,7 +171,7 @@ export const TabulatorFilter = {
 	<core-filter-cmpt 
 		ref="anrechnungTable"
 		filter-type="AnrechnungTable"
-		:side-menu="true"
+		:side-menu="false"
 		:tabulator-options="tabulatorOptions"
 		:new-btn-label="'Anrechnung'"
 		:new-btn-show="true"
