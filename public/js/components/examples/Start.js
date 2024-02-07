@@ -31,14 +31,6 @@ export const Start = {
 		docTabulatorFilterFiltersupdate
 
 	},
-	data: () => {
-		return {
-			appTitle: "Title",
-			appSubtitle: "Subtitle",
-			mainCols: [9],
-			asideCols: [3]
-		}
-	},
 	template: `
 	<h2 class="h3">Starter Template Example</h2>
 	<p class="lead">Quick Start</p>
