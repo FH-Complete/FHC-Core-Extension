@@ -23,6 +23,6 @@ array(
   )
   </pre></code>
 </div>
-</div>;
+</div>
 `
 };

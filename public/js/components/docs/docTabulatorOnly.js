@@ -1,7 +1,7 @@
 export const docTabulatorOnly = {
 	template: `
 <div class="row-col">
-<h3 class="h4">Basic Table-only structure</h3>
+<h3 class="h4">Basic structure: Table-only Tabulator</h3>
 <div class="card card-body bg-light mt-3">
 <code><pre>
 <span class="text-muted">// Import the Core Filter- and Core RESTClient Component to build your table and handle data</span>

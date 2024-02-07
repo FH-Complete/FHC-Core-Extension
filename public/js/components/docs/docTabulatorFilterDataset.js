@@ -1,7 +1,7 @@
 export const docTabulatorFilterDataset = {
 	template: `
 <div class="row-col mt-5">
-<h3 class="h4">Dataset: Declare the initial Data</h3>
+<h3 class="h4">Dataset: Get the initial Data for the Tabulator</h3>
 <div class="card card-body bg-light mt-3">
 <code><pre>
 &lt;?php

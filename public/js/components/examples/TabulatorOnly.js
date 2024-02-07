@@ -210,10 +210,6 @@ export const TabulatorOnly = {
 		</template>
 	</core-filter-cmpt>
 	
-	<!-- Code Documentation -->
-	<doc-tabulator-only></doc-tabulator-only>
-	<doc-tabulator-options></doc-tabulator-options>
-	
 	<!-- Modal -->
 	<bs-modal ref="modalContainer" class="bootstrap-prompt" v-bind="$props" @hidden-bs-modal="onHiddenBsModal">
 		<template #title>{{ modalTitel }}</template>
@@ -222,5 +218,9 @@ export const TabulatorOnly = {
 			<button type="button" class="btn btn-primary" @click="onBsModalSave">{{ modalTitel }}</button>
 		</template>
 	</bs-modal>
+	
+	<!-- Code Documentation -->
+	<doc-tabulator-only></doc-tabulator-only>
+	<doc-tabulator-options></doc-tabulator-options>
 `
 };

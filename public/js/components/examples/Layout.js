@@ -17,14 +17,14 @@
 import {BaseLayout} from "../Layout/BaseLayout.js";
 import {docLayoutBase} from "../docs/docLayoutBase.js";
 import {docLayoutBaseSide} from "../docs/docLayoutBaseSide.js";
-import {docTabulatorFilterChildCmpt} from "../docs/docTabulatorFilterChildCmpt.js";
+import {docTabulatorFilter} from "../docs/docTabulatorFilter.js";
 
 export const Layout = {
 	components: {
 		BaseLayout,
 		docLayoutBase,
 		docLayoutBaseSide,
-		docTabulatorFilterChildCmpt: docTabulatorFilterChildCmpt
+		docTabulatorFilterChildCmpt: docTabulatorFilter
 	},
 	data: () => {
 		return {
@@ -52,7 +52,7 @@ export const Layout = {
 				</template>
 			</base-layout>
 		</div>
-		<!-- Documentation -->
+		<!-- Code Documentation -->
 		<doc-layout-base></doc-layout-base>
 	</div>
 		
@@ -80,7 +80,7 @@ export const Layout = {
 			</template>
 		</base-layout>
 		</div>
-		<!-- Documentation -->
+		<!-- Code Documentation -->
 		<doc-layout-base-side></doc-layout-base-side>
 	</div>
 	

@@ -15,7 +15,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {BaseLayout} from "../Layout/BaseLayout.js";
-import {docTabulatorFilter} from "../docs/docTabulatorFilter.js";
+import {docAppPlugin} from "../docs/docAppPlugin.js";
+import {docTabulatorFilterChildCmpt} from "../docs/docTabulatorFilterChildCmpt.js";
 import {docTabulatorFilterParentCmpt} from "../docs/docTabulatorFilterParentCmpt.js";
 import {docTabulatorFilterDataset} from "../docs/docTabulatorFilterDataset.js";
 import {docTabulatorFilterFiltersupdate} from "../docs/docTabulatorFilterFiltersupdate.js";
@@ -23,7 +24,8 @@ import {docTabulatorFilterFiltersupdate} from "../docs/docTabulatorFilterFilters
 export const Start = {
 	components: {
 		BaseLayout,
-		docTabulatorFilter,
+		docAppPlugin,
+		docTabulatorFilterChildCmpt,
 		docTabulatorFilterParentCmpt,
 		docTabulatorFilterDataset,
 		docTabulatorFilterFiltersupdate
@@ -38,15 +40,14 @@ export const Start = {
 		}
 	},
 	template: `
-	<h2 class="h3">Starter Template</h2>
+	<h2 class="h3">Starter Template Example</h2>
 	<p class="lead">Quick Start</p>
 	
-
+	<!-- Code Documentation -->
 	<div class="row-cols my-5">
-		<h3 class="h4">Starter Template Example</h3>
-		<!-- Documentation -->
+		<doc-app-plugin></doc-app-plugin>
 		<doc-tabulator-filter-parent-cmpt></doc-tabulator-filter-parent-cmpt>
-		<doc-tabulator-filter></doc-tabulator-filter>
+		<doc-tabulator-filter-child-cmpt></doc-tabulator-filter-child-cmpt>
 		<doc-tabulator-filter-dataset></doc-tabulator-filter-dataset>
 		<doc-tabulator-filter-filtersupdate></doc-tabulator-filter-filtersupdate>
 	</div>

@@ -86,70 +86,52 @@ export const Alerts = {
 	template: `
 	<h2 class="h3">Alert Plugin</h2>
 	<p class="lead">Use FhcAlert core plugin to popup alerts from anywhere inside your app. <br>
-		Use it to display same look&feel <b>success, info, attention and error messages</b> to the user, also to <b>ask user for confirmation</b> before deleting data.
-		You can use <b>multiple alerts</b> to create message stacks, e.g. to display multiple notifications.</p>
+	Use it to display same look&feel <b>success, info, attention and error messages</b> to the user, also to <b>ask user for confirmation</b> before deleting data.
+	You can use <b>multiple alerts</b> to create message stacks, e.g. to display multiple notifications.</p>
 		
-	<div class="row-col my-5">
-		<h3 class="h4">Enable FhcAlert Core Plugin in your App</h3>
-		<p class="">FhcAlert core plugin is using <a href="https://primevue.org/toast/" target="_blank">PrimeVue Toast</a> and <a href="https://primevue.org/confirmdialog/" target="_blank">PrimeVue ConfirmDialog</a> Components. They are installed and initialized inside the plugin. <br>
-		To use it, import FhcAlert core plugin once into your app, to then use it from anywhere inside your app.</p>
-		
-		<doc-alert-enable-plugin></doc-alert-enable-plugin>
-	</div>
+	<!-- Code Documentation -->	
+	<doc-alert-enable-plugin></doc-alert-enable-plugin>
+	
 	<div class="row g-3 mb-5">
 		<h3 class="h4">Use FhcAlert Plugin from anywhere inside your App</h3><br>
 		<div class="col-9">
-			<div class="card card-body bg-light">
-				<code>this.$fhcAlert.alertSuccess('Success');</code>
-			</div>
+			<div class="card card-body bg-light"><code>this.$fhcAlert.alertSuccess('Success');</code></div>
 		</div>
 		<div class="col-3">
 			<button class="btn btn-outline-secondary w-100 w-100" @click="alertSuccess">Alert Success</button>
 		</div>
 		<div class="col-9">
-			<div class="card card-body bg-light">
-				<code>this.$fhcAlert.alertInfo('Info');</code>
-			</div>
+			<div class="card card-body bg-light"><code>this.$fhcAlert.alertInfo('Info');</code></div>
 		</div>
 		<div class="col-3">
 			<button class="btn btn-outline-secondary w-100 w-100" @click="alertInfo">Alert Info</button>
 		</div>
 		<div class="col-9">
-			<div class="card card-body bg-light">
-				<code>this.$fhcAlert.alertWarning('Warning message is sticky');</code>
-			</div>
+			<div class="card card-body bg-light"><code>this.$fhcAlert.alertWarning('Warning message is sticky');</code></div>
 		</div>
 		<div class="col-3">
 			<button class="btn btn-outline-secondary w-100" @click="alertWarning">Alert Warning</button>
 		</div>
 		<div class="col-9">
-			<div class="card card-body bg-light">
-				<code>this.$fhcAlert.alertError('Error message is sticky');</code>
-			</div>
+			<div class="card card-body bg-light"><code>this.$fhcAlert.alertError('Error message is sticky');</code></div>
 		</div>
 		<div class="col-3">
 			<button class="btn btn-outline-secondary w-100" @click="alertError">Alert Error</button>
 		</div>
 		<div class="col-9">
-			<div class="card card-body bg-light">
-				<code>this.$fhcAlert.alertDefault('info', 'Mein Custom Titel', 'Meine Message', true);</code>
-			</div>
+			<div class="card card-body bg-light"><code>this.$fhcAlert.alertDefault('info', 'Mein Custom Titel', 'Meine Message', true);</code></div>
 		</div>
 		<div class="col-3">
 			<button class="btn btn-outline-secondary w-100" @click="alertDefault">Alert Default (Custom)</button>
 		</div>
 		<div class="col-9">
-			<div class="card card-body bg-light">
-				<code>this.$fhcAlert.handleSystemMessage('My implemented message to user');</code>
-			</div>
+			<div class="card card-body bg-light"><code>this.$fhcAlert.handleSystemMessage('My implemented message to user');</code></div>
 		</div>
 		<div class="col-3">
 			<button class="btn btn-outline-secondary w-100" @click="handleSystemMessage">Handle System-Message</button>
 		</div>
 		<div class="col-9">
-			<div class="card card-body bg-light">
-				<code>this.$fhcAlert.handleSystemError('System Error Message');</code>
-			</div>
+			<div class="card card-body bg-light"><code>this.$fhcAlert.handleSystemError('System Error Message');</code></div>
 		</div>
 		<div class="col-3">
 			<button class="btn btn-outline-secondary w-100" @click="handleSystemError">Handle System-Error</button>
@@ -201,13 +183,13 @@ this.$fhcAlert.alertMultiple(msgArr, 'success', 'Sticky success messages', true)
 	<div class="row-col mb-5">
 		<h3 class="h4">Example 1: Display Info Alert on Success and handle System Error</h3><br>
 		<div class="mb-3"><button class="btn btn-primary" @click="getFullName">Namen anzeigen</button></div>
-		
+		<!-- Code Documentation -->	
 		<doc-alert-example></doc-alert-example>
 	</div>
 	<div class="row-col mb-5">
 		<h3 class="h4">Example 2: Use Confirm Dialog on Delete. Display Success Alert on Success and handle System Error</h3><br>
 		<div class="mb-3"><button class="btn btn-danger" @click="deleteData(123)">Datensatz löschen</button></div>
-		
+		<!-- Code Documentation -->	
 		<doc-alert-confirm-delete></doc-alert-confirm-delete>
 	</div>
 `
