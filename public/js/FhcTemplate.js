@@ -18,18 +18,14 @@
 import {CoreNavigationCmpt} from '../../../../public/js/components/navigation/Navigation.js';
 import {BaseLayout} from "./components/Layout/BaseLayout.js";
 import {NavTabs} from "./components/Layout/NavTabs.js";
-import {Status} from "./components/Status.js";
 import {Faqs} from "./components/Faqs.js";
-import {Kontakt} from "./components/Kontakt.js";
 
 export const FhcTemplate = {
 	components: {
 		CoreNavigationCmpt,
 		BaseLayout,
 		NavTabs,
-		Status,
-		Faqs,
-		Kontakt
+		Faqs
 	},
 	data: function() {
 		return {
@@ -51,19 +47,7 @@ export const FhcTemplate = {
 					title: 'FAQ 3',
 					text: 'Answering FAQ 3'
 				}
-			],
-			kontakte: [
-				{
-					uid: 'uid',
-					vorname: 'Vorname',
-					nachname: 'Nachname',
-					email: 'uid@technikum-wien.at',
-					phone: '+43 1 333 40 77 - 0000',
-					raum: 'F3.04'
-				}
-			],
-			statusText: 'Genehmigt',
-			statusClass: 'success'
+			]
 		}
 	},
 	template: `
@@ -81,9 +65,7 @@ export const FhcTemplate = {
 			<nav-tabs @new-filter-entry="appSideMenuEntries = $event"></nav-tabs>	
 		</template>
       	<template #aside>
-      		<status :statusText="statusText" :statusClass="statusClass"></status>
       		<faqs :faqs="faqs"></faqs>
-      		<kontakt :kontakte="kontakte"></kontakt>
 		</template>
 	</base-layout>
 	`
