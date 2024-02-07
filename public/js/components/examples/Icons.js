@@ -38,10 +38,9 @@ export const Icons = {
 				{ iconDescription: 'suchen', iconClass:'fa fa-search' },
 				{ iconDescription: 'Zeile hinzufügen', iconClass:'fa fa-plus' },
 				{ iconDescription: 'Zeile löschen', iconClass:'fa fa-times' },
-				// { iconDescription: 'sichtbar / nicht sichtbar', iconClass:'fa fa-eye"></i> / <i class="fa fa-eye-slash' },
-		// {
-		// 			iconDescription: 'Details</td><td><a href="#">Details</a></td><td><em>Details als link ausschreiben. Kein fa-eye!</em></td></tr>
-		//  		{ iconDescription: 'Info', iconClass:'fa fa-info-circle"></i> / <i class="fa fa-info' },
+				{ iconDescription: 'sichtbar (= Element sichtbar. Nicht für "Details" verwenden)', iconClass:'fa fa-eye' },
+				{ iconDescription: 'nicht sichtbar', iconClass:'fa fa-eye-slash' },
+				{ iconDescription: 'Info', iconClass:'fa fa-info-circle' },
 				{ iconDescription: 'User', iconClass:'fa fa-user' },
 				{ iconDescription: 'Mehrere User', iconClass:'fa fa-users' },
 				{ iconDescription: 'Hilfe', iconClass:'fa fa-circle-question'},
@@ -60,7 +59,8 @@ export const Icons = {
 				{ iconDescription: 'Kalender', iconClass:'fa fa-calendar' },
 				{ iconDescription: 'Uhr', iconClass:'fa fa-clock' },
 				{ iconDescription: 'Statistik', iconClass:'fa fa-chart-line' },
-				// { iconDescription: 'Chart', iconClass:'fa fa-chart-pie"></i> / <i class="fa fa-chart-simple' },
+				{ iconDescription: 'Chart-Pie', iconClass:'fa fa-chart-pie' },
+				{ iconDescription: 'Chart-Simple', iconClass:'fa fa-chart-simple' },
 				{ iconDescription: 'Pivot', iconClass:'fa fa-table-cells' },
 				{ iconDescription: 'Report', iconClass:'fa fa-file' },
 				{ iconDescription: 'Synchronisieren zwischen Systemen', iconClass:'fa fa-exchange' }
@@ -69,10 +69,6 @@ export const Icons = {
 			statusIcons: [
 			   	{ iconDescription: 'done / check / ja ', iconClass:'fa fa-check' },
 				{ iconDescription: 'undone / unchecked / nein', iconClass:'fa fa-xmark' },
-	      // {
-			// iconDescription: 'aktiv</td><td></td><td>Ich bin aktiv</td></tr>
-			//     {
-			// 		iconDescription: 'inaktiv</td><td></td><td><span class="text-muted">Ich bin inaktiv</span></td></tr>
 				{ iconDescription: 'success (in alert message)', iconClass:'fa fa-circle-check text-success' },
 				{ iconDescription: 'info (in alert message)', iconClass:'fa fa-circle-info text-info' },
 				{ iconDescription: 'warning (in alert message)', iconClass:'fa fa-triangle-exclamation text-warning' },
@@ -104,21 +100,6 @@ export const Icons = {
 		}
 	},
 	template: `
-<!--    <div class="card card-body mb-5">-->
-<!--        <ul>-->
-<!--            <li>Fontawsome 6.2.1</li>-->
-<!--            <li>Free icons (solid, regular). <b>Default: solid.</b></li>-->
-<!--            <ul>-->
-<!--                <li>solid: fa fa-save</li>-->
-<!--                <li>regular: fa fa-copy</li>-->
-<!--            </ul>-->
-<!--            <li>Sizing <b>Default: relativ.</b></li>-->
-<!--            <ul>-->
-<!--                <li>relativ: fa-lg, fa-xl,... -> generell für Tabellen, im Text. Skalierbar, lässt sich in Textfluss gut einbinden.</li>-->
-<!--                <li>literal: fa-2x, fa-3x,... -> für stand-alone eye-catcher. Bsp als 'Grafikicon' in cards.</li>-->
-<!--            </ul>-->
-<!--        </ul>-->
-<!--    </div>-->
 	<h2 class="h4">Interactions</h2>
     <table class="table table-condensed table-bordered mt-4">
     	<thead><tr><th style="width: 300px">Beschreibung</th><th>Icon</th><th>HTML Shortcut</th></tr></thead>
