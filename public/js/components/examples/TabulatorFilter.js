@@ -55,10 +55,12 @@ export const TabulatorFilter = {
 			this.$fhcAlert.alertSuccess('ID' + id + ' deleted')
 		},
 		changeAnrechnungstatus(cell){
-			let status = cell.getValue();
 			let anrechnungId = cell.getRow().getIndex();
+			let status = cell.getValue();
 			this.$fhcAlert.alertSuccess('Status changed');
-		}
+		},
+		acceptAnrechnung(){ this.$fhcAlert.alertSuccess('Accepted')},
+		rejectAnrechnung(){ this.$fhcAlert.alertSuccess('Rejected')}
 	},
 	data: function() {
 		return {
@@ -175,8 +177,8 @@ export const TabulatorFilter = {
 		@click:new="addAnrechnung"
 		@nw-new-entry="$emit('newFilterEntry', $event)">
 		<template #actions>
-			<button class="btn btn-primary">Genehmigen</button>
-			<button class="btn btn-danger">Ablehnen</button>
+			<button class="btn btn-primary" @click="acceptAnrechnung">Genehmigen</button>
+			<button class="btn btn-danger" @click="rejectAnrechnung">Ablehnen</button>
 		</template>
 	</core-filter-cmpt>
 	
