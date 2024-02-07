@@ -33,6 +33,15 @@ export const TabulatorFilter = {
 	mixins: [ BsModal ],
 	emits: [ 'newFilterEntry'],
 	methods: {
+		getAnrechnungstatusList(){
+			CoreRESTClient
+				.get('/extensions/FHC-Core-Extension/FhcTemplate/getAnrechnungstatusList')
+				.then(result => result.data)
+				.then(result => {
+					this.anrechnungstatusList = CoreRESTClient.getData(result).map(x => x.bezeichnung_mehrsprachig);
+				})
+				.catch(error => { this.$fhcAlert.handleSystemError(error); });
+		},
 		addAnrechnung(){
 			this.modalTitel = 'Anrechnung anlegen';
 			this.$refs.modalContainer.show();
@@ -45,16 +54,21 @@ export const TabulatorFilter = {
 			if (await this.$fhcAlert.confirmDelete() === false) return;
 			this.$fhcAlert.alertSuccess('ID' + id + ' deleted')
 		},
-		changeAnrechnungstatus(newStatus, id){
-			// Just return alert for testing
+		changeAnrechnungstatus(cell){
+			let status = cell.getValue();
+			let anrechnungId = cell.getRow().getIndex();
 			this.$fhcAlert.alertSuccess('Status changed');
 		}
 	},
 	data: function() {
 		return {
 			modalTitel: '',
-			anrechnungstatusList: [],
-			tabulatorOptions: {
+			anrechnungstatusList: null,
+		}
+	},
+	computed: {
+		tabulatorOptions() {
+			return {
 				index: 'anrechnung_id',	// Unique ID
 				maxHeight: "100%",
 				minHeight: 100,
@@ -71,7 +85,7 @@ export const TabulatorFilter = {
 						titleFormatterParams: {
 							rowRange: "active" // Only toggle the values of the active filtered rows
 						},
-					    frozen: true,
+						frozen: true,
 						width: 70
 					},
 					{title: 'Anrechnung-ID', field: 'anrechnung_id', headerFilter: true, hozAlign: 'right', frozen: true},
@@ -96,7 +110,7 @@ export const TabulatorFilter = {
 								FHC_JS_DATA_STORAGE_OBJECT.called_path +
 								"/download?dms_id=" + cell.getRow().getCell('dms_id').getData().dms_id, // TODO korrigieren
 							target:"_blank"
-							}
+						}
 						},
 						tooltip: (e, cell) =>  cell.getData().datei.titel	// Overwrite table option tooltip, which will return the datei-object
 					},
@@ -115,26 +129,26 @@ export const TabulatorFilter = {
 						field: 'actions',
 						minWidth: 150,	// Ensures Action-buttons will be always fully displayed
 						formatter: (cell, formatterParams, onRendered) => {
-								let container = document.createElement('div');
-								container.className = "d-flex gap-2";
+							let container = document.createElement('div');
+							container.className = "d-flex gap-2";
 
-								let button = document.createElement('button');
-								button.className = 'btn btn-outline-secondary btn-action';
-								button.innerHTML = '<i class="fa fa-edit"></i>';
-								button.addEventListener('click', (event) =>
-									this.editAnrechnung(cell.getRow().getIndex())
-								);
-								container.append(button);
+							let button = document.createElement('button');
+							button.className = 'btn btn-outline-secondary btn-action';
+							button.innerHTML = '<i class="fa fa-edit"></i>';
+							button.addEventListener('click', (event) =>
+								this.editAnrechnung(cell.getRow().getIndex())
+							);
+							container.append(button);
 
-								button = document.createElement('button');
-								button.className = 'btn btn-outline-secondary btn-action';
-								button.innerHTML = '<i class="fa fa-xmark"></i>';
-								button.addEventListener('click', () =>
-									this.deleteAnrechnung(cell.getRow().getIndex())
-								);
-								container.append(button);
+							button = document.createElement('button');
+							button.className = 'btn btn-outline-secondary btn-action';
+							button.innerHTML = '<i class="fa fa-xmark"></i>';
+							button.addEventListener('click', () =>
+								this.deleteAnrechnung(cell.getRow().getIndex())
+							);
+							container.append(button);
 
-								return container;
+							return container;
 
 						},
 						frozen: true
@@ -143,36 +157,18 @@ export const TabulatorFilter = {
 			}
 		}
 	},
-	beforeCreate(){
-		// Get all Anrechnungstatus
-		CoreRESTClient
-				.get('/extensions/FHC-Core-Extension/FhcTemplate/getAnrechnungstatusList')
-				.then(result => result.data)
-				.then(result => {
-					// Populate column 'status_kurzbz'
-					this.anrechnungstatusList = CoreRESTClient.getData(result).map(x => x.bezeichnung_mehrsprachig);
-					this.tabulatorOptions.columns
-						.find(col => col.field === 'status_kurzbz')
-						.editorParams = {values: this.anrechnungstatusList}
-						.headerFilterParams = {values: this.anrechnungstatusList};
-
-					// Reload table // TODO workaround for async problem
-					this.$refs.anrechnungTable.reloadTable();
-				 })
-				.catch(error => { this.$fhcAlert.handleSystemError(error); });
-	},
-	mounted(){
-		this.$refs.anrechnungTable.tabulator.on('cellEdited', (cell) => {
-			this.changeAnrechnungstatus(cell.getValue(), cell.getRow().getIndex());
-		});
+	created(){
+		// Get initial Anrechnungstatuslist
+		this.getAnrechnungstatusList();
 	},
 	template: `
 	<h3 class="h4 mt-3">Tabulator with Filter</h3>
-	<core-filter-cmpt 
+	<core-filter-cmpt v-if="anrechnungstatusList"
 		ref="anrechnungTable"
 		filter-type="AnrechnungTable"
 		:side-menu="false"
 		:tabulator-options="tabulatorOptions"
+		:tabulator-events="[{ event: 'cellEdited', handler: changeAnrechnungstatus }]"
 		:new-btn-label="'Anrechnung'"
 		:new-btn-show="true"
 		:new-btn-class="btn-primary"

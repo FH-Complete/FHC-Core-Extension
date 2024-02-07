@@ -32,7 +32,7 @@ export const TabulatorOnly = {
 		BsModal
 	],
 	methods: {
-		setInitTableData(){
+		setInitTableData(e, row){
 			CoreRESTClient
 				.get('/extensions/FHC-Core-Extension/FhcTemplate/getTestData')
 				.then(result => result.data)
@@ -58,7 +58,11 @@ export const TabulatorOnly = {
 	data: function() {
 		return {
 			modalTitel: '',
-			tabulatorOptions: {
+		}
+	},
+	computed: {
+		tabulatorOptions() {
+			return {
 				index: 'id',	// Unique ID
 				maxHeight: "100%",
 				minHeight: 100,
@@ -75,7 +79,7 @@ export const TabulatorOnly = {
 						titleFormatterParams: {
 							rowRange: "active" // Only toggle the values of the active filtered rows
 						},
-					    frozen: true,
+						frozen: true,
 						width: 70
 					},
 					{title: 'ID', field: 'id', headerFilter: true, width: 70, hozAlign: 'right', frozen: true},
@@ -120,7 +124,7 @@ export const TabulatorOnly = {
 								FHC_JS_DATA_STORAGE_OBJECT.called_path +
 								"/download?dms_id=" + cell.getData().datei.dms_id,
 							target:"_blank"
-							}
+						}
 						},
 						tooltip: (e, cell) =>  cell.getData().datei.titel	// Overwrite table option tooltip, which will return the datei-object
 					},
@@ -175,11 +179,6 @@ export const TabulatorOnly = {
 			}
 		}
 	},
-	mounted(){
-		this.$refs.myTabulator.tabulator.on('tableBuilt', (e, row) => {
-			this.setInitTableData();
-		});
-	},
 	template: `
 	<!-- Tabulator (table-only) -->
 	<h3 class="h4">Tabulator without Filter (table-only)</h3>
@@ -191,6 +190,7 @@ export const TabulatorOnly = {
 		:table-only="true"
 		:side-menu="false"
 		:tabulator-options="tabulatorOptions"
+		:tabulator-events="[{ event: 'tableBuilt', handler: setInitTableData }]"
 		:new-btn-label="'Datensatz'"
 		:new-btn-show="true"
 		:new-btn-class="btn-primary"
