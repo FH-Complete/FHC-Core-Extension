@@ -25,9 +25,8 @@ export const TabulatorFilter = {
       filter-type="ExampleTable"	<span class="text-muted">// This corresponds to 'filter_kurzbz' in filtersupdate</span>
       :side-menu="true"			<span class="text-muted">// You want your filters to be shown in the side menu </span>
       :tabulator-options="tabulatorOptions"
-      @nw-new-entry="$emit('newFilterEntry', $event)"&gt;	<span class="text-muted">// Mandatory when using filter to update the side menu entries</span>
-  &lt;/core-filter-cmpt&gt;
-  
+      @nw-new-entry="$emit('newFilterEntry', $event)"&gt;	<span class="text-muted">// Mandatory when using filter to update the side menu entries: Emits new filter to parent component.</span>
+  &lt;/core-filter-cmpt&gt; 
 </pre></code>
 </div>
 </div>

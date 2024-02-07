@@ -17,14 +17,14 @@
 import {BaseLayout} from "../Layout/BaseLayout.js";
 import {docLayoutBase} from "../docs/docLayoutBase.js";
 import {docLayoutBaseSide} from "../docs/docLayoutBaseSide.js";
-import {docLayoutLiveExample} from "../docs/docLayoutLiveExample.js";
+import {docTabulatorFilterChildCmpt} from "../docs/docTabulatorFilterChildCmpt.js";
 
 export const Layout = {
 	components: {
 		BaseLayout,
 		docLayoutBase,
 		docLayoutBaseSide,
-		docLayoutLiveExample
+		docTabulatorFilterChildCmpt: docTabulatorFilterChildCmpt
 	},
 	data: () => {
 		return {
@@ -84,36 +84,29 @@ export const Layout = {
 		<doc-layout-base-side></doc-layout-base-side>
 	</div>
 	
-	<div class="row-cols my-5">
-		<h3 class="h4">Live Example</h3>
-		<h5 class="h6">This page</h3>
-		<!-- Documentation -->
-		<doc-layout-live-example></doc-layout-live-example>
-	</div>
-	
-	<div class="row-cols my-5">
-		<h3 class="h4">Base Layout + Side Content + Navigation Tabs</h3>
-		<div class="row-col card card-body p-4">
-			<base-layout
-			:title="appTitle"
-			:subtitle="appSubtitle"
-			:mainCols="mainCols"
-			:asideCols="asideCols">
-			<template #main>
-				<nav-tabs :tabs="tabs"></nav-tabs>			
-				<div class="row-col card card-body h-100">
-					<h5>#main slot</h5>
-					mainCols: 9 cols (you can adapt)
-				</div>
-			</template>
-			<template #aside>
-				<div class="card card-body mb-3">
-					<h5>#aside slot</h5>
-					asideCols: 3 cols (you can adapt)
-				</div>
-			</template>
-		</base-layout>
-		</div>
-	</div>  
+<!--	<div class="row-cols my-5">-->
+<!--		<h3 class="h4">Base Layout + Side Content + Navigation Tabs</h3>-->
+<!--		<div class="row-col card card-body p-4">-->
+<!--			<base-layout-->
+<!--			:title="appTitle"-->
+<!--			:subtitle="appSubtitle"-->
+<!--			:mainCols="mainCols"-->
+<!--			:asideCols="asideCols">-->
+<!--			<template #main>-->
+<!--				<nav-tabs :tabs="tabs"></nav-tabs>			-->
+<!--				<div class="row-col card card-body h-100">-->
+<!--					<h5>#main slot</h5>-->
+<!--					mainCols: 9 cols (you can adapt)-->
+<!--				</div>-->
+<!--			</template>-->
+<!--			<template #aside>-->
+<!--				<div class="card card-body mb-3">-->
+<!--					<h5>#aside slot</h5>-->
+<!--					asideCols: 3 cols (you can adapt)-->
+<!--				</div>-->
+<!--			</template>-->
+<!--		</base-layout>-->
+<!--		</div>-->
+<!--	</div>  -->
 `
 };
