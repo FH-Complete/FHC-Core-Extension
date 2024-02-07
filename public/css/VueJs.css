@@ -1,0 +1,12 @@
+@import url('../../../css/Fhc.css');
+
+#sidenav {
+	top: 1rem;
+}
+
+ul.left-side-menu-second-level > li > span {
+	width: 100%;
+}
+ul.left-side-menu-second-level > li > span > :first-child {
+	flex-grow: 1;
+}
