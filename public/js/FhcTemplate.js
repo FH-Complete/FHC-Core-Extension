@@ -19,13 +19,15 @@ import {CoreNavigationCmpt} from '../../../../public/js/components/navigation/Na
 import {BaseLayout} from "./components/Layout/BaseLayout.js";
 import {NavTabs} from "./components/Layout/NavTabs.js";
 import {Faqs} from "./components/Faqs.js";
+import FhcTabs from "../../../js/components/Tabs.js";
 
 export const FhcTemplate = {
 	components: {
 		CoreNavigationCmpt,
 		BaseLayout,
 		NavTabs,
-		Faqs
+		Faqs,
+		FhcTabs
 	},
 	data: function() {
 		return {
@@ -56,8 +58,9 @@ export const FhcTemplate = {
 		subtitle="FHC Example Template"
 		mainCols="9"
 		asideCols="3"
-		alignToCoreNav="true">
+		>
 		<template #main>
+			<fhc-tabs vertical border class="mb-5" :config="{start: { title: 'Start', component: '../../extensions/FHC-Core-Extension/js/components/examples/Alerts.js'}, end: { title: 'Ende', component: '../../extensions/FHC-Core-Extension/js/components/examples/Icons.js'}}"></fhc-tabs>
 			<nav-tabs @new-filter-entry="appSideMenuEntries = $event"></nav-tabs>	
 		</template>
       	<template #aside>

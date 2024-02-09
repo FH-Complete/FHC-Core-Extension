@@ -15,7 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-export const Icons = {
+export default {
 	componentName: 'Icons',
 	data: function() {
 		return {

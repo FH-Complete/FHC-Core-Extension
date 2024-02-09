@@ -21,7 +21,7 @@ import {Layout} from "../../components/examples/Layout.js";
 import {TabulatorOnly} from "../examples/TabulatorOnly.js";
 import {TabulatorFilter} from "../examples/TabulatorFilter.js";
 import {Alerts} from "../../components/examples/Alerts.js";
-import {Icons} from "../../components/examples/Icons.js";
+import Icons from "../../components/examples/Icons.js";
 
 export const NavTabs = {
 	components: {
@@ -55,7 +55,7 @@ export const NavTabs = {
 	<div class="row">
 		<div class="col-md-12">
 			<div id="navTabs">
-				<ul class="nav nav-tabs" class="mb-5">
+				<ul class="nav nav-tabs mb-5">
 					<li class="nav-item" v-for="tab in tabs" :key="tab">
 						<a :class="['nav-link', { active: currentTab === tab }]" class="cursor-pointer" @click="changeTab(tab)">{{ tab }}</a>
 					</li>
