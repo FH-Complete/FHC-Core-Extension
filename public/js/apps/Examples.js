@@ -46,7 +46,8 @@ const app = Vue.createApp({
 		new bootstrap.ScrollSpy(document.body, {
 			target: '#sidenav'
 		});
-		new bootstrap.Tooltip('[data-bs-toggle="tooltip"]');
+		if (document.querySelector('[data-bs-toggle="tooltip"]'))
+			new bootstrap.Tooltip('[data-bs-toggle="tooltip"]');
 	}
 });
 
