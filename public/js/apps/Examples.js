@@ -25,22 +25,6 @@ const app = Vue.createApp({
 	components: {
 		CoreNavigationCmpt
 	},
-	data() {
-		const url_prefix = FHC_JS_DATA_STORAGE_OBJECT.app_root
-			+ FHC_JS_DATA_STORAGE_OBJECT.ci_router
-			+ '/extensions/FHC-Core-Extension/examples/vuejs/';
-		return {
-			menu: {
-				description: 'VueJS',
-				link: url_prefix,
-				icon: 'brands fa-vuejs',
-				children: [
-					{ description: 'Phrases', link: url_prefix + 'phrases/' },
-					{ description: 'Forms', link: url_prefix + 'forms/' }
-				]
-			}
-		};
-	},
 	mounted() {
 		document.body.style.position = 'relative';
 		new bootstrap.ScrollSpy(document.body, {

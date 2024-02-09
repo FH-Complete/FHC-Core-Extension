@@ -24,7 +24,7 @@
 
 	<div id="main">
 		<div id="nav">
-			<core-navigation-cmpt :add-side-menu-entries="menu"></core-navigation-cmpt>
+			<core-navigation-cmpt></core-navigation-cmpt>
 		</div>
 
 		<div id="content" class="row flex-row-reverse">

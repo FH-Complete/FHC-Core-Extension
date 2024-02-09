@@ -23,7 +23,7 @@
 
 	<div id="main" data-bs-spy="scroll" data-bs-target="#sidenav">
 		<div id="nav">
-			<core-navigation-cmpt :add-side-menu-entries="menu"></core-navigation-cmpt>
+			<core-navigation-cmpt></core-navigation-cmpt>
 		</div>
 
 		<div id="content" class="row flex-row-reverse">
