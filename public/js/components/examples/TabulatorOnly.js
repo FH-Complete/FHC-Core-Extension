@@ -32,13 +32,6 @@ export const TabulatorOnly = {
 		BsModal
 	],
 	methods: {
-		setInitTableData(e, row){
-			CoreRESTClient
-				.get('/extensions/FHC-Core-Extension/FhcTemplate/getTestData')
-				.then(result => result.data)
-				.then(result => { this.$refs.myTabulator.tabulator.setData(CoreRESTClient.getData(result))} )
-				.catch(error => { this.$fhcAlert.handleSystemError(error); });
-		},
 		addData(){
 			this.modalTitel = 'Datensatz anlegen';
 			this.$refs.modalContainer.show();
@@ -63,15 +56,20 @@ export const TabulatorOnly = {
 	computed: {
 		tabulatorOptions() {
 			return {
-				index: 'id',	// Unique ID
-				maxHeight: "100%",
-				minHeight: 100,
-				layout: 'fitColumns',	// fitData adds scrollbar if needed. fitColumns squeezes into table width.
-				rowHeight: 60,		// Condense table
-				placeholder: "Keine Daten vorhanden",	// TODO move to core
-				columnDefaults:{
-					tooltip:true,	// Useful to display long text like Anmerkungen / Notizen / etc.  // TODO move to core
+				// Data source
+				ajaxURL: CoreRESTClient._generateRouterURI('/extensions/FHC-Core-Extension/FhcTemplate/getTestData'),
+				ajaxResponse(url, params, response) {
+					return CoreRESTClient.getData(response);
 				},
+				
+				// Unique ID
+				index: 'id',
+				
+				// @see: https://tabulator.info/docs/5.2/layout#layout
+				// This is the default option and can be omitted.
+				layout: 'fitDataStretch',
+				
+				// Column definitions
 				columns: [
 					{
 						formatter: 'rowSelection',
@@ -79,12 +77,13 @@ export const TabulatorOnly = {
 						titleFormatterParams: {
 							rowRange: "active" // Only toggle the values of the active filtered rows
 						},
+						headerSort: false,
 						frozen: true,
 						width: 70
 					},
-					{title: 'ID', field: 'id', headerFilter: true, width: 70, hozAlign: 'right', frozen: true},
+					{title: 'ID', field: 'id', headerFilter: true, width: 70, hozAlign: 'right', frozen: true, sorter: 'number'},
 					{title: 'Core Data', field: 'coreData', headerFilter: true, frozen: true},
-					{title: 'Integer', field: 'number', headerFilter: true, hozAlign: 'right'},
+					{title: 'Integer', field: 'number', headerFilter: true, hozAlign: 'right', sorter: 'number'},
 					{title: 'String', field: 'text', headerFilter: true},
 					{title: 'Date', field: 'datum', headerFilter: true, hozAlign: 'center'},
 					{
@@ -108,7 +107,8 @@ export const TabulatorOnly = {
 							thousand:".",
 							symbol:"€",
 							symbolAfter:true
-						}
+						},
+						sorter: 'number'
 					},
 					{
 						// TODO umändern, da dms_id eigene row ist in query
@@ -116,15 +116,12 @@ export const TabulatorOnly = {
 						field: 'datei',
 						headerFilter: true,
 						formatter:"link",
-						formatterParams: (cell) => { return {
-							labelField:"datei.titel",
-							url: FHC_JS_DATA_STORAGE_OBJECT.app_root +
-								FHC_JS_DATA_STORAGE_OBJECT.ci_router +
-								"/" +
-								FHC_JS_DATA_STORAGE_OBJECT.called_path +
-								"/download?dms_id=" + cell.getData().datei.dms_id,
-							target:"_blank"
-						}
+						formatterParams: cell => {
+							return {
+								labelField:"datei.titel",
+								url: CoreRESTClient._generateRouterURI('extensions/FHC-Core-Extension/FhcTemplate/download/' + cell.getData().datei.dms_id),
+								target:"_blank"
+							}
 						},
 						tooltip: (e, cell) =>  cell.getData().datei.titel	// Overwrite table option tooltip, which will return the datei-object
 					},
@@ -142,13 +139,15 @@ export const TabulatorOnly = {
 					{
 						title: 'Aktionen',
 						field: 'actions',
-						minWidth: 150,	// Ensures Action-buttons will be always fully displayed
+						width: 105,	// Ensures Action-buttons will be always fully displayed
+						minWidth: 105,	// Ensures Action-buttons will be always fully displayed
+						maxWidth: 105,	// Ensures Action-buttons will be always fully displayed
 						formatter: (cell, formatterParams, onRendered) => {
 							let container = document.createElement('div');
 							container.className = "d-flex gap-2";
 
 							let button = document.createElement('button');
-							button.className = 'btn btn-outline-secondary btn-action';
+							button.className = 'btn btn-outline-secondary';
 							button.innerHTML = '...';
 							button.addEventListener('click', () =>
 								this.manipulateData(cell.getRow().getIndex())
@@ -156,7 +155,7 @@ export const TabulatorOnly = {
 							container.append(button);
 
 							button = document.createElement('button');
-							button.className = 'btn btn-outline-secondary btn-action';
+							button.className = 'btn btn-outline-secondary';
 							button.innerHTML = '<i class="fa fa-edit"></i>';
 							button.addEventListener('click', (event) =>
 								this.editData(cell.getRow().getIndex())
@@ -164,7 +163,7 @@ export const TabulatorOnly = {
 							container.append(button);
 
 							button = document.createElement('button');
-							button.className = 'btn btn-outline-secondary btn-action';
+							button.className = 'btn btn-outline-secondary';
 							button.innerHTML = '<i class="fa fa-xmark"></i>';
 							button.addEventListener('click', () =>
 								this.deleteData(cell.getRow().getIndex())
@@ -187,15 +186,15 @@ export const TabulatorOnly = {
 	</p>
 	<core-filter-cmpt 
 		ref="myTabulator"
-		table-only="true"
+		table-only
 		:side-menu="false"
 		:tabulator-options="tabulatorOptions"
-		:tabulator-events="[{ event: 'tableBuilt', handler: setInitTableData }]"
 		new-btn-label="Datensatz"
-		new-btn-show="true"
+		new-btn-show
 		new-btn-class="btn-primary"
 		@click:new="addData"
-		reload="true">
+		reload
+		>
 		<template #actions>
 			<button class="btn btn-primary" @click="acceptData">Datensatz genehmigen</button>
 			<button class="btn btn-danger" @click="rejectData">Datensatz ablehnen</button>

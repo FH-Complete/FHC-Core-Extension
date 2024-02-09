@@ -12,5 +12,8 @@ $filterCmptArray = array(
   	'query' => '<span class="text-muted">// SELECT...</span>',
   	'requiredPermissions' => '...'
 );
+</pre></code>
+</div>
+</div>
 `
 };

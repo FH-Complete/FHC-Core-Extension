@@ -17,6 +17,7 @@
 
 import {FhcTemplate} from '../FhcTemplate.js';
 import FhcAlert from '../../../../js/plugin/FhcAlert.js';
+import Phrasen from '../../../../js/plugin/Phrasen.js';
 
 const app = Vue.createApp({
 	components: {
@@ -27,4 +28,5 @@ const app = Vue.createApp({
 app
 	.use(primevue.config.default, {zIndex: {overlay: 9999}})
 	.use(FhcAlert)
+	.use(Phrasen)
 	.mount('#main');

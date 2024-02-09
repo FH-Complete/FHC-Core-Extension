@@ -71,15 +71,14 @@ export const TabulatorFilter = {
 	computed: {
 		tabulatorOptions() {
 			return {
-				index: 'anrechnung_id',	// Unique ID
-				maxHeight: "100%",
-				minHeight: 100,
-				layout: 'fitColumns',	// fitData adds scrollbar if needed. fitColumns squeezes into table width. // TODO fitColumns is default
-				rowHeight: 60,		// Condense table
-				placeholder: "Keine Daten vorhanden",	// TODO move to core
-				columnDefaults:{
-					tooltip:true,	// Useful to display long text like Anmerkungen / Notizen / etc.
-				},
+				// Unique ID
+				index: 'anrechnung_id',
+				
+				// @see: https://tabulator.info/docs/5.2/layout#layout
+				// This is the default option and can be omitted.
+				layout: 'fitDataStretch',
+
+				// Column definitions
 				columns: [
 					{
 						formatter: 'rowSelection',
@@ -87,6 +86,7 @@ export const TabulatorFilter = {
 						titleFormatterParams: {
 							rowRange: "active" // Only toggle the values of the active filtered rows
 						},
+						headerSort: false,
 						frozen: true,
 						width: 70
 					},
@@ -104,17 +104,13 @@ export const TabulatorFilter = {
 						field: 'dokument_bezeichnung',
 						headerFilter: true,
 						formatter:"link",
-						formatterParams: (cell) => { return {
-							labelField:"dokument_bezeichnung",
-							url: FHC_JS_DATA_STORAGE_OBJECT.app_root +
-								FHC_JS_DATA_STORAGE_OBJECT.ci_router +
-								"/" +
-								FHC_JS_DATA_STORAGE_OBJECT.called_path +
-								"/download?dms_id=" + cell.getRow().getCell('dms_id').getData().dms_id, // TODO korrigieren
-							target:"_blank"
+						formatterParams: cell => {
+							return {
+								labelField:"dokument_bezeichnung",
+								url: CoreRESTClient._generateRouterURI('extensions/FHC-Core-Extension/FhcTemplate/download/' + cell.getData().dms_id),
+								target:"_blank"
+							}
 						}
-						},
-						tooltip: (e, cell) =>  cell.getData().datei.titel	// Overwrite table option tooltip, which will return the datei-object
 					},
 					{title: 'Anmerkung', field: 'anmerkung_student', headerFilter: true},
 					{
@@ -129,13 +125,13 @@ export const TabulatorFilter = {
 					{
 						title: 'Aktionen',
 						field: 'actions',
-						minWidth: 150,	// Ensures Action-buttons will be always fully displayed
+						width: 85,	// Ensures Action-buttons will be always fully displayed
 						formatter: (cell, formatterParams, onRendered) => {
 							let container = document.createElement('div');
 							container.className = "d-flex gap-2";
 
 							let button = document.createElement('button');
-							button.className = 'btn btn-outline-secondary btn-action';
+							button.className = 'btn btn-outline-secondary';
 							button.innerHTML = '<i class="fa fa-edit"></i>';
 							button.addEventListener('click', (event) =>
 								this.editAnrechnung(cell.getRow().getIndex())
@@ -143,7 +139,7 @@ export const TabulatorFilter = {
 							container.append(button);
 
 							button = document.createElement('button');
-							button.className = 'btn btn-outline-secondary btn-action';
+							button.className = 'btn btn-outline-secondary';
 							button.innerHTML = '<i class="fa fa-xmark"></i>';
 							button.addEventListener('click', () =>
 								this.deleteAnrechnung(cell.getRow().getIndex())
@@ -167,15 +163,17 @@ export const TabulatorFilter = {
 	<h3 class="h4 mt-3">Tabulator with Filter</h3>
 	<core-filter-cmpt v-if="anrechnungstatusList"
 		ref="anrechnungTable"
-		filter-type="AnrechnungTable"
-		:side-menu="false"
+		filter-type="Anrechnungen"
+		:side-menu="true"
 		:tabulator-options="tabulatorOptions"
 		:tabulator-events="[{ event: 'cellEdited', handler: changeAnrechnungstatus }]"
 		new-btn-label="'Anrechnung'"
-		new-btn-show="true"
+		new-btn-show
 		new-btn-class="btn-primary"
 		@click:new="addAnrechnung"
-		@nw-new-entry="$emit('newFilterEntry', $event)">
+		@nw-new-entry="$emit('newFilterEntry', $event)"
+		reload
+		>
 		<template #actions>
 			<button class="btn btn-primary" @click="acceptAnrechnung">Genehmigen</button>
 			<button class="btn btn-danger" @click="rejectAnrechnung">Ablehnen</button>
