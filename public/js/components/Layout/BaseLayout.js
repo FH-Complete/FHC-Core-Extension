@@ -10,7 +10,6 @@ export const BaseLayout = {
 			type: Array,
 			default: []
 		},
-		alignToCoreNav: false,
 	},
 	computed: {
 		mainGridCols() {
@@ -18,13 +17,10 @@ export const BaseLayout = {
 		},
 		asideGridCols() {
 			return this.asideCols.length > 0 ? `col-md-${this.asideCols[0]}` : "";
-		},
-		customAlign() {
-			return this.alignToCoreNav ? 'align-to-coreNav' : '';
 		}
 	},
 	template: `
-	<div class="overflow-hidden" :class="customAlign">
+	<div class="overflow-hidden">
 		<header v-if="title">
 			<h1 class="h2 mb-5">{{ title }}<span class="fhc-subtitle">{{ subtitle }}</span></h1>
 		</header>
