@@ -111,22 +111,19 @@ export const TabulatorOnly = {
 						sorter: 'number'
 					},
 					{
-						// TODO umändern, da dms_id eigene row ist in query
 						title: 'File',
-						field: 'datei',
+						field: 'dokument_bezeichnung',
 						headerFilter: true,
 						formatter:"link",
 						formatterParams: cell => {
 							return {
-								labelField:"datei.titel",
-								url: CoreRESTClient._generateRouterURI('extensions/FHC-Core-Extension/FhcTemplate/download/' + cell.getData().datei.dms_id),
+								labelField:"dokument_bezeichnung",
+								url: CoreRESTClient._generateRouterURI('extensions/FHC-Core-Extension/FhcTemplate/download/' + cell.getData().dms_id),
 								target:"_blank"
 							}
-						},
-						tooltip: (e, cell) =>  cell.getData().datei.titel	// Overwrite table option tooltip, which will return the datei-object
+						}
 					},
 					{title: 'Anmerkung', field: 'anmerkung', headerFilter: true},
-					// TODO value array als function oder als data?
 					{
 						title: 'Liste',
 						field: 'liste',
