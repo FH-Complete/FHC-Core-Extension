@@ -164,10 +164,10 @@ export const TabulatorFilter = {
 	<core-filter-cmpt v-if="anrechnungstatusList"
 		ref="anrechnungTable"
 		filter-type="Anrechnungen"
-		:side-menu="true"
+		:side-menu="false"
 		:tabulator-options="tabulatorOptions"
 		:tabulator-events="[{ event: 'cellEdited', handler: changeAnrechnungstatus }]"
-		new-btn-label="'Anrechnung'"
+		new-btn-label="Anrechnung"
 		new-btn-show
 		new-btn-class="btn-primary"
 		@click:new="addAnrechnung"

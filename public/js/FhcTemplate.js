@@ -60,7 +60,7 @@ export const FhcTemplate = {
 		asideCols="3"
 		>
 		<template #main>
-			<fhc-tabs vertical border class="mb-5" :config="{start: { title: 'Start', component: '../../extensions/FHC-Core-Extension/js/components/examples/Alerts.js'}, end: { title: 'Ende', component: '../../extensions/FHC-Core-Extension/js/components/examples/Icons.js'}}"></fhc-tabs>
+			<fhc-tabs class="mb-5" :config="{start: { title: 'Start', component: '../../extensions/FHC-Core-Extension/js/components/examples/Alerts.js'}, end: { title: 'Ende', component: '../../extensions/FHC-Core-Extension/js/components/examples/Icons.js'}}"></fhc-tabs>
 			<nav-tabs @new-filter-entry="appSideMenuEntries = $event"></nav-tabs>	
 		</template>
       	<template #aside>
