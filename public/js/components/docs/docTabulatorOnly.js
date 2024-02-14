@@ -1,6 +1,6 @@
-export const docTabulatorOnly = {
+export default {
 	template: `
-<div class="row-col">
+<div class="row-col mt-5">
 <h3 class="h4">Basic structure: Table-only Tabulator</h3>
 <div class="card card-body bg-light mt-3">
 <code><pre>
@@ -12,37 +12,22 @@ export const TabulatorOnly = {
   components: {
     CoreFilterCmpt
   },
-  methods: {
-  	setInitTableData(){
-	  CoreRESTClient
-		.get('/extensions/FHC-Core-Extension/FhcTemplate/getTestData')
-		.then(result => result.data)
-		.then(result => { this.$refs.myTabulator.tabulator.setData(CoreRESTClient.getData(result))} )
-		.catch(error => { this.$fhcAlert.handleSystemError(error); });
-	}
-  },
-  data: function() {
-    return {
-      <span class="text-muted">// See below the tabulator options and columns example</span>
-      tabulatorOptions: { ... }
-    }
-  },
-  <span class="text-muted">// On mounted: Set initial table data</span>
-  mounted(){
-	  <span class="text-muted">// Be sure the table was built before setting data</span>
-	  this.$refs.myTabulator.tabulator.on('tableBuilt', (e, row) => {
-	  	this.setInitTableData();
-	  }
+  computed: {
+        <span class="text-muted">// See below the tabulator options basic example with data load</span>
+      	tabulatorOptions() { ... }
   },
   template: \`
   <span class="text-muted">// Tabulator (table-only)</span>
   &lt;core-filter-cmpt
       ref="myTabulator"
-      :table-only="true"	<span class="text-muted">// True will render tabulator without Filter </span>
+      table-only	<span class="text-muted">// True will render tabulator without Filter </span>
       :side-menu="false"	<span class="text-muted">// You dont need side-menu without Filter </span>
-      :tabulator-options="tabulatorOptions"&gt;
-  &lt;/core-filter-cmpt&gt;
-  	
+      :tabulator-options="tabulatorOptions"
+      new-btn-label="Datensatz"
+      new-btn-show
+      @click:new="addData"
+      reload&gt;
+  &lt;/core-filter-cmpt&gt; 	
 </pre></code>
 </div>
 </div>
