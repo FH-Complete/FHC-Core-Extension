@@ -14,8 +14,8 @@ tabulatorOptions() {
 		},
 		<span class="text-muted">// Unique ID - Tell tabulator the unique id's column field. Use it then with getIndex() method.</span>
 		index: 'id',  
-		<span class="text-muted">// fitColumns (default) squeezes into table width. fitData adds scrollbar if needed.</span>  	
-		layout: 'fitColumns',
+		<span class="text-muted">// fitDataStretch (default - good for movable colums), fitColumns squeezes into table width, fitData adds scrollbar if needed.</span>  	
+		layout: 'fitDataStretch',
 		<span class="text-muted">// Condense table size if needed</span>  	
 		rowHeight: 60,
 		<span class="text-muted">// Column defininitions</span> 
