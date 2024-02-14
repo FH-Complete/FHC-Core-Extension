@@ -23,7 +23,6 @@ export default {
 		CoreFilterCmpt,
 		MyForm
 	},
-	emits: [ 'newFilterEntry'],
 	data: function() {
 		return {
 			anrechnungstatusList: null,
@@ -158,7 +157,6 @@ export default {
 		new-btn-show
 		new-btn-class="btn-primary"
 		@click:new="addAnrechnung"
-		@nw-new-entry="$emit('newFilterEntry', $event)"
 		reload
 		>
 		<template #actions>

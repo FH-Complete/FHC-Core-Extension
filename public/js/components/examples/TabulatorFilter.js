@@ -33,8 +33,6 @@ export default {
 		docTabulatorFilterDataset,
 		docTabulatorFilterFiltersupdate
 	},
-	mixins: [ BsModal ],
-	emits: [ 'newFilterEntry'],
 	methods: {
 		getAnrechnungstatusList(){
 			CoreRESTClient
@@ -181,7 +179,6 @@ export default {
 		new-btn-label="Anrechnung"
 		new-btn-show
 		@click:new="addAnrechnung"
-		@nw-new-entry="$emit('newFilterEntry', $event)" 
 		reload
 		>
 		<template #actions>
@@ -198,11 +195,11 @@ export default {
 	</core-base-layout>
 	
 	<!-- Modal -->
-	<bs-modal ref="modalContainer" class="bootstrap-prompt" v-bind="$props" @hidden-bs-modal="onHiddenBsModal">
+	<bs-modal ref="modalContainer" class="bootstrap-prompt">
 		<template #title>{{ modalTitel }}</template>
 		<template #default>Content</template>
 		<template #footer>
-			<button type="button" class="btn btn-primary" @click="onBsModalSave">{{ modalTitel }}</button>
+			<button type="button" class="btn btn-primary" @click="">{{ modalTitel }}</button>
 		</template>
 	</bs-modal>
 `

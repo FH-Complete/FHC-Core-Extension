@@ -31,9 +31,6 @@ export default {
 		docTabulatorOnly,
 		docTabulatorOptions
 	},
-	mixins: [
-		BsModal
-	],
 	methods: {
 		addData(){
 			this.modalTitel = 'Datensatz anlegen';
@@ -217,11 +214,11 @@ export default {
 			</core-filter-cmpt>
 			
 			<!-- Modal -->
-			<bs-modal ref="modalContainer" class="bootstrap-prompt" v-bind="$props" @hidden-bs-modal="onHiddenBsModal">
+			<bs-modal ref="modalContainer" class="bootstrap-prompt">
 				<template #title>{{ modalTitel }}</template>
 				<template #default>Content</template>
 				<template #footer>
-					<button type="button" class="btn btn-primary" @click="onBsModalSave">{{ modalTitel }}</button>
+					<button type="button" class="btn btn-primary" @click="">{{ modalTitel }}</button>
 				</template>
 			</bs-modal>
 			
