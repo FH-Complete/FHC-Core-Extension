@@ -16,15 +16,19 @@
  */
 import {CoreNavigationCmpt} from '../../../../../../public/js/components/navigation/Navigation.js';
 import CoreBaseLayout from '../../../../../../public/js/components/layout/BaseLayout.js';
+import CoreTabs from '../../../../../../public/js/components/Tabs.js';
 import docLayoutBase from "../docs/docLayoutBase";
 import docLayoutBaseSide from "../docs/docLayoutBaseSide";
+import docLayoutBaseTabs from "../docs/docLayoutBaseTabs";
 
 export default {
 	components: {
 		CoreNavigationCmpt,
 		CoreBaseLayout,
+		CoreTabs,
 		docLayoutBase,
-		docLayoutBaseSide
+		docLayoutBaseSide,
+		docLayoutBaseTabs
 	},
 	data: function() {
 		return {
@@ -81,6 +85,27 @@ export default {
 		</div>
 		<!-- Code Documentation -->
 		<doc-layout-base-side></doc-layout-base-side>
+	</div>
+	
+	<div class="row-cols">
+		<h3 class="h4">Base Layout + Tabs</h3>
+		<div class="row-col card card-body p-4 mt-3">
+			<core-base-layout
+				title="Title"
+				subtitle="Subtitle">	
+				<template #main>
+					<!-- Core Tabs-->
+					<core-tabs class="mb-5" :config="{start: { title: 'Start', component: '../../extensions/FHC-Core-Extension/js/components/examples/Alerts.js'}, end: { title: 'Ende', component: '../../extensions/FHC-Core-Extension/js/components/examples/Status.js'}}"></core-tabs>
+			
+					<div class="row-col card card-body h-100">
+						<h5>#main slot</h5>
+						 mainCols: 12 cols (default)
+					</div>
+				</template>
+			</core-base-layout>
+		</div>
+		<!-- Code Documentation -->
+		<doc-layout-base-tabs></doc-layout-base-tabs>
 	</div>
 	`
 };
