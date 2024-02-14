@@ -18,7 +18,7 @@
 import {CoreNavigationCmpt} from '../../../../public/js/components/navigation/Navigation.js';
 import {BaseLayout} from "./components/Layout/BaseLayout.js";
 import {NavTabs} from "./components/Layout/NavTabs.js";
-import {Faqs} from "./components/Faqs.js";
+import Faqs from "./components/examples/Faqs.js";
 import FhcTabs from "../../../js/components/Tabs.js";
 
 export const FhcTemplate = {
@@ -64,7 +64,10 @@ export const FhcTemplate = {
 			<nav-tabs @new-filter-entry="appSideMenuEntries = $event"></nav-tabs>	
 		</template>
       	<template #aside>
-      		<faqs :faqs="faqs"></faqs>
+      		<card class="card card-body mb-3">My Sidewidget 1</card>
+      		<card class="card card-body mb-3">My Sidewidget 2</card>
+      		<card class="card card-body mb-3 h-25">My Sidewidget 3</card>
+<!--      		<faqs :faqs="faqs"></faqs>-->
 		</template>
 	</base-layout>
 	`
