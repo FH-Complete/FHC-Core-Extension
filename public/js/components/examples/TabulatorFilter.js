@@ -14,17 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import {CoreNavigationCmpt} from '../../../../../../public/js/components/navigation/Navigation.js';
+import CoreBaseLayout from '../../../../../../public/js/components/layout/BaseLayout.js';
 import {CoreFilterCmpt} from '../../../../../js/components/filter/Filter.js';
-import BsModal from '../../../../../js/components/Bootstrap/Modal.js';
 import {CoreRESTClient} from '../../../../../../public/js/RESTClient.js';
-import {docTabulatorFilter} from "../docs/docTabulatorFilter.js";
-import {docTabulatorFilterDataset} from "../docs/docTabulatorFilterDataset.js";
-import {docTabulatorFilterFiltersupdate} from "../docs/docTabulatorFilterFiltersupdate.js";
+import BsModal from '../../../../../js/components/Bootstrap/Modal.js';
+import docTabulatorFilter from "../docs/docTabulatorFilter.js";
+import docTabulatorFilterDataset from "../docs/docTabulatorFilterDataset.js";
+import docTabulatorFilterFiltersupdate from "../docs/docTabulatorFilterFiltersupdate.js";
 
-export const TabulatorFilter = {
-	componentName: 'TabulatorFilter',
+export default {
 	components: {
 		CoreFilterCmpt,
+		CoreNavigationCmpt,
+		CoreBaseLayout,
 		BsModal,
 		docTabulatorFilter,
 		docTabulatorFilterDataset,
@@ -76,7 +79,7 @@ export const TabulatorFilter = {
 				
 				// @see: https://tabulator.info/docs/5.2/layout#layout
 				// This is the default option and can be omitted.
-				layout: 'fitDataStretch',
+				layout: 'fitColumns', // TODO check: fitDataStretch default problematisch in TabulatorFilter
 
 				// Column definitions
 				columns: [
@@ -160,8 +163,17 @@ export const TabulatorFilter = {
 		this.getAnrechnungstatusList();
 	},
 	template: `
-	<h3 class="h4 mt-3">Tabulator with Filter</h3>
-	<core-filter-cmpt v-if="anrechnungstatusList"
+		<!-- Navigation -->
+	<core-navigation-cmpt></core-navigation-cmpt>
+	
+	<!-- Tabulator with Filter -->
+	<!-- Content -->
+	<core-base-layout
+		:title="$p.t('global', 'titel')"
+		:subtitle="$p.t('global', 'beschreibung')">
+		<template #main>		
+			<h3 class="h4 mt-3">Tabulator with Filter</h3>
+			<core-filter-cmpt v-if="anrechnungstatusList"
 		ref="anrechnungTable"
 		filter-type="Anrechnungen"
 		:side-menu="false"
@@ -169,9 +181,8 @@ export const TabulatorFilter = {
 		:tabulator-events="[{ event: 'cellEdited', handler: changeAnrechnungstatus }]"
 		new-btn-label="Anrechnung"
 		new-btn-show
-		new-btn-class="btn-primary"
 		@click:new="addAnrechnung"
-		@nw-new-entry="$emit('newFilterEntry', $event)"
+		@nw-new-entry="$emit('newFilterEntry', $event)" 
 		reload
 		>
 		<template #actions>
@@ -179,6 +190,13 @@ export const TabulatorFilter = {
 			<button class="btn btn-danger" @click="rejectAnrechnung">Ablehnen</button>
 		</template>
 	</core-filter-cmpt>
+	
+			<!-- Code Documentation -->
+			<doc-tabulator-filter></doc-tabulator-filter>
+			<doc-tabulator-filter-dataset></doc-tabulator-filter-dataset>
+			<doc-tabulator-filter-filtersupdate></doc-tabulator-filter-filtersupdate>
+		</template>
+	</core-base-layout>
 	
 	<!-- Modal -->
 	<bs-modal ref="modalContainer" class="bootstrap-prompt" v-bind="$props" @hidden-bs-modal="onHiddenBsModal">
@@ -188,10 +206,5 @@ export const TabulatorFilter = {
 			<button type="button" class="btn btn-primary" @click="onBsModalSave">{{ modalTitel }}</button>
 		</template>
 	</bs-modal>
-	
-	<!-- Code Documentation -->
-	<doc-tabulator-filter></doc-tabulator-filter>
-	<doc-tabulator-filter-dataset></doc-tabulator-filter-dataset>
-	<doc-tabulator-filter-filtersupdate></doc-tabulator-filter-filtersupdate>
 `
 };
