@@ -27,7 +27,7 @@ import { CoreRESTClient } from "../../../../../../js/RESTClient.js";
 // ==========
 const app = Vue.createApp({
 	methods: {
-		async deleteData(id){
+		async deleteData(id) {
 			if (await this.$fhcAlert.confirmDelete() === false)
 				return;
 

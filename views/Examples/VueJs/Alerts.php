@@ -145,11 +145,42 @@
 					'		})' . "\n" .
 					'		// Alert on failure' . "\n" .
 					'		.catch(this.$fhcAlert.handleSystemError);' . "\n" .
+					'}' . "\n" .
+					"\n" .
+					'// Function. Using then() (simple version)' . "\n" .
+					'deleteData(id) {' . "\n" .
+					'	this.$fhcAlert.confirmDelete().then(confirmed => {' . "\n" .
+					'		if (confirmed) {' . "\n" .
+					'			// Confirmed! You can go on...' . "\n" .
+					'			CoreRESTClient' . "\n" .
+					'				.post(\'/extensions/FHC-Core-Extension/FhcTemplate/deleteData/\' + id)' . "\n" .
+					'				// Alert on success' . "\n" .
+					'				.then(result => {' . "\n" .
+					'					this.$fhcAlert.alertSuccess(\'Datensatz \' + CoreRESTClient.getData(result.data) + \' gelöscht!\');' . "\n" .
+					'				})' . "\n" .
+					'				// Alert on failure' . "\n" .
+					'				.catch(this.$fhcAlert.handleSystemError);' . "\n" .
+					'		}' . "\n" .
+					'	});' . "\n" .
+					'}' . "\n" .
+					"\n" .
+					'// Function. Using then() (chained version)' . "\n" .
+					'deleteData(id) {' . "\n" .
+					'	this.$fhcAlert' . "\n" .
+					'		.confirmDelete()' . "\n" .
+					'		// Use an empty Promise to get out of the then-chain' . "\n" .
+					'		// or return the url to be used in the next step' . "\n" .
+					'		.then(confirmed => confirmed ? \'/extensions/FHC-Core-Extension/FhcTemplate/deleteData/\' + id : new Promise(() => {}))' . "\n" .
+					'		// Confirmed! You can go on...' . "\n" .
+					'		.then(CoreRESTClient.post)' . "\n" .
+					'		// Alert on success' . "\n" .
+					'		.then(result => {' . "\n" .
+					'			this.$fhcAlert.alertSuccess(\'Datensatz \' + CoreRESTClient.getData(result.data) + \' gelöscht!\');' . "\n" .
+					'		})' . "\n" .
+					'		// Alert on failure' . "\n" .
+					'		.catch(this.$fhcAlert.handleSystemError);' . "\n" .
 					'}'
 				); ?></code></pre>
-
-				<!-- TODO(chris): then() version and then() chaining -->
-
 			</main>
 		</div>
 	</div>
