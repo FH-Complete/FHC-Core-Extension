@@ -17,6 +17,7 @@ class FhcTemplate extends Auth_Controller
 				'index' => 'admin:rw',
 				'getFullName' => 'admin:rw',
 				'deleteData' => 'admin:rw',
+				'getAnrechnungen' => 'admin:rw',
 				'getAnrechnungstatusList' => 'admin:rw',
 				'getTestData' => 'admin:rw'
 			)
@@ -121,6 +122,22 @@ class FhcTemplate extends Auth_Controller
 				'liste'=> 'Genehmigt'
 			),
 		));
+	}
+
+	public function getAnrechnungen()
+	{
+		// Get Anrechnungen
+		$this->load->model('education/Anrechnung_model', 'AnrechnungModel');
+		//$this->AnrechnungModel->addSelect('anrechnung_id', 'DESC');
+		$this->AnrechnungModel->addOrder('insertamum', 'DESC');
+		$this->AnrechnungModel->addLimit(100);
+		$result = $this->AnrechnungModel->load();
+
+		// On error
+		if (isError($result)) $this->terminateWithJsonError(getError($result));
+
+		// On success
+		$this->outputJsonSuccess(hasData($result) ? getData($result) : []);
 	}
 
 	public function getAnrechnungstatusList()
