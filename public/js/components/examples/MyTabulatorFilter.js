@@ -59,7 +59,6 @@ export default {
 					{title: 'Prestudent-ID', field: 'prestudent_id', headerFilter: true, hozAlign: 'right', frozen: true},
 					{title: 'Stg-Kz', field: 'studiengang_kz', headerFilter: true, width: 50, hozAlign: 'right', frozen: true},
 					{title: 'Studiengang', field: 'stg_bezeichnung', headerFilter: true, frozen: true},
-					{title: 'Studiensemester', field: 'studiensemester_kurzbz', headerFilter: true, frozen: true},
 					{title: 'Student', field: 'student', headerFilter: true, frozen: true},
 					{title: 'LV-ID', field: 'lehrveranstaltung_id', headerFilter: true, hozAlign: 'right'},
 					{title: 'LV', field: 'lv_bezeichnung', headerFilter: true},

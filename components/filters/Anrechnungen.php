@@ -8,7 +8,6 @@ $filterCmptArray = array(
 				anrechnung.prestudent_id,
 				stg.studiengang_kz,
 				stg.bezeichnung AS stg_bezeichnung,
-				anrechnung.studiensemester_kurzbz,
 				(person.nachname || \' \' || person.vorname) AS "student",				
 				anrechnung.lehrveranstaltung_id,
 				lv.bezeichnung AS lv_bezeichnung,
@@ -30,7 +29,7 @@ $filterCmptArray = array(
 		LEFT JOIN campus.tbl_dms_version AS dmsversion USING (dms_id)
 		JOIN lehre.tbl_anrechnung_anrechnungstatus USING (anrechnung_id)
 	    WHERE stg.studiengang_kz IN (227, 330)
-	    ORDER BY anrechnung.studiensemester_kurzbz DESC
+	    ORDER BY anrechnung.anrechnung_id DESC
 	    LIMIT 10
 		',
 	'requiredPermissions' => 'admin'
