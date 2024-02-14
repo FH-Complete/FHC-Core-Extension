@@ -30,7 +30,7 @@ class FhcTemplate extends Auth_Controller
 
 	public function index()
 	{
-		$this->load->view('extensions/FHC-Core-Extension/FhcTemplate.php');
+		$this->load->view('extensions/FHC-Core-Extension/Examples.php');
 	}
 
 	public function getFullName()
