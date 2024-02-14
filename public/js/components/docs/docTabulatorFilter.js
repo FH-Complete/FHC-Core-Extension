@@ -15,32 +15,11 @@ export default {
 		CoreFilterCmpt,
 		CoreBaseLayout
 	 },
-	data: () => {
-		return {
-			modalTitel: '',
-			anrechnungstatusList: null
-	},
 	computed: {
 		tabulatorOptions() { 
 			return { ... }
 		}
 	},
-	created(){
-		<span class="text-muted">// On created get initial editor lists</span>
-		this.getAnrechnungstatusList();
-	},
-	methods: {
-		getAnrechnungstatusList(){
-			CoreRESTClient
-				.get('/extensions/FHC-Core-Extension/FhcTemplate/getAnrechnungstatusList')
-				.then(result => result.data)
-				.then(result => {
-					this.anrechnungstatusList = CoreRESTClient.getData(result).map(x => x.bezeichnung_mehrsprachig);
-				})
-				.catch(error => { this.$fhcAlert.handleSystemError(error); });
-			}
-		}
-	}
 },
 
 <span class="text-muted">// Core Navigation</span>
@@ -53,13 +32,11 @@ export default {
 	
 	<span class="text-muted">// Main Content</span>
 	&lt;template #main&gt;
-		<span class="text-muted">// Reactivly build tabulator when initial anrechnungstatusList is ready</span>
-		&lt;core-filter-cmpt v-if="anrechnungstatusList"
+		&lt;core-filter-cmpt
 			ref="myTabulator"
 			filter-type="ExampleTable"			<span class="text-muted">// The file inside your filters folder, that builds the filterCmptArray</span>
 			:side-menu="false"				<span class="text-muted">// Mostly use false to render a Filter-Dropdown. True if you want your filters need to be shown in the side menu </span>
 			:tabulator-options="tabulatorOptions"
-			:tabulator-events="[{ event: 'cellEdited', handler: changeAnrechnungstatus }]"	<span class="text-muted">// Use Tabulator events to manipulate tabulator</span>
 		&lt;/core-filter-cmpt&gt; 
 	&lt;/template&gt;	
 &lt;/base-layout&gt;			

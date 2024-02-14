@@ -12,17 +12,35 @@ export const TabulatorOnly = {
   components: {
     CoreFilterCmpt
   },
+  data: () => {
+    return {
+      <span class="text-muted">// Your editor lists params</span>
+      editorParams: null
+    },
   computed: {
-        <span class="text-muted">// See below the tabulator options basic example with data load</span>
-      	tabulatorOptions() { ... }
+	<span class="text-muted">// See below the tabulator options basic example with data load</span>
+	tabulatorOptions() { ... }
+  },
+  created(){
+	<span class="text-muted">// On created get initial editor lists</span>
+	this.getEditorParams();
+  },
+  methods: {
+	addData(){ ... }
+	editData(){ ... }
+	deleteData(){ ... }
+	getEditorParams(){ ... }
+	changeEditorParams(){ ... }
   },
   template: \`
   <span class="text-muted">// Tabulator (table-only)</span>
-  &lt;core-filter-cmpt
+  <span class="text-muted">// Reactivly build tabulator when initial editorParams is ready</span>
+  &lt;core-filter-cmpt v-if="editorParams"
       ref="myTabulator"
       table-only	<span class="text-muted">// True will render tabulator without Filter </span>
       :side-menu="false"	<span class="text-muted">// You dont need side-menu without Filter </span>
       :tabulator-options="tabulatorOptions"
+      :tabulator-events="[{ event: 'cellEdited', handler: changeEditorParams }]"	<span class="text-muted">// Use Tabulator events to manipulate tabulator</span>
       new-btn-label="Datensatz"
       new-btn-show
       @click:new="addData"

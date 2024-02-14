@@ -81,14 +81,14 @@ tabulatorOptions() {
 		  },
 		  <span class="text-muted">// Long String: core options defined to show as tooltip</span>
 		  {title: 'Anmerkung', field: 'anmerkung', headerFilter: true},
-		  <span class="text-muted">// Edit List</span>
+		  <span class="text-muted">// Edit List: we use datas' editorParams here</span>
 		  {
 			title: 'Liste',
 			field: 'liste',
 			editor: "list",
-			editorParams:{ values:['Neu', 'Genehmigt', 'Abgelehnt'] },
+			editorParams:{ values: this.editorParams },
 			headerFilter: true,
-			headerFilterParams:{ values:['Neu', 'Genehmigt', 'Abgelehnt'] },
+			headerFilterParams:{ values: this.editorParams },
 			frozen: true  <span class="text-muted">// Optionally</span>
 		  },
 		  <span class="text-muted">// Action buttons: freeze them!</span>

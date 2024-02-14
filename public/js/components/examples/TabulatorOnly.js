@@ -46,7 +46,8 @@ export default {
 			this.$fhcAlert.alertSuccess('ID' + id + ' deleted')
 		},
 		acceptData(){ this.$fhcAlert.alertSuccess('Accepted')},
-		rejectData(){ this.$fhcAlert.alertSuccess('Rejected')}
+		rejectData(){ this.$fhcAlert.alertSuccess('Rejected')},
+		changeListData(){this.$fhcAlert.alertSuccess('Changed')}
 	},
 	data: () => {
 		return {
@@ -189,11 +190,12 @@ export default {
 			<p class="lead mb-4">Tabulator without Filter will render your table with the select columns functionality ( <i class="fa fa-table-columns"></i> )  by default.<br>
 			You can easily add an Add-Button, Refresh-Button and Action-Buttons to handle multiple rows at once. Column formatters are used to keep same look&feel.
 			</p>
-			<core-filter-cmpt 
+			<core-filter-cmpt
 				ref="myTabulator"
 				table-only
 				:side-menu="false"
 				:tabulator-options="tabulatorOptions"
+				:tabulator-events="[{ event: 'cellEdited', handler: changeListData }]"
 				new-btn-label="Datensatz"
 				new-btn-show		
 				@click:new="addData"

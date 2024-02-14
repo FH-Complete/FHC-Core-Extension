@@ -9,7 +9,7 @@ array(
     'app' => '...',
     'dataset_name' => 'exampleTableData',	<span class="text-muted">// Same name you just declared in your filterCpmtArray</span>
     'filter_kurzbz' => 'ExampleTable',		<span class="text-muted">// Give your filter a nice name</span>
-    'description' => '{Alle Daten}',		<span class="text-muted">// This name is shown in the side menu</span>
+    'description' => '{Alle Daten}',		<span class="text-muted">// This name is shown as filters name in the dropdown or in the side menu</span>
     'sort' => 1,
     'default_filter' => true,
     'filter' => '
