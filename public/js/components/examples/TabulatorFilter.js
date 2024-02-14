@@ -79,7 +79,7 @@ export default {
 				
 				// @see: https://tabulator.info/docs/5.2/layout#layout
 				// This is the default option and can be omitted.
-				layout: 'fitColumns', // TODO check: fitDataStretch default problematisch in TabulatorFilter
+				layout: 'fitDataStretch',
 
 				// Column definitions
 				columns: [
