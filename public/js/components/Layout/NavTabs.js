@@ -16,8 +16,6 @@
  */
 
 // Import Tab Sites
-import {Start} from "../../components/examples/Start.js";
-import {Layout} from "../../components/examples/Layout.js";
 import {TabulatorOnly} from "../examples/TabulatorOnly.js";
 import {TabulatorFilter} from "../examples/TabulatorFilter.js";
 import {Alerts} from "../../components/examples/Alerts.js";
@@ -25,8 +23,6 @@ import Icons from "../../components/examples/Icons.js";
 
 export const NavTabs = {
 	components: {
-		Start,
-		Layout,
 		TabulatorOnly,
 		TabulatorFilter,
 		Alerts,
@@ -34,10 +30,8 @@ export const NavTabs = {
 	},
 	data: function() {
 		return {
-			currentTab: 'Start',
+			currentTab: 'TabulatorOnly',
 			tabs: [
-				'Start',
-				'Layout',
 				'TabulatorOnly',
 				'TabulatorFilter',
 				'Alerts',
