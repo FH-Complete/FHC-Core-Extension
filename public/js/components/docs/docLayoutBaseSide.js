@@ -7,16 +7,11 @@ import CoreBaseLayout from '../../../../../../public/js/components/layout/BaseLa
 
 export const myComponent = {
 	components: { CoreBaseLayout },
-	data: () => {
-		return {
-			appTitle: "Title",
-			appSubtitle: "Subtitle"
-	}
 },
 
 &lt;core-base-layout
-	:title="appTitle"
-	:subtitle="appSubtitle"&gt;
+	title="Title"
+	subtitle="Subtitle"&gt;
 	<span class="text-muted">// Set cols for main & side content</span>
 	mainCols="9"
 	asideCols="3"

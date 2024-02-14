@@ -7,17 +7,15 @@ import CoreBaseLayout from '../../../../../../public/js/components/layout/BaseLa
 import CoreTabs from '../../../../../../public/js/components/Tabs.js';
 
 export const myComponent = {
-	components: { CoreBaseLayout, CoreTabs },
-	data: () => {
-		return {
-			appTitle: "Title",
-			appSubtitle: "Subtitle"
-	}
+	components: { 
+	  CoreBaseLayout, 
+	  CoreTabs 
+	},
 },
 
 &lt;core-base-layout
-	:title="appTitle"
-	:subtitle="appSubtitle"&gt;
+	title="Title"
+	subtitle="Subtitle"&gt;
 	&lt;template #main&gt;	
 	    <span class="text-muted">// Your Core Tabs Component here</span>
 	    &lt;core-tabs :config="{ start: { title: 'Start', component: '../../extensions/FHC-Core-Extension/js/components/startCmpt.js'}, end: { title: 'Ende', component: '../../extensions/FHC-Core-Extension/js/components/endCmpt.js'}}"&gt;&lt;/core-tabs&gt;
