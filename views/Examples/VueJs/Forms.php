@@ -40,13 +40,14 @@
 					<a href="#inputcomponent-methods" class="list-group-item list-group-item-action">- Methods</a>
 					<a href="#inputcomponent-manualvalidation" class="list-group-item list-group-item-action">- Manual validating input</a>
 					<a href="#validationcomponent" class="list-group-item list-group-item-action">Validation component</a>
+					<a href="#validationcomponent-methods" class="list-group-item list-group-item-action">- Methods</a>
 					<a href="#formcomponent" class="list-group-item list-group-item-action">Form component</a>
+					<a href="#formcomponent-props" class="list-group-item list-group-item-action">- Properties</a>
+					<a href="#formcomponent-methods" class="list-group-item list-group-item-action">- Methods</a>
 				</div>
 			</aside>
 			<main class="col-lg-9">
-				<h2 id="inputcomponent" class="h3 mb-0">
-					Input component
-				</h2>
+				<h2 id="inputcomponent" class="h3 mb-0">Input component</h2>
 				<p class="lead">/public/js/components/Form/Input.js</p>
 				<p>
 					The Input component handles validation for about any input field.
@@ -161,40 +162,52 @@
 				</table>
 
 				<h3 id="inputcomponent-methods" class="h4">Methods</h3>
-				<!-- TODO(chris): better style for method reference -->
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Method</th>
-							<th>Parameters</th>
-							<th>Return</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><code>setFeedback</code></td>
-							<td>
-								<dl>
-									<dt>valid <code>boolean</code></dt>
-									<dd><code>true</code> for success or <code>false</code> for an error.</dd>
-									<dt>feedback <code>string | array</code> <span class="text-muted">optional</span></dt>
-									<dd>The feedback message.</dd>
-								</dl>
-							</td>
-							<td><code>void</code></td>
-							<td>Set the input to valid or invald state and optionally display a feedback message.</td>
-						</tr>
-						<tr>
-							<td><code>clearValidation</code></td>
-							<td>none</td>
-							<td><code>void</code></td>
-							<td>
-								Clears the input of all validations.
-							</td>
-						</tr>
-					</tbody>
-				</table>
+				<ul class="list-group mb-3">
+					<li class="list-group-item list-group-item-primary">
+						setFeedback
+					</li>
+					<li class="list-group-item">
+						Set the input to valid or invald state and optionally display a feedback message.
+					</li>
+					<li class="list-group-item">
+						<samp class="d-block">setFeedback(valid)</samp>
+						<samp class="d-block">setFeedback(valid, feedback)</samp>
+					</li>
+					<li class="list-group-item">
+						<table class="table table-sm">
+							<thead class="">
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>valid</code></td>
+									<td>boolean</td>
+									<td><code>true</code> for success or <code>false</code> for an error.</td>
+								</tr>
+								<tr>
+									<td><code>feedback</code></td>
+									<td>string | array</td>
+									<td>The feedback message(s).</td>
+								</tr>
+							</tbody>
+						</table>
+					</li>
+				</ul>
+				<ul class="list-group mb-3">
+					<li class="list-group-item list-group-item-primary">
+						clearValidation
+					</li>
+					<li class="list-group-item">
+						Clears the input of all validations.
+					</li>
+					<li class="list-group-item">
+						<samp class="d-block">clearValidation()</samp>
+					</li>
+				</ul>
 
 				<h3 id="inputcomponent-manualvalidation" class="h4">Manual validating input</h3>
 				<p>
@@ -212,9 +225,7 @@
 				</section>
 
 
-				<h2 id="validationcomponent" class="h3 mb-0">
-					Validation component
-				</h2>
+				<h2 id="validationcomponent" class="h3 mb-0">Validation component</h2>
 				<p class="lead">/public/js/components/Form/Validation.js</p>
 				<p>
 					The Validation component handles validation if no appropriate Input component is available.
@@ -225,7 +236,53 @@
 				<p>
 					Other than the Input component it can take success and error messages at the same time.
 				</p>
-				<p class="alert alert-danger">TODO(chris): function reference</p>
+
+				<h3 id="validationcomponent-methods" class="h4">Methods</h3>
+				<ul class="list-group mb-3">
+					<li class="list-group-item list-group-item-primary">
+						setFeedback
+					</li>
+					<li class="list-group-item">
+						Set error or success messages. When error messages are set, success messages are not removed and vice versa.
+					</li>
+					<li class="list-group-item">
+						<samp class="d-block">setFeedback(valid, feedback)</samp>
+					</li>
+					<li class="list-group-item">
+						<table class="table table-sm">
+							<thead class="">
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>valid</code></td>
+									<td>boolean</td>
+									<td><code>true</code> for setting success messages or <code>false</code> for error messages.</td>
+								</tr>
+								<tr>
+									<td><code>feedback</code></td>
+									<td>string | array</td>
+									<td>The feedback message(s).</td>
+								</tr>
+							</tbody>
+						</table>
+					</li>
+				</ul>
+				<ul class="list-group mb-3">
+					<li class="list-group-item list-group-item-primary">
+						clearValidation
+					</li>
+					<li class="list-group-item">
+						Clears the validation of all messages.
+					</li>
+					<li class="list-group-item">
+						<samp class="d-block">clearValidation()</samp>
+					</li>
+				</ul>
 				<div class="d-flex justify-content-between">
 					<h6>Example:</h6>
 					<a href="#" title="FHC-Core-Extension/public/js/apps/examples/Form/Validation.js" data-bs-toggle="tooltip" data-bs-placement="left">
@@ -237,14 +294,207 @@
 				</section>
 
 
-				<h2 id="formcomponent" class="h3 mb-0">
-					Form component
-				</h2>
+				<h2 id="formcomponent" class="h3 mb-0">Form component</h2>
 				<p class="lead">/public/js/components/Form/Form.js</p>
 				<p>
 					If you want to handle validation for multiple Input and Validation components in one go, you can use the From component.
 				</p>
+				
+				<h3 id="formcomponent-props">Properties</h3>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Property</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code>tag</code></td>
+							<td>string</td>
+							<td><code>'form'</code></td>
+							<td>
+								Change the HTML tag.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<h3 id="formcomponent-methods">Methods</h3>
+				<ul class="list-group mb-3">
+					<li class="list-group-item list-group-item-primary">
+						setFeedback
+					</li>
+					<li class="list-group-item">
+						Set feedback for Input and Validation components inside this Form.<br><br>
+						Returns: an <code>array</code> of not handled feedback messages (only possible if <code>$fhcAlert</code> is not available) 
+						or <code>null</code>
+					</li>
+					<li class="list-group-item">
+						<samp class="d-block">setFeedback(valid, feedback)</samp>
+					</li>
+					<li class="list-group-item">
+						<table class="table table-sm">
+							<thead class="">
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>valid</code></td>
+									<td>boolean</td>
+									<td><code>true</code> for setting success messages or <code>false</code> for error messages.</td>
+								</tr>
+								<tr>
+									<td><code>feedback</code></td>
+									<td>string | array | object</td>
+									<td>
+										The feedback message(s).<br>
+										If a <code>string</code> or an <code>array</code> are given 
+										they will be displayed on Validation components or Input components without a <code>name</code> property.<br>
+										An object must be an associative array 
+										where the keys correspond to the Input components <code>name</code> property.
+										If none such Input component is found 
+										it will be displayed on Validation components or Input components without a <code>name</code> property.<br>
+										If there is no component available to display the message, it will either be send to <code>$fhcAlert</code> 
+										or added to the return value.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</li>
+				</ul>
+				<ul class="list-group mb-3">
+					<li class="list-group-item list-group-item-primary">
+						clearValidation
+					</li>
+					<li class="list-group-item">
+						Clears the validation of all messages.
+					</li>
+					<li class="list-group-item">
+						<samp class="d-block">clearValidation()</samp>
+					</li>
+				</ul>
+				<ul class="list-group mb-3">
+					<li class="list-group-item list-group-item-primary">
+						get
+					</li>
+					<li class="list-group-item">
+						This will make an axios get call with added error handling and automated validation handling for this form.
+						For form validation it will use the <code>name</code> properties of the Input components.
+						If no Input component is found the validation will be displayed in the Validation components 
+						or if none is available as fhcAlert.<br><br>
+						Returns: <code>Promise</code>
+					</li>
+					<li class="list-group-item">
+						<samp class="d-block">get(config)</samp>
+						<samp class="d-block">get(uri, params)</samp>
+						<samp class="d-block">get(uri, params, config)</samp>
+					</li>
+					<li class="list-group-item">
+						<table class="table table-sm">
+							<thead class="">
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>uri</code></td>
+									<td>string</td>
+									<td>An absolute URL or one relative to the codeigniter router path</td>
+								</tr>
+								<tr>
+									<td><code>params</code></td>
+									<td>URLSearchParams | object</td>
+									<td>The GET parameters</td>
+								</tr>
+								<tr>
+									<td><code>config</code></td>
+									<td>object</td>
+									<td>
+										An axios config object.<br>
+										If <code>uri</code> and <code>params</code> are not set they must be defined in here.<br>
+										You can disable automatic validation by setting an <code>errorHandling</code> parameter here.
+										Possible values for <code>errorHandling</code> are:<br>
+										<code>true</code><span class="text-muted">(default)</span>, 
+										<code>false</code>, 
+										<code>'off'</code>, 
+										<code>'fail'</code> or 
+										<code>'success'</code>.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</li>
+				</ul>
+				<ul class="list-group mb-3">
+					<li class="list-group-item list-group-item-primary">
+						post
+					</li>
+					<li class="list-group-item">
+						This will make an axios post call with added error handling and automated validation handling for this form.
+						For form validation it will use the <code>name</code> properties of the Input components.
+						If no Input component is found the validation will be displayed in the Validation components 
+						or if none is available as fhcAlert.<br><br>
+						Returns: <code>Promise</code>
+					</li>
+					<li class="list-group-item">
+						<samp class="d-block">post(config)</samp>
+						<samp class="d-block">post(uri)</samp>
+						<samp class="d-block">post(uri, data)</samp>
+						<samp class="d-block">post(uri, data, config)</samp>
+					</li>
+					<li class="list-group-item">
+						<table class="table table-sm">
+							<thead class="">
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>uri</code></td>
+									<td>string</td>
+									<td>An absolute URL or one relative to the codeigniter router path</td>
+								</tr>
+								<tr>
+									<td><code>params</code></td>
+									<td>URLSearchParams | object</td>
+									<td>The POST parameters</td>
+								</tr>
+								<tr>
+									<td><code>config</code></td>
+									<td>object</td>
+									<td>
+										An axios config object.<br>
+										If <code>uri</code> and <code>data</code> are not set they must be defined in here.<br>
+										You can disable automatic validation by setting an <code>errorHandling</code> parameter here.
+										Possible values for <code>errorHandling</code> are:<br>
+										<code>true</code><span class="text-muted">(default)</span>, 
+										<code>false</code>, 
+										<code>'off'</code>, 
+										<code>'fail'</code> or 
+										<code>'success'</code>.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</li>
+				</ul>
 
+				TODO(chris): factory
+				TODO(chris): examples
+				TODO(chris): + modal
 
 
 				<h6 class="text-muted text-end">public/js/apps/examples/Form1.js</h6>
@@ -263,4 +513,3 @@
 	<script>hljs.highlightAll();</script>
 
 <?php $this->load->view('templates/FHC-Footer', $includesArray); ?>
-
