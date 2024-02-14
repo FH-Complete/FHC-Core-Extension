@@ -17,7 +17,6 @@
 
 import {CoreNavigationCmpt} from '../../../../public/js/components/navigation/Navigation.js';
 import {BaseLayout} from "./components/Layout/BaseLayout.js";
-import {NavTabs} from "./components/Layout/NavTabs.js";
 import Faqs from "./components/examples/Faqs.js";
 import FhcTabs from "../../../js/components/Tabs.js";
 
@@ -25,7 +24,6 @@ export const FhcTemplate = {
 	components: {
 		CoreNavigationCmpt,
 		BaseLayout,
-		NavTabs,
 		Faqs,
 		FhcTabs
 	},
@@ -61,7 +59,6 @@ export const FhcTemplate = {
 		>
 		<template #main>
 			<fhc-tabs class="mb-5" :config="{start: { title: 'Start', component: '../../extensions/FHC-Core-Extension/js/components/examples/Alerts.js'}, end: { title: 'Ende', component: '../../extensions/FHC-Core-Extension/js/components/examples/Icons.js'}}"></fhc-tabs>
-			<nav-tabs @new-filter-entry="appSideMenuEntries = $event"></nav-tabs>	
 		</template>
       	<template #aside>
       		<card class="card card-body mb-3">My Sidewidget 1</card>
