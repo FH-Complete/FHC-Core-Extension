@@ -1,4 +1,4 @@
-export const Status = {
+export default {
 	props: {
 		statusText: {
 			type: String,

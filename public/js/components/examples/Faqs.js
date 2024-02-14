@@ -1,4 +1,4 @@
-export const Faqs = {
+export default {
 		props: {
 			faqs: {
 				type: Array,
