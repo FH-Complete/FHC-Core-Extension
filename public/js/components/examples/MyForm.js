@@ -1,15 +1,18 @@
 import FhcForm from "../../../../../js/components/Form/Form.js";
 import FormInput from "../../../../../js/components/Form/Input.js";
 import FormValidation from "../../../../../js/components/Form/Validation.js";
+import BsModal from '../../../../../js/components/Bootstrap/Modal.js';
 
 export default {
 	components: {
 		FhcForm,
 		FormInput,
-		FormValidation
+		FormValidation,
+		BsModal
 	},
 	data() {
 		return {
+			modalTitel: '',
 			formData: {
 				mystring: '',
 				mypassword: '',
@@ -33,13 +36,22 @@ export default {
 						this.$fhcAlert.alertSuccess('Form Successful sent');
 					})
 					.catch(this.$fhcAlert.handleSystemError);
+		},
+		openModal(modalTitel) {
+			this.modalTitel = modalTitel;
+			this.$refs.form.clearValidation();
+			this.$refs.modalContainer.show();
 		}
 	},
 	template: `
 	<div class="app-example-form-1">
 		<fhc-form ref="form" @submit.prevent="sendForm">
-			<form-validation></form-validation>
-			<div class="row row-cols-3">
+			<bs-modal ref="modalContainer" class="bootstrap-prompt">
+				<template #title>{{ modalTitel }}</template>
+				<template #default>
+					<!-- Formular -->
+					<form-validation></form-validation>
+					<div class="row row-cols-3">
 				<div class="col">
 					<form-input
 						v-model="formData.mystring"
@@ -149,7 +161,13 @@ export default {
 					<div class="form-text">Select at least two.</div>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary">Send Form</button>
+					
+				</template>
+				<template #footer>
+					<button type="button" class="btn btn-primary" @click="sendForm">{{ modalTitel }}</button>
+				</template>
+			</bs-modal>
+
 		</fhc-form>
 	</div>`
 }

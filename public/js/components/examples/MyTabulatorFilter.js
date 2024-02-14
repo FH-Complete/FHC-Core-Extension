@@ -15,21 +15,17 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {CoreFilterCmpt} from '../../../../../js/components/filter/Filter.js';
-import BsModal from '../../../../../js/components/Bootstrap/Modal.js';
 import {CoreRESTClient} from '../../../../../../public/js/RESTClient.js';
 import MyForm from './MyForm.js';
 
 export default {
 	components: {
 		CoreFilterCmpt,
-		BsModal,
 		MyForm
 	},
-	mixins: [ BsModal ],
 	emits: [ 'newFilterEntry'],
 	data: function() {
 		return {
-			modalTitel: '',
 			anrechnungstatusList: null,
 		}
 	},
@@ -134,12 +130,10 @@ export default {
 				.catch(error => { this.$fhcAlert.handleSystemError(error); });
 		},
 		addAnrechnung(){
-			this.modalTitel = this.$p.t('global', 'antragAnlegen');
-			this.$refs.modalContainer.show();
+			this.$refs.myForm.openModal(this.$p.t('global', 'antragAnlegen'));
 		},
 		editAnrechnung(id) {
-			this.modalTitel = this.$p.t('global', 'antragBearbeiten');
-			this.$refs.modalContainer.show();
+			this.$refs.myForm.openModal(this.$p.t('global', 'antragBearbeiten'));
 		},
 		async deleteAnrechnung(id) {
 			if (await this.$fhcAlert.confirmDelete() === false) return;
@@ -173,16 +167,7 @@ export default {
 		</template>
 	</core-filter-cmpt>
 	
-	<!-- Modal -->
-	<bs-modal ref="modalContainer" class="bootstrap-prompt" v-bind="$props" @hidden-bs-modal="onHiddenBsModal">
-		<template #title>{{ modalTitel }}</template>
-		<template #default>
-			<!-- Formular -->
-			<my-form></my-form>
-		</template>
-		<template #footer>
-			<button type="button" class="btn btn-primary" @click="onBsModalSave">{{ modalTitel }}</button>
-		</template>
-	</bs-modal>
+	<!-- Form -->
+	<my-form ref="myForm"></my-form>
 `
 };
