@@ -18,6 +18,7 @@
 			'public/extensions/FHC-Core-Extension/js/apps/Examples.js',
 			'public/extensions/FHC-Core-Extension/js/apps/examples/Form/Input.js',
 			'public/extensions/FHC-Core-Extension/js/apps/examples/Form/Validation.js',
+			'public/extensions/FHC-Core-Extension/js/apps/examples/Form/Form.js',
 			'public/extensions/FHC-Core-Extension/js/apps/examples/Form1.js'
 		]
 	];
@@ -44,6 +45,7 @@
 					<a href="#formcomponent" class="list-group-item list-group-item-action">Form component</a>
 					<a href="#formcomponent-props" class="list-group-item list-group-item-action">- Properties</a>
 					<a href="#formcomponent-methods" class="list-group-item list-group-item-action">- Methods</a>
+					<a href="#formcomponent-factory" class="list-group-item list-group-item-action">- API Factory</a>
 				</div>
 			</aside>
 			<main class="col-lg-9">
@@ -491,8 +493,18 @@
 						</table>
 					</li>
 				</ul>
+				<div class="d-flex justify-content-between">
+					<h6>Example:</h6>
+					<a href="#" title="FHC-Core-Extension/public/js/apps/examples/Form/Form.js" data-bs-toggle="tooltip" data-bs-placement="left">
+						<i class="fa-solid fa-circle-info"></i>
+					</a>
+				</div>
+				<section class="border p-3 mb-3">
+					<div id="example-form-form"></div>
+				</section>
 
-				TODO(chris): factory
+				<h3 id="formcomponent-factory">API Factory</h3>
+				<div class="alert alert-danger">TODO(chris): factory</div>
 				TODO(chris): examples
 				TODO(chris): + modal
 

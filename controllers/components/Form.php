@@ -10,6 +10,7 @@ class Form extends FHCAPI_Controller
 	{
 		parent::__construct([
 			'index' => 'admin:r', // TODO(chris): permissions
+			'postExample' => 'admin:r',
 			'form1' => 'admin:r'
 		]);
 	}
@@ -40,6 +41,32 @@ class Form extends FHCAPI_Controller
 		#show_error(['test','testy']);
 		#var_dump('test');
 		#$this->terminateWithValidationErrors(['test' => 'Test Error Message']);
+	}
+
+	/**
+	 * Post Example
+	 * @see FHC-Core-Extension/public/js/apps/examples/Form/Form.js
+	 * @return void
+	 */
+	public function postExample()
+	{
+		// Load the library
+		$this->load->library('form_validation');
+
+		// Set up the validation rules
+		$this->form_validation->set_rules('myinput1', 'Input 1', 'required');
+		$this->form_validation->set_rules('myinput2', 'Input 2', 'required');
+
+		// Run the validation
+		if ($this->form_validation->run() == false) {
+			// Terminate on errors
+			$this->terminateWithValidationErrors($this->form_validation->error_array());
+		}
+		
+		// Return success
+		if ($this->input->post('myinput1') == $this->input->post('myinput2'))
+			$this->terminateWithSuccess('Success .. and both values are equal');
+		$this->terminateWithSuccess('Success ... but the values are not equal');
 	}
 
 	public function form1()
