@@ -14,6 +14,7 @@
 		'customJSModules' => [
 			// Load Vue Apps
 			'public/extensions/FHC-Core-Extension/js/apps/Examples.js',
+			'public/extensions/FHC-Core-Extension/js/apps/examples/Phrases/Emit.js',
 			'public/extensions/FHC-Core-Extension/js/apps/examples/Phrases/Dynamic.js',
 			'public/extensions/FHC-Core-Extension/js/apps/examples/Phrases/Preload.js'
 		]
@@ -36,6 +37,7 @@
 					<a href="#translating" class="list-group-item list-group-item-action">Translating</a>
 					<a href="#translating-component" class="list-group-item list-group-item-action">- Inside the component</a>
 					<a href="#translating-template" class="list-group-item list-group-item-action">- In the template</a>
+					<a href="#translating-emit" class="list-group-item list-group-item-action">- Emit a phrase</a>
 					<a href="#dynamicphrases" class="list-group-item list-group-item-action">Dynamic phrases</a>
 					<a href="#preloadcategories" class="list-group-item list-group-item-action">Preload categories</a>
 				</div>
@@ -59,7 +61,61 @@
 				
 				<h2 id="translating" class="h3">Translating</h2>
 				<p>Then you can use the Translate function <code>$p.t()</code> to translate phrases.</p>
-				<p class="alert alert-danger">TODO(chris): function reference</p>
+				<ul class="list-group mb-3">
+					<li class="list-group-item list-group-item-primary">
+						t
+					</li>
+					<li class="list-group-item">
+						Translates a Phrase<br><br>
+						Returns: a (reactive) <code>string</code>
+					</li>
+					<li class="list-group-item">
+						<samp class="d-block">t(category, phrase)</samp>
+						<samp class="d-block">t(category, phrase, params)</samp>
+						<samp class="d-block">t(category_and_phrase)</samp>
+						<samp class="d-block">t(category_and_phrase, params)</samp>
+					</li>
+					<li class="list-group-item">
+						<table class="table table-sm">
+							<thead class="">
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>category</code></td>
+									<td>string</td>
+									<td>The category</td>
+								</tr>
+								<tr>
+									<td><code>phrase</code></td>
+									<td>string</td>
+									<td>The phrase</td>
+								</tr>
+								<tr>
+									<td><code>category_and_phrase</code></td>
+									<td>string | array</td>
+									<td>
+										Either category and phrase as <code>string</code> separated by a slash 
+										or an <code>array</code> where the first item is the category and the second is the phrase.
+									</td>
+								</tr>
+								<tr>
+									<td><code>params</code></td>
+									<td>object</td>
+									<td>
+										If the phrase contains placeholders, this parameter is used to replace them.
+										The <code>object</code> must be an <code>associative array</code> 
+										where the keys correspond to the placeholder name and the values are the <code>strings</code> the placeholder is replaced with.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</li>
+				</ul>
 
 				<h3 id="translating-component" class="h4">Inside the component</h3>
 				<pre class="border"><code class="language-javascript"><?= htmlentities(
@@ -86,6 +142,34 @@
 					'<!-- Phrase in Attribute -->' . "\n" .
 					'<input type="submit" class="..." :value="$p.t(\'category/phrase\')">'
 				); ?></code></pre>
+				
+				<h3 id="translating-emit" class="h4">Emit a phrase</h3>
+				<p>
+					If you want to emit a phrase through an event or use it in a non <code>Vue</code> way. 
+					You can wrap it in a <code>computable</code> to preserve it's reactivity.
+				</p>
+				<pre class="border border-bottom-0 mb-0"><code class="language-js"><?= htmlentities(
+					'// In the sending/emitting component' . "\n" .
+					'this.$emit(\'customEvent\', Vue.computed(() => this.$p.t(...)));' . "\n" . 
+					"\n" .
+					'// In the receiving component' . "\n" .
+					'onCustomEvent(event) {' . "\n" .
+					'	this.someValueInData = event;' . "\n" .
+					'}' . "\n"
+				); ?></code></pre>
+				<pre class="border"><code class="language-html"><?= htmlentities(
+					'<!-- In the receiving components template -->' . "\n" .
+					'<span>{{ someValueInData }}</span>'
+				); ?></code></pre>
+				<div class="d-flex justify-content-between">
+					<h6>Example:</h6>
+					<a href="#" title="FHC-Core-Extension/public/js/apps/examples/Phrases/Emit.js" data-bs-toggle="tooltip" data-bs-placement="left">
+						<i class="fa-solid fa-circle-info"></i>
+					</a>
+				</div>
+				<section class="border p-3 mb-3">
+					<div id="example-phrases-emit"></div>
+				</section>
 
 				
 				<h2 id="dynamicphrases" class="h3">Dynamic phrases</h2>
@@ -108,7 +192,36 @@
 					Phrases get loaded asynchronous, but sometimes it's needed that a phrase is present before some tasks are executed.
 					In this case you can call <code>$p.loadCategory</code> which returns a <code>Promise</code> after which you can execute the code.
 				</p>
-				<p class="alert alert-danger">TODO(chris): function reference</p>
+				<ul class="list-group mb-3">
+					<li class="list-group-item list-group-item-primary">
+						loadCategory
+					</li>
+					<li class="list-group-item">
+						Preloads a category<br><br>
+						Returns: <code>Promise</code>
+					</li>
+					<li class="list-group-item">
+						<samp class="d-block">loadCategory(category)</samp>
+					</li>
+					<li class="list-group-item">
+						<table class="table table-sm">
+							<thead class="">
+								<tr>
+									<th>Parameter</th>
+									<th>Type</th>
+									<th>Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>category</code></td>
+									<td>string | array</td>
+									<td>The category/categories</td>
+								</tr>
+							</tbody>
+						</table>
+					</li>
+				</ul>
 				<pre class="border"><code class="language-javascript"><?= htmlentities(
 					'// Preload one category' . "\n" .
 					'this.$p.loadCategory(\'category\').then(() => {' . "\n" .
@@ -143,4 +256,3 @@
 	<script>hljs.highlightAll();</script>
 
 <?php $this->load->view('templates/FHC-Footer', $includesArray); ?>
-
