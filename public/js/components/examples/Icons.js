@@ -14,9 +14,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import {CoreNavigationCmpt} from '../../../../../../public/js/components/navigation/Navigation.js';
+import CoreBaseLayout from '../../../../../../public/js/components/layout/BaseLayout.js';
 
 export default {
 	componentName: 'Icons',
+	components: {
+		CoreNavigationCmpt,
+		CoreBaseLayout
+	},
 	data: function() {
 		return {
 			interactionIcons : [
@@ -100,45 +106,53 @@ export default {
 		}
 	},
 	template: `
-	<h2 class="h4">Interactions</h2>
-    <table class="table table-condensed table-bordered mt-4">
-    	<thead><tr><th style="width: 300px">Beschreibung</th><th>Icon</th><th>HTML Shortcut</th></tr></thead>
-        <tbody>
-			<tr v-for="icon in interactionIcons" :key="icon">
-				<td>{{ icon.iconDescription }}</td>
-				<td><i class="fa-lg" :class="icon.iconClass"></i></td>
-				<td>
-					<code 
-						@click="copyToClipboard($event.target)" 
-						class="cursor-pointer" 
-						data-bs-toggle="tooltip" title="Copy to Clipboard">
-						&lt;i class="{{icon.iconClass}}"&gt;&lt;/i&gt;
-					</code>
-				</td>
-			</tr>
-        </tbody>
-   	</table>
-
-   <h2 class="h4">Status</h2>
-    <table class="table table-condensed table-bordered mt-4">
-    	<thead><tr><th style="width: 300px">Beschreibung</th><th>Icon</th><th>HTML Shortcut</th></tr></thead>
-        <tbody>
-			<tr v-for="icon in statusIcons" :key="icon">
-				<td>{{ icon.iconDescription }}</td>
-				<td><i class="fa-lg" :class="icon.iconClass"></i></td>
-				<td>
-					<code 
-						@click="copyToClipboard($event.target)" 
-						class="cursor-pointer" 
-						data-bs-toggle="tooltip" title="Copy to Clipboard">
-						&lt;i class="{{icon.iconClass}}"&gt;&lt;/i&gt;
-					</code>
-				</td>
-			</tr>
-        </tbody>
-   	</table>
-   <h2 class="h4">Communication</h2>
-    <table class="table table-condensed table-bordered mt-4">
+	<!-- Navigation -->
+	<core-navigation-cmpt></core-navigation-cmpt>
+	
+	<!-- Content -->
+	<core-base-layout
+		:title="$p.t('global', 'titel')"
+		:subtitle="$p.t('global', 'beschreibung')">
+		<template #main>
+			<h2 class="h4">Interactions</h2>
+			<table class="table table-condensed table-bordered mt-4">
+				<thead><tr><th style="width: 300px">Beschreibung</th><th>Icon</th><th>HTML Shortcut</th></tr></thead>
+				<tbody>
+					<tr v-for="icon in interactionIcons" :key="icon">
+						<td>{{ icon.iconDescription }}</td>
+						<td><i class="fa-lg" :class="icon.iconClass"></i></td>
+						<td>
+							<code 
+								@click="copyToClipboard($event.target)" 
+								class="cursor-pointer" 
+								data-bs-toggle="tooltip" title="Copy to Clipboard">
+								&lt;i class="{{icon.iconClass}}"&gt;&lt;/i&gt;
+							</code>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		
+		   <h2 class="h4">Status</h2>
+			<table class="table table-condensed table-bordered mt-4">
+				<thead><tr><th style="width: 300px">Beschreibung</th><th>Icon</th><th>HTML Shortcut</th></tr></thead>
+				<tbody>
+					<tr v-for="icon in statusIcons" :key="icon">
+						<td>{{ icon.iconDescription }}</td>
+						<td><i class="fa-lg" :class="icon.iconClass"></i></td>
+						<td>
+							<code 
+								@click="copyToClipboard($event.target)" 
+								class="cursor-pointer" 
+								data-bs-toggle="tooltip" title="Copy to Clipboard">
+								&lt;i class="{{icon.iconClass}}"&gt;&lt;/i&gt;
+							</code>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		   <h2 class="h4">Communication</h2>
+    	<table class="table table-condensed table-bordered mt-4">
     	<thead><tr><th style="width: 300px">Beschreibung</th><th>Icon</th><th>HTML Shortcut</th></tr></thead>
         <tbody>
 			<tr v-for="icon in communicationIcons" :key="icon">
@@ -155,6 +169,7 @@ export default {
 			</tr>
         </tbody>
    	</table>
-
+   		</template>
+   	</core-base-layout>
 `
 };

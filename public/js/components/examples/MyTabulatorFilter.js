@@ -14,58 +14,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {CoreNavigationCmpt} from '../../../../../../public/js/components/navigation/Navigation.js';
-import CoreBaseLayout from '../../../../../../public/js/components/layout/BaseLayout.js';
 import {CoreFilterCmpt} from '../../../../../js/components/filter/Filter.js';
 import {CoreRESTClient} from '../../../../../../public/js/RESTClient.js';
-import BsModal from '../../../../../js/components/Bootstrap/Modal.js';
-import docTabulatorFilter from "../docs/docTabulatorFilter.js";
-import docTabulatorFilterDataset from "../docs/docTabulatorFilterDataset.js";
-import docTabulatorFilterFiltersupdate from "../docs/docTabulatorFilterFiltersupdate.js";
+import MyForm from './MyForm.js';
 
 export default {
 	components: {
 		CoreFilterCmpt,
-		CoreNavigationCmpt,
-		CoreBaseLayout,
-		BsModal,
-		docTabulatorFilter,
-		docTabulatorFilterDataset,
-		docTabulatorFilterFiltersupdate
-	},
-	methods: {
-		getAnrechnungstatusList(){
-			CoreRESTClient
-				.get('/extensions/FHC-Core-Extension/FhcTemplate/getAnrechnungstatusList')
-				.then(result => result.data)
-				.then(result => {
-					this.anrechnungstatusList = CoreRESTClient.getData(result).map(x => x.bezeichnung_mehrsprachig);
-				})
-				.catch(error => { this.$fhcAlert.handleSystemError(error); });
-		},
-		addAnrechnung(){
-			this.modalTitel = 'Anrechnung anlegen';
-			this.$refs.modalContainer.show();
-		},
-		editAnrechnung(id) {
-			this.modalTitel = 'Anrechnung ändern';
-			this.$refs.modalContainer.show();
-		},
-		async deleteAnrechnung(id) {
-			if (await this.$fhcAlert.confirmDelete() === false) return;
-			this.$fhcAlert.alertSuccess('ID' + id + ' deleted')
-		},
-		changeAnrechnungstatus(cell){
-			let anrechnungId = cell.getRow().getIndex();
-			let status = cell.getValue();
-			this.$fhcAlert.alertSuccess('Status changed');
-		},
-		acceptAnrechnung(){ this.$fhcAlert.alertSuccess('Accepted')},
-		rejectAnrechnung(){ this.$fhcAlert.alertSuccess('Rejected')}
+		MyForm
 	},
 	data: function() {
 		return {
-			modalTitel: '',
 			anrechnungstatusList: null,
 		}
 	},
@@ -159,48 +118,54 @@ export default {
 		// Get initial Anrechnungstatuslist
 		this.getAnrechnungstatusList();
 	},
+	methods: {
+		getAnrechnungstatusList(){
+			CoreRESTClient
+				.get('/extensions/FHC-Core-Extension/FhcTemplate/getAnrechnungstatusList')
+				.then(result => result.data)
+				.then(result => {
+					this.anrechnungstatusList = CoreRESTClient.getData(result).map(x => x.bezeichnung_mehrsprachig);
+				})
+				.catch(error => { this.$fhcAlert.handleSystemError(error); });
+		},
+		addAnrechnung(){
+			this.$refs.myForm.openModal(this.$p.t('global', 'antragAnlegen'));
+		},
+		editAnrechnung(id) {
+			this.$refs.myForm.openModal(this.$p.t('global', 'antragBearbeiten'));
+		},
+		async deleteAnrechnung(id) {
+			if (await this.$fhcAlert.confirmDelete() === false) return;
+			this.$fhcAlert.alertSuccess('ID' + id + this.$p.t('global', 'geloescht'));
+		},
+		changeAnrechnungstatus(cell){
+			let anrechnungId = cell.getRow().getIndex();
+			let status = cell.getValue();
+			this.$fhcAlert.alertSuccess(this.$p.t('global', 'aenderungGespeichert'));
+		},
+		acceptAnrechnung(){ this.$fhcAlert.alertSuccess(this.$p.t('ui', 'anrechnungenWurdenGenehmigt'))},
+		rejectAnrechnung(){ this.$fhcAlert.alertSuccess(this.$p.t('ui', 'anrechnungenWurdenAbgelehnt'))}
+	},
 	template: `
-		<!-- Navigation -->
-	<core-navigation-cmpt></core-navigation-cmpt>
-	
-	<!-- Tabulator with Filter -->
-	<!-- Content -->
-	<core-base-layout
-		:title="$p.t('global', 'titel')"
-		:subtitle="$p.t('global', 'beschreibung')">
-		<template #main>		
-			<h3 class="h4 mt-3">Tabulator with Filter</h3>
-			<core-filter-cmpt v-if="anrechnungstatusList"
+	<core-filter-cmpt v-if="anrechnungstatusList"
 		ref="anrechnungTable"
 		filter-type="Anrechnungen"
 		:side-menu="false"
 		:tabulator-options="tabulatorOptions"
 		:tabulator-events="[{ event: 'cellEdited', handler: changeAnrechnungstatus }]"
-		new-btn-label="Anrechnung"
+		:new-btn-label="$p.t('anrechnung', 'anrechnung')"
 		new-btn-show
+		new-btn-class="btn-primary"
 		@click:new="addAnrechnung"
 		reload
 		>
 		<template #actions>
-			<button class="btn btn-primary" @click="acceptAnrechnung">Genehmigen</button>
-			<button class="btn btn-danger" @click="rejectAnrechnung">Ablehnen</button>
+			<button class="btn btn-primary" @click="acceptAnrechnung">{{ $p.t('global', 'genehmigen') }}</button>
+			<button class="btn btn-danger" @click="rejectAnrechnung">{{ $p.t('global', 'ablehnen') }}</button>
 		</template>
 	</core-filter-cmpt>
 	
-			<!-- Code Documentation -->
-			<doc-tabulator-filter></doc-tabulator-filter>
-			<doc-tabulator-filter-dataset></doc-tabulator-filter-dataset>
-			<doc-tabulator-filter-filtersupdate></doc-tabulator-filter-filtersupdate>
-		</template>
-	</core-base-layout>
-	
-	<!-- Modal -->
-	<bs-modal ref="modalContainer" class="bootstrap-prompt">
-		<template #title>{{ modalTitel }}</template>
-		<template #default>Content</template>
-		<template #footer>
-			<button type="button" class="btn btn-primary" @click="">{{ modalTitel }}</button>
-		</template>
-	</bs-modal>
+	<!-- Form -->
+	<my-form ref="myForm"></my-form>
 `
 };

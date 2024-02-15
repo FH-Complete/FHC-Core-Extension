@@ -1,4 +1,4 @@
-export const Kontakt = {
+export default {
 	props: {
 		kontakte:  {
 			type: Array,

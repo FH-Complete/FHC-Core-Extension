@@ -65,7 +65,7 @@ const app = Vue.createApp({
 		}
 	},
 	template: `
-	<div class="app-example-alerts-basic row">
+	<div class="app-example-alerts-basic row gy-3">
 		<div class="col-9">
 			<div class="card card-body bg-light"><code>this.$fhcAlert.alertSuccess('Success');</code></div>
 		</div>
@@ -111,9 +111,9 @@ const app = Vue.createApp({
 		<div class="col-9">
 			<div class="card card-body bg-light">
 				<code><pre>
-					async confirmDelete(){
-						if (await this.$fhcAlert.confirmDelete() === false) return;
-					}
+async confirmDelete(){
+	if (await this.$fhcAlert.confirmDelete() === false) return;
+}
 				</pre></code>
 			</div>
 		</div>
@@ -123,13 +123,14 @@ const app = Vue.createApp({
 		<div class="col-9">
 			<div class="card card-body bg-light">
 				<code><pre>
-					let msgArr = [
-					Message A',
-					Message B',
-					Message C'
-					]
+let msgArr = [
+Message A',
+Message B',
+Message C'
+]
 
-				this.$fhcAlert.alertMultiple(msgArr);</pre></code>
+this.$fhcAlert.alertMultiple(msgArr);
+			</pre></code>
 			</div>
 		</div>
 		<div class="col-3">
@@ -138,13 +139,13 @@ const app = Vue.createApp({
 		<div class="col-9">
 			<div class="card card-body bg-light">
 				<code><pre>
-					let msgArr = [
-					'Message A',
-					'Message B',
-					'Message C'
-					]
+let msgArr = [
+'Message A',
+'Message B',
+'Message C'
+]
 
-					this.$fhcAlert.alertMultiple(msgArr, 'success', 'Sticky success messages', true);
+this.$fhcAlert.alertMultiple(msgArr, 'success', 'Sticky success messages', true);
 				</pre></code>
 			</div>
 		</div>

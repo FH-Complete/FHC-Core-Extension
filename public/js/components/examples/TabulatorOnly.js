@@ -14,23 +14,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import {CoreNavigationCmpt} from '../../../../../../public/js/components/navigation/Navigation.js';
+import CoreBaseLayout from '../../../../../../public/js/components/layout/BaseLayout.js';
 import {CoreFilterCmpt} from '../../../../../js/components/filter/Filter.js';
 import {CoreRESTClient} from '../../../../../../public/js/RESTClient.js';
 import BsModal from '../../../../../js/components/Bootstrap/Modal.js';
-import {docTabulatorOnly} from "../docs/docTabulatorOnly.js";
-import {docTabulatorOptions} from "../docs/docTabulatorOptions.js";
+import docTabulatorOnly from "../docs/docTabulatorOnly.js";
+import docTabulatorOptions from "../docs/docTabulatorOptions.js";
 
-export const TabulatorOnly = {
-	componentName: 'TabulatorOnly',
+export default {
 	components: {
 		CoreFilterCmpt,
 		BsModal,
+		CoreNavigationCmpt,
+		CoreBaseLayout,
 		docTabulatorOnly,
 		docTabulatorOptions
 	},
-	mixins: [
-		BsModal
-	],
 	methods: {
 		addData(){
 			this.modalTitel = 'Datensatz anlegen';
@@ -46,9 +46,10 @@ export const TabulatorOnly = {
 			this.$fhcAlert.alertSuccess('ID' + id + ' deleted')
 		},
 		acceptData(){ this.$fhcAlert.alertSuccess('Accepted')},
-		rejectData(){ this.$fhcAlert.alertSuccess('Rejected')}
+		rejectData(){ this.$fhcAlert.alertSuccess('Rejected')},
+		changeListData(){this.$fhcAlert.alertSuccess('Changed')}
 	},
-	data: function() {
+	data: () => {
 		return {
 			modalTitel: '',
 		}
@@ -111,22 +112,19 @@ export const TabulatorOnly = {
 						sorter: 'number'
 					},
 					{
-						// TODO umändern, da dms_id eigene row ist in query
 						title: 'File',
-						field: 'datei',
+						field: 'dokument_bezeichnung',
 						headerFilter: true,
 						formatter:"link",
 						formatterParams: cell => {
 							return {
-								labelField:"datei.titel",
-								url: CoreRESTClient._generateRouterURI('extensions/FHC-Core-Extension/FhcTemplate/download/' + cell.getData().datei.dms_id),
+								labelField:"dokument_bezeichnung",
+								url: CoreRESTClient._generateRouterURI('extensions/FHC-Core-Extension/FhcTemplate/download/' + cell.getData().dms_id),
 								target:"_blank"
 							}
-						},
-						tooltip: (e, cell) =>  cell.getData().datei.titel	// Overwrite table option tooltip, which will return the datei-object
+						}
 					},
 					{title: 'Anmerkung', field: 'anmerkung', headerFilter: true},
-					// TODO value array als function oder als data?
 					{
 						title: 'Liste',
 						field: 'liste',
@@ -179,47 +177,57 @@ export const TabulatorOnly = {
 		}
 	},
 	template: `
+	<!-- Navigation -->
+	<core-navigation-cmpt></core-navigation-cmpt>
+	
 	<!-- Tabulator (table-only) -->
-	<h3 class="h4">Tabulator without Filter (table-only)</h3>
-	<p class="lead mb-4">Tabulator without Filter will render your table with the select columns functionality ( <i class="fa fa-table-columns"></i> )  by default.<br>
-	You can easily add an Add-Button, Refresh-Button and Action-Buttons to handle multiple rows at once. Column formatters are used to keep same look&feel.
-	</p>
-	<core-filter-cmpt 
-		ref="myTabulator"
-		table-only
-		:side-menu="false"
-		:tabulator-options="tabulatorOptions"
-		new-btn-label="Datensatz"
-		new-btn-show
-		new-btn-class="btn-primary"
-		@click:new="addData"
-		reload
-		>
-		<template #actions>
-			<button class="btn btn-primary" @click="acceptData">Datensatz genehmigen</button>
-			<button class="btn btn-danger" @click="rejectData">Datensatz ablehnen</button>
-		 	<div class="d-flex gap-2 align-items-baseline">
-				<select class="form-select" aria-label="Default select example">
-  					<option selected>Aktion wählen...</option>
-					<option value="1">Status zurücksetzen</option>
-				  	<option value="2">Datensatz drucken</option>
-				  	<option value="3">Datensatz löschen</option>
-				</select>
-			</div>
+	<!-- Content -->
+	<core-base-layout
+		:title="$p.t('global', 'titel')"
+		:subtitle="$p.t('global', 'beschreibung')">
+		<template #main>
+			<h3 class="h4">Tabulator without Filter (table-only)</h3>
+			<p class="lead mb-4">Tabulator without Filter will render your table with the select columns functionality ( <i class="fa fa-table-columns"></i> )  by default.<br>
+			You can easily add an Add-Button, Refresh-Button and Action-Buttons to handle multiple rows at once. Column formatters are used to keep same look&feel.
+			</p>
+			<core-filter-cmpt
+				ref="myTabulator"
+				table-only
+				:side-menu="false"
+				:tabulator-options="tabulatorOptions"
+				:tabulator-events="[{ event: 'cellEdited', handler: changeListData }]"
+				new-btn-label="Datensatz"
+				new-btn-show		
+				@click:new="addData"
+				reload
+				>
+				<template #actions>
+					<button class="btn btn-primary" @click="acceptData">Datensatz genehmigen</button>
+					<button class="btn btn-danger" @click="rejectData">Datensatz ablehnen</button>
+					<div class="d-flex gap-2 align-items-baseline">
+						<select class="form-select" aria-label="Default select example">
+							<option selected>Aktion wählen...</option>
+							<option value="1">Status zurücksetzen</option>
+							<option value="2">Datensatz drucken</option>
+							<option value="3">Datensatz löschen</option>
+						</select>
+					</div>
+				</template>
+			</core-filter-cmpt>
+			
+			<!-- Modal -->
+			<bs-modal ref="modalContainer" class="bootstrap-prompt">
+				<template #title>{{ modalTitel }}</template>
+				<template #default>Content</template>
+				<template #footer>
+					<button type="button" class="btn btn-primary" @click="">{{ modalTitel }}</button>
+				</template>
+			</bs-modal>
+			
+			<!-- Code Documentation -->
+			<doc-tabulator-only></doc-tabulator-only>
+			<doc-tabulator-options></doc-tabulator-options>
 		</template>
-	</core-filter-cmpt>
-	
-	<!-- Modal -->
-	<bs-modal ref="modalContainer" class="bootstrap-prompt" v-bind="$props" @hidden-bs-modal="onHiddenBsModal">
-		<template #title>{{ modalTitel }}</template>
-		<template #default>Content</template>
-		<template #footer>
-			<button type="button" class="btn btn-primary" @click="onBsModalSave">{{ modalTitel }}</button>
-		</template>
-	</bs-modal>
-	
-	<!-- Code Documentation -->
-	<doc-tabulator-only></doc-tabulator-only>
-	<doc-tabulator-options></doc-tabulator-options>
+	</core-base-layout>
 `
 };

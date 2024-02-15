@@ -10,6 +10,11 @@ class Examples extends Auth_Controller
 	{
 		parent::__construct([
 			'index' => 'admin:rw',
+			'viewTabulatorOnly' => 'admin:rw',
+			'viewTabulatorFilter' => 'admin:rw',
+			'viewExampleTabulatorOnly' => 'admin:rw',
+			'viewExampleTabulatorFilter' => 'admin:rw',
+			'viewIcons' => 'admin:rw',
 			'vuejs' => 'admin:rw'
 		]);
 	}
@@ -20,8 +25,32 @@ class Examples extends Auth_Controller
 	 */
 	public function index()
 	{
-		$this->load->library('WidgetLib');
-		$this->load->view('extensions/FHC-Core-Extension/MyExtension');
+		$this->load->view('extensions/FHC-Core-Extension/Examples/BaseLayout');
+	}
+
+	public function viewTabulatorOnly()
+	{
+		$this->load->view('extensions/FHC-Core-Extension/Examples/TabulatorOnly');
+	}
+
+	public function viewTabulatorFilter()
+	{
+		$this->load->view('extensions/FHC-Core-Extension/Examples/TabulatorFilter');
+	}
+
+	public function viewExampleTabulatorOnly()
+	{
+		$this->load->view('extensions/FHC-Core-Extension/Examples/ExampleTabulatorOnly');
+	}
+
+	public function viewExampleTabulatorFilter()
+	{
+		$this->load->view('extensions/FHC-Core-Extension/Examples/ExampleTabulatorFilter');
+	}
+
+	public function viewIcons()
+	{
+		$this->load->view('extensions/FHC-Core-Extension/Examples/Icons');
 	}
 
 	/**

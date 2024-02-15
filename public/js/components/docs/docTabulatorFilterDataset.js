@@ -1,4 +1,4 @@
-export const docTabulatorFilterDataset = {
+export default {
 	template: `
 <div class="row-col mt-5">
 <h3 class="h4">Dataset: Get the initial Data for the Tabulator</h3>

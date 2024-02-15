@@ -50,7 +50,7 @@
 				</p>
 
 				<!-- Code Documentation -->	
-				<h3 class="h4" id="alertplugin-enable">Enable FhcAlert Core Plugin in your App</h3>
+				<h3 class="h4 mt-5" id="alertplugin-enable">Enable FhcAlert Core Plugin in your App</h3>
 				<p>
 					FhcAlert core plugin is using 
 					<a href="https://primevue.org/toast/" target="_blank">PrimeVue Toast</a> 
@@ -75,9 +75,9 @@
 					'	.mount(\'#main\');'
 				); ?></code></pre>
 
-				<h3 class="h4" id="alertplugin-basic">Use FhcAlert Plugin from anywhere inside your App</h3>
+				<h3 class="h4 mt-5" id="alertplugin-basic">Use FhcAlert Plugin from anywhere inside your App</h3>
 				<div class="d-flex justify-content-between">
-					<h6>Example:</h6>
+					<h6>Examples:</h6>
 					<a href="#" title="FHC-Core-Extension/public/js/apps/examples/Alerts/Basic.js" data-bs-toggle="tooltip" data-bs-placement="left">
 						<i class="fa-solid fa-circle-info"></i>
 					</a>
@@ -86,7 +86,7 @@
 					<div id="example-alert-basic"></div>
 				</section>
 
-				<h3 class="h4" id="alertplugin-example1">Example 1: Display Info Alert on Success and handle System Error</h3>
+				<h3 class="h4 mt-5" id="alertplugin-example1">Example 1: Display Info Alert on Success and handle System Error</h3>
 				<div class="d-flex justify-content-between">
 					<h6>Example:</h6>
 					<a href="#" title="FHC-Core-Extension/public/js/apps/examples/Alerts/Example1.js" data-bs-toggle="tooltip" data-bs-placement="left">
@@ -115,7 +115,7 @@
 					'}'
 				); ?></code></pre>
 
-				<h3 class="h4" id="alertplugin-example2">Example 2: Use Confirm Dialog on Delete. Display Success Alert on Success and handle System Error</h3>
+				<h3 class="h4 mt-5" id="alertplugin-example2">Example 2: Use Confirm Dialog on Delete. Display Success Alert on Success and handle System Error</h3>
 				<div class="d-flex justify-content-between">
 					<h6>Example:</h6>
 					<a href="#" title="FHC-Core-Extension/public/js/apps/examples/Alerts/Example2.js" data-bs-toggle="tooltip" data-bs-placement="left">

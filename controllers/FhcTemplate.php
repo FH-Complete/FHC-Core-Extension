@@ -17,6 +17,7 @@ class FhcTemplate extends Auth_Controller
 				'index' => 'admin:rw',
 				'getFullName' => 'admin:rw',
 				'deleteData' => 'admin:rw',
+				'getAnrechnungen' => 'admin:rw',
 				'getAnrechnungstatusList' => 'admin:rw',
 				'getTestData' => 'admin:rw'
 			)
@@ -29,7 +30,7 @@ class FhcTemplate extends Auth_Controller
 
 	public function index()
 	{
-		$this->load->view('extensions/FHC-Core-Extension/FhcTemplate.php');
+		$this->load->view('extensions/FHC-Core-Extension/Examples.php');
 	}
 
 	public function getFullName()
@@ -63,10 +64,9 @@ class FhcTemplate extends Auth_Controller
 				'datum'=> '2024-01-01',
 				'money'=> 3000.50,
 				'bool'=> true,
-				'datei'=> array ( 'titel'=> 'A Datei.pdf', 'dms_id'=> 100 ),
-				'anmerkung'=> '' +
-					'Langer Text kann mit tooltip gelesen werden. Langer Text kann mit tooltip gelesen werden. ' +
-					'Langer Text kann mit tooltip gelesen werden. Langer Text kann mit tooltip gelesen werden.',
+				'dms_id' => 1,
+				'dokument_bezeichnung' => 'A Datei.pdf',
+				'anmerkung'=> 'Langer Text kann mit tooltip gelesen werden. Langer Text kann mit tooltip gelesen werden',
 				'liste'=> 'Neu'
 			),
 			array(
@@ -77,7 +77,8 @@ class FhcTemplate extends Auth_Controller
 				'datum'=> '2024-01-02',
 				'money'=> 3000.50,
 				'bool'=> false,
-				'datei'=> array( 'titel'=> 'B Datei.pdf', 'dms_id'=> 101 ),
+				'dms_id' => 2,
+				'dokument_bezeichnung' => 'B Datei.pdf',
 				'anmerkung'=> 'Langer Text kann mit tooltip gelesen werden',
 				'liste'=> 'Genehmigt'
 			),
@@ -89,7 +90,8 @@ class FhcTemplate extends Auth_Controller
 				'datum'=> '2024-01-03',
 				'money'=> 3000.50,
 				'bool'=> true,
-				'datei'=> array( 'titel'=> 'C Datei.pdf', 'dms_id'=> 102 ),
+				'dms_id' => 3,
+				'dokument_bezeichnung' => 'C Datei.pdf',
 				'anmerkung'=> 'Langer Text kann mit tooltip gelesen werden',
 				'liste'=> 'Abgelehnt'
 			),
@@ -101,7 +103,8 @@ class FhcTemplate extends Auth_Controller
 				'datum'=> '2024-01-01',
 				'money'=> 3000.50,
 				'bool'=> true,
-				'datei'=> array( 'titel'=> 'D Datei.pdf', 'dms_id'=> 103 ),
+				'dms_id' => 4,
+				'dokument_bezeichnung' => 'D Datei.pdf',
 				'anmerkung'=> 'Langer Text kann mit tooltip gelesen werden',
 				'liste'=> 'Neu'
 			),
@@ -113,11 +116,28 @@ class FhcTemplate extends Auth_Controller
 				'datum'=> '2024-01-02',
 				'money'=> 3000.50,
 				'bool'=> false,
-				'datei'=> array( 'titel'=> 'E Datei.pdf', 'dms_id'=> 104 ),
+				'dms_id' => 5,
+				'dokument_bezeichnung' => 'E Datei.pdf',
 				'anmerkung'=> 'Langer Text kann mit tooltip gelesen werden',
 				'liste'=> 'Genehmigt'
 			),
 		));
+	}
+
+	public function getAnrechnungen()
+	{
+		// Get Anrechnungen
+		$this->load->model('education/Anrechnung_model', 'AnrechnungModel');
+		//$this->AnrechnungModel->addSelect('anrechnung_id', 'DESC');
+		$this->AnrechnungModel->addOrder('insertamum', 'DESC');
+		$this->AnrechnungModel->addLimit(100);
+		$result = $this->AnrechnungModel->load();
+
+		// On error
+		if (isError($result)) $this->terminateWithJsonError(getError($result));
+
+		// On success
+		$this->outputJsonSuccess(hasData($result) ? getData($result) : []);
 	}
 
 	public function getAnrechnungstatusList()

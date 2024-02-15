@@ -14,26 +14,37 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {BaseLayout} from "../Layout/BaseLayout.js";
-import {docLayoutBase} from "../docs/docLayoutBase.js";
-import {docLayoutBaseSide} from "../docs/docLayoutBaseSide.js";
-import {docTabulatorFilter} from "../docs/docTabulatorFilter.js";
+import {CoreNavigationCmpt} from '../../../../../../public/js/components/navigation/Navigation.js';
+import CoreBaseLayout from '../../../../../../public/js/components/layout/BaseLayout.js';
+import CoreTabs from '../../../../../../public/js/components/Tabs.js';
+import docLayoutBase from "../docs/docLayoutBase";
+import docLayoutBaseSide from "../docs/docLayoutBaseSide";
+import docLayoutBaseTabs from "../docs/docLayoutBaseTabs";
 
-export const Layout = {
+export default {
 	components: {
-		BaseLayout,
+		CoreNavigationCmpt,
+		CoreBaseLayout,
+		CoreTabs,
 		docLayoutBase,
 		docLayoutBaseSide,
-		docTabulatorFilterChildCmpt: docTabulatorFilter
+		docLayoutBaseTabs
+	},
+	data: function() {
+		return {
+		}
 	},
 	template: `
-	<h2 class="h3">Base Layout Templates</h2>
+	<!-- Navigation -->
+	<core-navigation-cmpt></core-navigation-cmpt>
+
+	<!-- Content -->
+	<h1>Base Layout<p class="lead">/public/js/components/layout/BaseLayout.js</p></h1>
 	<p class="lead">Use Base Layout Component to structure your site with <b>title, subtitle, main content area</b> and, if you need so, <b>side content area</b> and <b>navigation tabs</b>.</p>
-	
-	<div class="row-cols my-5">
+	<div class="row-cols">
 		<h3 class="h4">Base Layout</h3>
 		<div class="row-col card card-body p-4 mt-3">
-			<base-layout
+			<core-base-layout
 				title="Title"
 				subtitle="Subtitle">
 				<template #main>			
@@ -42,21 +53,21 @@ export const Layout = {
 						 mainCols: 12 cols (default)
 					</div>
 				</template>
-			</base-layout>
+			</core-base-layout>
 		</div>
 		<!-- Code Documentation -->
 		<doc-layout-base></doc-layout-base>
 	</div>
-		
+	
 	<div class="row-cols my-5">
 		<h3 class="h4">Base Layout + Side Content</h3>
 		<div class="row-col card card-body p-4  mt-3">
-			<base-layout
-			title="Title"
-			subtitle="Subtitle"
+		<core-base-layout
+			:title="$p.t('global', 'titel')"
+			:subtitle="$p.t('global', 'beschreibung')"
 			mainCols="9"
 			asideCols="3">
-			<template #main>			
+			<template #main>
 				<div class="row-col card card-body h-100">
 					<h5>#main slot</h5>
 					mainCols: 9 cols (you can adapt)
@@ -64,41 +75,37 @@ export const Layout = {
 			</template>
 			<template #aside>
 				<div class="card card-body mb-3">
-					<h5>#aside slot</h5>
-					asideCols: 3 cols (you can adapt)
+						<h5>#aside slot</h5>
+						asideCols: 3 cols (you can adapt)
 				</div>
 				<div class="card card-body mb-3">Place your side-widgets here</div>
 				<div class="card card-body mb-3">Place your side-widgets here</div>
 			</template>
-		</base-layout>
+		</core-base-layout>
 		</div>
 		<!-- Code Documentation -->
 		<doc-layout-base-side></doc-layout-base-side>
 	</div>
 	
-<!--	<div class="row-cols my-5">-->
-<!--		<h3 class="h4">Base Layout + Side Content + Navigation Tabs</h3>-->
-<!--		<div class="row-col card card-body p-4">-->
-<!--			<base-layout-->
-<!--			title="appTitle"-->
-<!--			subtitle="appSubtitle"-->
-<!--			mainCols="9"-->
-<!--			asideCols="3">-->
-<!--			<template #main>-->
-<!--				<nav-tabs :tabs="tabs"></nav-tabs>			-->
-<!--				<div class="row-col card card-body h-100">-->
-<!--					<h5>#main slot</h5>-->
-<!--					mainCols: 9 cols (you can adapt)-->
-<!--				</div>-->
-<!--			</template>-->
-<!--			<template #aside>-->
-<!--				<div class="card card-body mb-3">-->
-<!--					<h5>#aside slot</h5>-->
-<!--					asideCols: 3 cols (you can adapt)-->
-<!--				</div>-->
-<!--			</template>-->
-<!--		</base-layout>-->
-<!--		</div>-->
-<!--	</div>  -->
-`
+	<div class="row-cols">
+		<h3 class="h4">Base Layout + Tabs</h3>
+		<div class="row-col card card-body p-4 mt-3">
+			<core-base-layout
+				title="Title"
+				subtitle="Subtitle">	
+				<template #main>
+					<!-- Core Tabs-->
+					<core-tabs class="mb-5" :config="{start: { title: 'Start', component: '../../extensions/FHC-Core-Extension/js/components/examples/Alerts.js'}, end: { title: 'Ende', component: '../../extensions/FHC-Core-Extension/js/components/examples/Status.js'}}"></core-tabs>
+			
+					<div class="row-col card card-body h-100">
+						<h5>#main slot</h5>
+						 mainCols: 12 cols (default)
+					</div>
+				</template>
+			</core-base-layout>
+		</div>
+		<!-- Code Documentation -->
+		<doc-layout-base-tabs></doc-layout-base-tabs>
+	</div>
+	`
 };

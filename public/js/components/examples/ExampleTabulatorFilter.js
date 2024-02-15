@@ -15,18 +15,32 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {FhcTemplate} from '../FhcTemplate.js';
-import FhcAlert from '../../../../js/plugin/FhcAlert.js';
-import Phrasen from '../../../../js/plugin/Phrasen.js';
+import {CoreNavigationCmpt} from '../../../../../../public/js/components/navigation/Navigation.js';
+import CoreBaseLayout from '../../../../../../public/js/components/layout/BaseLayout.js';
+import MyTabulatorFilter from "./MyTabulatorFilter.js"
 
-const app = Vue.createApp({
+export default {
 	components: {
-		FhcTemplate
-	}
-});
+		CoreNavigationCmpt,
+		CoreBaseLayout,
+		MyTabulatorFilter
+	},
+	data: function() {
+		return {
+		}
+	},
+	template: `
+	<!-- Navigation -->
+	<core-navigation-cmpt></core-navigation-cmpt>
 
-app
-	.use(primevue.config.default, {zIndex: {overlay: 9999}})
-	.use(FhcAlert)
-	.use(Phrasen)
-	.mount('#main');
+	<!-- Content -->
+	<core-base-layout
+		:title="$p.t('global', 'titel')"
+		:subtitle="$p.t('global', 'beschreibung')"
+		>
+		<template #main>
+			<my-tabulator-filter></my-tabulator-filter>
+		</template>
+	</core-base-layout>
+	`
+};
