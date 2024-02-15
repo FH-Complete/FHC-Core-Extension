@@ -67,87 +67,76 @@ const app = Vue.createApp({
 	template: `
 	<div class="app-example-alerts-basic row gy-3">
 		<div class="col-9">
-			<div class="card card-body bg-light"><code>this.$fhcAlert.alertSuccess('Success');</code></div>
+			<pre class="border"><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-variable language_">this</span>.<span class="hljs-property">$fhcAlert</span>.<span class="hljs-title function_">alertSuccess</span>(<span class="hljs-string">'Success'</span>);</code></pre>
 		</div>
 		<div class="col-3">
 			<button class="btn btn-outline-secondary w-100 w-100" @click="alertSuccess">Alert Success</button>
 		</div>
 		<div class="col-9">
-			<div class="card card-body bg-light"><code>this.$fhcAlert.alertInfo('Info');</code></div>
+			<pre class="border"><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-variable language_">this</span>.<span class="hljs-property">$fhcAlert</span>.<span class="hljs-title function_">alertInfo</span>(<span class="hljs-string">'Info'</span>);</code></pre>
 		</div>
 		<div class="col-3">
 			<button class="btn btn-outline-secondary w-100 w-100" @click="alertInfo">Alert Info</button>
 		</div>
 		<div class="col-9">
-			<div class="card card-body bg-light"><code>this.$fhcAlert.alertWarning('Warning message is sticky');</code></div>
+			<pre class="border"><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-variable language_">this</span>.<span class="hljs-property">$fhcAlert</span>.<span class="hljs-title function_">alertWarning</span>(<span class="hljs-string">'Warning message is sticky'</span>);</code></pre>
 		</div>
 		<div class="col-3">
 			<button class="btn btn-outline-secondary w-100" @click="alertWarning">Alert Warning</button>
 		</div>
 		<div class="col-9">
-			<div class="card card-body bg-light"><code>this.$fhcAlert.alertError('Error message is sticky');</code></div>
+			<pre class="border"><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-variable language_">this</span>.<span class="hljs-property">$fhcAlert</span>.<span class="hljs-title function_">alertError</span>(<span class="hljs-string">'Error message is sticky'</span>);</code></pre>
 		</div>
 		<div class="col-3">
 			<button class="btn btn-outline-secondary w-100" @click="alertError">Alert Error</button>
 		</div>
 		<div class="col-9">
-			<div class="card card-body bg-light"><code>this.$fhcAlert.alertDefault('info', 'Mein Custom Titel', 'Meine Message', true);</code></div>
+			<pre class="border"><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-variable language_">this</span>.<span class="hljs-property">$fhcAlert</span>.<span class="hljs-title function_">alertDefault</span>(<span class="hljs-string">'info'</span>, <span class="hljs-string">'Mein Custom Titel'</span>, <span class="hljs-string">'Meine Message'</span>, <span class="hljs-literal">true</span>);</code></pre>
 		</div>
 		<div class="col-3">
 			<button class="btn btn-outline-secondary w-100" @click="alertDefault">Alert Default (Custom)</button>
 		</div>
 		<div class="col-9">
-			<div class="card card-body bg-light"><code>this.$fhcAlert.handleSystemMessage('My implemented message to user');</code></div>
+			<pre class="border"><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-variable language_">this</span>.<span class="hljs-property">$fhcAlert</span>.<span class="hljs-title function_">handleSystemMessage</span>(<span class="hljs-string">'My implemented message to user'</span>);</code></pre>
 		</div>
 		<div class="col-3">
 			<button class="btn btn-outline-secondary w-100" @click="handleSystemMessage">Handle System-Message</button>
 		</div>
 		<div class="col-9">
-			<div class="card card-body bg-light"><code>this.$fhcAlert.handleSystemError('System Error Message');</code></div>
+			<pre class="border"><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-variable language_">this</span>.<span class="hljs-property">$fhcAlert</span>.<span class="hljs-title function_">handleSystemError</span>(<span class="hljs-string">'System Error Message'</span>);</code></pre>
 		</div>
 		<div class="col-3">
 			<button class="btn btn-outline-secondary w-100" @click="handleSystemError">Handle System-Error</button>
 		</div>
 		<div class="col-9">
-			<div class="card card-body bg-light">
-				<code><pre>
-async confirmDelete(){
-	if (await this.$fhcAlert.confirmDelete() === false) return;
-}
-				</pre></code>
-			</div>
+			<pre class="border"><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">async</span> <span class="hljs-title function_">confirmDelete</span>(<span class="hljs-params"></span>) {
+	<span class="hljs-keyword">if</span> (<span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">$fhcAlert</span>.<span class="hljs-title function_">confirmDelete</span>() === <span class="hljs-literal">false</span>)
+		<span class="hljs-keyword">return</span>;
+}</code></pre>
 		</div>
 		<div class="col-3">
 			<button class="btn btn-outline-secondary w-100" @click="confirmDelete">Confirm Delete</button>
 		</div>
 		<div class="col-9">
-			<div class="card card-body bg-light">
-				<code><pre>
-let msgArr = [
-Message A',
-Message B',
-Message C'
-]
+			<pre class="border"><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">let</span> msgArr = [
+	<span class="hljs-string">'Message A'</span>,
+	<span class="hljs-string">'Message B'</span>,
+	<span class="hljs-string">'Message C'</span>
+];
 
-this.$fhcAlert.alertMultiple(msgArr);
-			</pre></code>
-			</div>
+<span class="hljs-variable language_">this</span>.<span class="hljs-property">$fhcAlert</span>.<span class="hljs-title function_">alertMultiple</span>(msgArr);</code></pre>
 		</div>
 		<div class="col-3">
 			<button class="btn btn-outline-secondary w-100" @click="alertMultipleDefault">Alert Multiple Default</button>
 		</div>
 		<div class="col-9">
-			<div class="card card-body bg-light">
-				<code><pre>
-let msgArr = [
-'Message A',
-'Message B',
-'Message C'
-]
+			<pre class="border"><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">let</span> msgArr = [
+	<span class="hljs-string">'Message A'</span>,
+	<span class="hljs-string">'Message B'</span>,
+	<span class="hljs-string">'Message C'</span>
+];
 
-this.$fhcAlert.alertMultiple(msgArr, 'success', 'Sticky success messages', true);
-				</pre></code>
-			</div>
+<span class="hljs-variable language_">this</span>.<span class="hljs-property">$fhcAlert</span>.<span class="hljs-title function_">alertMultiple</span>(msgArr, <span class="hljs-string">'success'</span>, <span class="hljs-string">'Sticky success messages'</span>, <span class="hljs-literal">true</span>);</code></pre>
 		</div>
 		<div class="col-3">
 			<button class="btn btn-outline-secondary w-100" @click="alertMultipleCustom">Alert Multiple Custom</button>
