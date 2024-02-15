@@ -53,7 +53,7 @@
 					<div id="example-tables-basic"></div>
 				</section>
 
-				<h3 class="h4" id="table-structure">Basic structure: Table-only Tabulator</h3>
+				<h3 class="h4 mt-5" id="table-structure">Basic structure: Table-only Tabulator</h3>
 				<pre class="border"><code class="language-js"><?= htmlentities(
 					'// Import the Core Filter- and Core RESTClient Component to build your table and handle data' . "\n" .
 					'import {CoreFilterCmpt} from \'../../../../../js/components/filter/Filter.js\';' . "\n" .
@@ -98,7 +98,7 @@
 					'};'
 				); ?></code></pre>
 
-				<h3 class="h4" id="table-options">Tabulator Options: Basic Example</h3>
+				<h3 class="h4 mt-5" id="table-options">Tabulator Options: Basic Example</h3>
 				<pre class="border"><code class="language-js"><?= htmlentities(
 					'// Basic Example for your Tabulator Options and how to format your columns depending on their data type' . "\n" .
 					'tabulatorOptions: {' . "\n" .

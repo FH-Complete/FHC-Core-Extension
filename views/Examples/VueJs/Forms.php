@@ -55,7 +55,7 @@
 					The Input component handles validation for about any input field.
 				</p>
 
-				<h3 id="inputcomponent-props" class="h4">Properties</h3>
+				<h3 id="inputcomponent-props" class="h4 mt-5">Properties</h3>
 				<table class="table">
 					<thead>
 						<tr>
@@ -163,7 +163,7 @@
 					</tbody>
 				</table>
 
-				<h3 id="inputcomponent-methods" class="h4">Methods</h3>
+				<h3 id="inputcomponent-methods" class="h4 mt-5">Methods</h3>
 				<ul class="list-group mb-3">
 					<li class="list-group-item list-group-item-primary">
 						setFeedback
@@ -211,7 +211,7 @@
 					</li>
 				</ul>
 
-				<h3 id="inputcomponent-manualvalidation" class="h4">Manual validating input</h3>
+				<h3 id="inputcomponent-manualvalidation" class="h4 mt-5">Manual validating input</h3>
 				<p>
 					To show validation for an input field just call the <var>setFeedback()</var> function of the component 
 					or call the <var>clearValidation()</var> to clear all validations on this component.
@@ -227,7 +227,7 @@
 				</section>
 
 
-				<h2 id="validationcomponent" class="h3 mb-0">Validation component</h2>
+				<h2 id="validationcomponent" class="h3 mt-5 mb-0">Validation component</h2>
 				<p class="lead">/public/js/components/Form/Validation.js</p>
 				<p>
 					The Validation component handles validation if no appropriate Input component is available.
@@ -239,7 +239,7 @@
 					Other than the Input component it can take success and error messages at the same time.
 				</p>
 
-				<h3 id="validationcomponent-methods" class="h4">Methods</h3>
+				<h3 id="validationcomponent-methods" class="h4 mt-5">Methods</h3>
 				<ul class="list-group mb-3">
 					<li class="list-group-item list-group-item-primary">
 						setFeedback
@@ -296,13 +296,13 @@
 				</section>
 
 
-				<h2 id="formcomponent" class="h3 mb-0">Form component</h2>
+				<h2 id="formcomponent" class="h3 mt-5 mb-0">Form component</h2>
 				<p class="lead">/public/js/components/Form/Form.js</p>
 				<p>
 					If you want to handle validation for multiple Input and Validation components in one go, you can use the From component.
 				</p>
 				
-				<h3 id="formcomponent-props">Properties</h3>
+				<h3 id="formcomponent-props" class="h4 mt-5">Properties</h3>
 				<table class="table">
 					<thead>
 						<tr>
@@ -324,7 +324,7 @@
 					</tbody>
 				</table>
 				
-				<h3 id="formcomponent-methods">Methods</h3>
+				<h3 id="formcomponent-methods" class="h4 mt-5">Methods</h3>
 				<ul class="list-group mb-3">
 					<li class="list-group-item list-group-item-primary">
 						setFeedback
@@ -503,7 +503,7 @@
 					<div id="example-form-form"></div>
 				</section>
 
-				<h3 id="formcomponent-factory">API Factory</h3>
+				<h3 id="formcomponent-factory" class="h4 mt-5">API Factory</h3>
 				<div class="alert alert-danger">TODO(chris): factory</div>
 				TODO(chris): examples
 				TODO(chris): + modal

@@ -59,7 +59,7 @@
 				<p>Then you have access to the global <code>$p</code> variable in each component.</p>
 				
 				
-				<h2 id="translating" class="h3">Translating</h2>
+				<h2 id="translating" class="h3 mt-5">Translating</h2>
 				<p>Then you can use the Translate function <code>$p.t()</code> to translate phrases.</p>
 				<ul class="list-group mb-3">
 					<li class="list-group-item list-group-item-primary">
@@ -117,7 +117,7 @@
 					</li>
 				</ul>
 
-				<h3 id="translating-component" class="h4">Inside the component</h3>
+				<h3 id="translating-component" class="h4 mt-5">Inside the component</h3>
 				<pre class="border"><code class="language-javascript"><?= htmlentities(
 					'// Separated by slash' . "\n" .
 					'let variable = this.$p.t(\'category/phrase\');' . "\n" .
@@ -132,7 +132,7 @@
 					'let variable_with_parameter = this.$p.t([\'category\', \'phrase\'], {param: \'value\'});'
 				); ?></code></pre>
 				
-				<h3 id="translating-template" class="h4">In the template</h3>
+				<h3 id="translating-template" class="h4 mt-5">In the template</h3>
 				<pre class="border"><code class="language-html"><?= htmlentities(
 					'<!-- Phrase as Text Element -->' . "\n" .
 					'<button type="submit" class="...">' . "\n" .
@@ -143,7 +143,7 @@
 					'<input type="submit" class="..." :value="$p.t(\'category/phrase\')">'
 				); ?></code></pre>
 				
-				<h3 id="translating-emit" class="h4">Emit a phrase</h3>
+				<h3 id="translating-emit" class="h4 mt-5">Emit a phrase</h3>
 				<p>
 					If you want to emit a phrase through an event or use it in a non <code>Vue</code> way. 
 					You can wrap it in a <code>computable</code> to preserve it's reactivity.
@@ -172,7 +172,7 @@
 				</section>
 
 				
-				<h2 id="dynamicphrases" class="h3">Dynamic phrases</h2>
+				<h2 id="dynamicphrases" class="h3 mt-5">Dynamic phrases</h2>
 				<p>
 					Phrases are reactive. If the arguments in the translate function changes so does the phrase.
 				</p>
@@ -187,7 +187,7 @@
 				</section>
 
 				
-				<h2 id="preloadcategories" class="h3">Preload categories</h2>
+				<h2 id="preloadcategories" class="h3 mt-5">Preload categories</h2>
 				<p>
 					Phrases get loaded asynchronous, but sometimes it's needed that a phrase is present before some tasks are executed.
 					In this case you can call <code>$p.loadCategory</code> which returns a <code>Promise</code> after which you can execute the code.
