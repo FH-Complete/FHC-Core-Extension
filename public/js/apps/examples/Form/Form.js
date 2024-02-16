@@ -90,7 +90,7 @@ const app = Vue.createApp({
 				<div class="col-6">
 					<form-input
 						v-model="value1"
-						label="Input 1"
+						label="Input 1*"
 						name="myinput1"
 						>
 					</form-input>
@@ -98,7 +98,7 @@ const app = Vue.createApp({
 				<div class="col-6">
 					<form-input
 						v-model="value2"
-						label="Input 2"
+						label="Input 2*"
 						name="myinput2"
 						>
 					</form-input>
