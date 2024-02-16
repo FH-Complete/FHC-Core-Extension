@@ -21,7 +21,7 @@ import FhcApi from "../../../../../../js/plugin/FhcApi.js";
 
 // Load Components:
 // ===============
-import FhcForm from "../../../../../../js/components/Form/Form.js";
+import CoreForm from "../../../../../../js/components/Form/Form.js";
 import FormValidation from "../../../../../../js/components/Form/Validation.js";
 import FormInput from "../../../../../../js/components/Form/Input.js";
 
@@ -29,7 +29,7 @@ import FormInput from "../../../../../../js/components/Form/Input.js";
 // ==========
 const app = Vue.createApp({
 	components: {
-		FhcForm,
+		CoreForm,
 		FormValidation,
 		FormInput
 	},
@@ -80,7 +80,7 @@ const app = Vue.createApp({
 	},
 	template: `
 	<div class="app-example-form-form">
-		<fhc-form ref="myform" @submit.prevent>
+		<core-form ref="myform" @submit.prevent>
 			<div class="mb-3">
 				<form-validation></form-validation>
 			</div>
@@ -108,7 +108,7 @@ const app = Vue.createApp({
 				<button class="btn btn-primary" @click="sendClear" title="clearValidation()">Clear form</button>
 				<button class="btn btn-primary" @click="sendPost" title="post(..., {...})">Send via POST request</button>
 			</div>
-		</fhc-form>
+		</core-form>
 	</div>`
 });
 
