@@ -517,7 +517,7 @@
 						href="#"
 						onclick="event.preventDefault()"
 						data-bs-files="FHC-Core-Extension
-						public/js/apps/examples/Form/Form.js" data-bs-toggle="tooltip"
+						public/js/apps/examples/Form/Form.js, FHC-Core-Extension/controllers/components/Form.php::postExample()" data-bs-toggle="tooltip"
 						data-bs-placement="left"
 						data-bs-html="true"
 						data-bs-custom-class="filelist"
