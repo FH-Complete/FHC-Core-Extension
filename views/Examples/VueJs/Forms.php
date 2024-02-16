@@ -19,6 +19,7 @@
 			'public/extensions/FHC-Core-Extension/js/apps/examples/Form/Input.js',
 			'public/extensions/FHC-Core-Extension/js/apps/examples/Form/Validation.js',
 			'public/extensions/FHC-Core-Extension/js/apps/examples/Form/Form.js',
+			'public/extensions/FHC-Core-Extension/js/apps/examples/Form/Modal.js',
 			'public/extensions/FHC-Core-Extension/js/apps/examples/Form1.js'
 		]
 	];
@@ -46,6 +47,7 @@
 					<a href="#formcomponent-props" class="list-group-item list-group-item-action">- Properties</a>
 					<a href="#formcomponent-methods" class="list-group-item list-group-item-action">- Methods</a>
 					<a href="#formcomponent-factory" class="list-group-item list-group-item-action">- API Factory</a>
+					<a href="#formcomponent-modal" class="list-group-item list-group-item-action">- Use in Modal</a>
 				</div>
 			</aside>
 			<main class="col-lg-9">
@@ -528,9 +530,77 @@
 				</section>
 
 				<h3 id="formcomponent-factory" class="h4 mt-5">API Factory</h3>
+				<p>
+					The Form component also exposes a <code>factory</code> object. There you will find all apifactory-endpoints...
+				</p>
 				<div class="alert alert-danger">TODO(chris): factory</div>
+				
+				<h3 id="formcomponent-modal" class="h4 mt-5">Use in Modal</h3>
+				<p>
+					To use a Form inside a Modal you can wrap the Form component around the Modal component and place Input and Validation components inside the Modal.
+					This ensures that if the <code>submit buttom</code> is in the footer section of the modal it will still be inside the Form component and will trigger the submit event.
+				</p>
+				<pre class="border border-bottom-0 mb-0"><code class="language-js"><?= htmlentities(
+					'import CoreForm from ".../public/js/components/Form/Form.js";' . "\n" .
+					'import FormInput from ".../public/js/components/Form/Input.js";' . "\n" .
+					'import BsModal from ".../public/js/components/Bootstrap/Modal.js";' . "\n" .
+					"\n" .
+					'export default {' . "\n" .
+					'	...' . "\n" .
+					'	methods: {' . "\n" .
+					'		...' . "\n" .
+					'		openModal() {' . "\n" .
+					'			this.$refs.myModal.show()' . "\n" .
+					'		},' . "\n" .
+					'		sendData() {' . "\n" .
+					'			this.$refs.myForm' . "\n" .
+					'				// send data' . "\n" .
+					'				.factory.my.end.point(this.formData)' . "\n" .
+					'				.then(result => {' . "\n" .
+					'					// do something with the result' . "\n" .
+					'					// e.g: post a success message' . "\n" .
+					'					this.$fhcAlert.alertSuccess(result.data)' . "\n" .
+					'					// close modal' . "\n" .
+					'					this.$refs.myModal.hide()' . "\n" .
+					'				});' . "\n" .
+					'		}' . "\n" .
+					'	},' . "\n" .
+					'	...' . "\n" .
+					'}'
+				); ?></code></pre>
+				<pre class="border"><code class="language-html"><?= htmlentities(
+					'<button class="..." @click="openModal">Open the modal</button>' . "\n" .
+					"\n" .
+					'<core-form ref="myForm">' . "\n" .
+					'	<bs-modal ref="myModal">' . "\n" .
+					'		<template #default>' . "\n" .
+					'			<form-input v-model="formData.input1" name="input1"></form-input>' . "\n" .
+					'			...' . "\n" .
+					'		</template>' . "\n" .
+					'		<template #footer>' . "\n" .
+					'			<button type="submit" class="...">Send</button>' . "\n" .
+					'		</template>' . "\n" .
+					'	</bs-modal>' . "\n" .
+					'</core-form>'
+				); ?></code></pre>
+				<div class="d-flex justify-content-between">
+					<h6>Example:</h6>
+					<a
+						href="#"
+						onclick="event.preventDefault()"
+						data-bs-files="FHC-Core-Extension
+						public/js/apps/examples/Form/Modal.js, FHC-Core-Extension/controllers/components/Form.php::modal()" data-bs-toggle="tooltip"
+						data-bs-placement="left"
+						data-bs-html="true"
+						data-bs-custom-class="filelist"
+						>
+						<i class="fa-solid fa-circle-info"></i>
+					</a>
+				</div>
+				<section class="border p-3 mb-3">
+					<div id="example-form-modal"></div>
+				</section>
 				TODO(chris): examples
-				TODO(chris): + modal
 
 
 				<h6 class="text-muted text-end">public/js/apps/examples/Form1.js</h6>
