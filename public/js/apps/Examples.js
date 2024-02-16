@@ -30,8 +30,13 @@ const app = Vue.createApp({
 		new bootstrap.ScrollSpy(document.body, {
 			target: '#sidenav'
 		});
-		if (document.querySelector('[data-bs-toggle="tooltip"]'))
-			new bootstrap.Tooltip('[data-bs-toggle="tooltip"]');
+		document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el, {
+			title: function() {
+				if (!this.dataset.bsFiles)
+					return '';
+				return '<ul>' + this.dataset.bsFiles.split(',').map(t => '<li>' + t.trim() + '</li>').join('') + '</ul>';
+			}
+		}));
 	}
 });
 

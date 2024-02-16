@@ -163,7 +163,15 @@
 				); ?></code></pre>
 				<div class="d-flex justify-content-between">
 					<h6>Example:</h6>
-					<a href="#" title="FHC-Core-Extension/public/js/apps/examples/Phrases/Emit.js" data-bs-toggle="tooltip" data-bs-placement="left">
+					<a
+						href="#"
+						onclick="event.preventDefault()"
+						data-bs-files="FHC-Core-Extension/public/js/apps/examples/Phrases/Emit.js, FHC-Core-Extension/public/js/components/examples/Phrases/Emit/Emitting.js, FHC-Core-Extension/public/js/components/examples/Phrases/Emit/Receiving.js"
+						data-bs-toggle="tooltip"
+						data-bs-placement="left"
+						data-bs-html="true"
+						data-bs-custom-class="filelist"
+						>
 						<i class="fa-solid fa-circle-info"></i>
 					</a>
 				</div>
@@ -178,7 +186,15 @@
 				</p>
 				<div class="d-flex justify-content-between">
 					<h6>Example:</h6>
-					<a href="#" title="FHC-Core-Extension/public/js/apps/examples/Phrases/Dynamic.js" data-bs-toggle="tooltip" data-bs-placement="left">
+					<a
+						href="#"
+						onclick="event.preventDefault()"
+						data-bs-files="FHC-Core-Extension/public/js/apps/examples/Phrases/Dynamic.js"
+						data-bs-toggle="tooltip"
+						data-bs-placement="left"
+						data-bs-html="true"
+						data-bs-custom-class="filelist"
+						>
 						<i class="fa-solid fa-circle-info"></i>
 					</a>
 				</div>
@@ -238,7 +254,15 @@
 				); ?></code></pre>
 				<div class="d-flex justify-content-between">
 					<h6>Example:</h6>
-					<a href="#" title="FHC-Core-Extension/public/js/apps/examples/Phrases/Preload.js" data-bs-toggle="tooltip" data-bs-placement="left">
+					<a
+						href="#"
+						onclick="event.preventDefault()"
+						data-bs-files="FHC-Core-Extension/public/js/apps/examples/Phrases/Preload.js"
+						data-bs-toggle="tooltip"
+						data-bs-placement="left"
+						data-bs-html="true"
+						data-bs-custom-class="filelist"
+						>
 						<i class="fa-solid fa-circle-info"></i>
 					</a>
 				</div>

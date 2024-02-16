@@ -218,7 +218,15 @@
 				</p>
 				<div class="d-flex justify-content-between">
 					<h6>Example:</h6>
-					<a href="#" title="FHC-Core-Extension/public/js/apps/examples/Form/Input.js" data-bs-toggle="tooltip" data-bs-placement="left">
+					<a
+						href="#"
+						onclick="event.preventDefault()"
+						data-bs-files="FHC-Core-Extension
+						public/js/apps/examples/Form/Input.js" data-bs-toggle="tooltip"
+						data-bs-placement="left"
+						data-bs-html="true"
+						data-bs-custom-class="filelist"
+						>
 						<i class="fa-solid fa-circle-info"></i>
 					</a>
 				</div>
@@ -287,7 +295,15 @@
 				</ul>
 				<div class="d-flex justify-content-between">
 					<h6>Example:</h6>
-					<a href="#" title="FHC-Core-Extension/public/js/apps/examples/Form/Validation.js" data-bs-toggle="tooltip" data-bs-placement="left">
+					<a
+						href="#"
+						onclick="event.preventDefault()"
+						data-bs-files="FHC-Core-Extension/public/js/apps/examples/Form/Validation.js"
+						data-bs-toggle="tooltip"
+						data-bs-placement="left"
+						data-bs-html="true"
+						data-bs-custom-class="filelist"
+						>
 						<i class="fa-solid fa-circle-info"></i>
 					</a>
 				</div>
@@ -495,7 +511,15 @@
 				</ul>
 				<div class="d-flex justify-content-between">
 					<h6>Example:</h6>
-					<a href="#" title="FHC-Core-Extension/public/js/apps/examples/Form/Form.js" data-bs-toggle="tooltip" data-bs-placement="left">
+					<a
+						href="#"
+						onclick="event.preventDefault()"
+						data-bs-files="FHC-Core-Extension
+						public/js/apps/examples/Form/Form.js" data-bs-toggle="tooltip"
+						data-bs-placement="left"
+						data-bs-html="true"
+						data-bs-custom-class="filelist"
+						>
 						<i class="fa-solid fa-circle-info"></i>
 					</a>
 				</div>

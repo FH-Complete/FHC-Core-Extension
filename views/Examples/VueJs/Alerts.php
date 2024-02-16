@@ -78,7 +78,17 @@
 				<h3 class="h4 mt-5" id="alertplugin-basic">Use FhcAlert Plugin from anywhere inside your App</h3>
 				<div class="d-flex justify-content-between">
 					<h6>Examples:</h6>
-					<a href="#" title="FHC-Core-Extension/public/js/apps/examples/Alerts/Basic.js" data-bs-toggle="tooltip" data-bs-placement="left">
+					<a
+						href="#"
+						onclick="event.preventDefault()"
+						data-bs-files="FHC-Core-Extension/
+						ublic/js/apps/examples
+						Alerts/Basic.js"
+						data-bs-toggle="tooltip"
+						data-bs-placement="left"
+						data-bs-html="true"
+						data-bs-custom-class="filelist"
+						>
 						<i class="fa-solid fa-circle-info"></i>
 					</a>
 				</div>
@@ -89,7 +99,15 @@
 				<h3 class="h4 mt-5" id="alertplugin-example1">Example 1: Display Info Alert on Success and handle System Error</h3>
 				<div class="d-flex justify-content-between">
 					<h6>Example:</h6>
-					<a href="#" title="FHC-Core-Extension/public/js/apps/examples/Alerts/Example1.js" data-bs-toggle="tooltip" data-bs-placement="left">
+					<a
+						href="#"
+						onclick="event.preventDefault()"
+						data-bs-files="FHC-Core-Extension/public/js/apps/examples/Alerts/Example1.js"
+						data-bs-toggle="tooltip"
+						data-bs-placement="left"
+						data-bs-html="true" 
+						data-bs-custom-class="filelist"
+						>
 						<i class="fa-solid fa-circle-info"></i>
 					</a>
 				</div>
@@ -118,7 +136,15 @@
 				<h3 class="h4 mt-5" id="alertplugin-example2">Example 2: Use Confirm Dialog on Delete. Display Success Alert on Success and handle System Error</h3>
 				<div class="d-flex justify-content-between">
 					<h6>Example:</h6>
-					<a href="#" title="FHC-Core-Extension/public/js/apps/examples/Alerts/Example2.js" data-bs-toggle="tooltip" data-bs-placement="left">
+					<a
+						href="#"
+						onclick="event.preventDefault()"
+						data-bs-files="FHC-Core-Extension/public/js/apps/examples/Alerts/Example2.js"
+						data-bs-toggle="tooltip"
+						data-bs-placement="left"
+						data-bs-html="true" 
+						data-bs-custom-class="filelist"
+						>
 						<i class="fa-solid fa-circle-info"></i>
 					</a>
 				</div>

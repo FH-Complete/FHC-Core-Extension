@@ -14,3 +14,28 @@ ul.left-side-menu-second-level > li > span > :first-child {
 pre code {
 	tab-size: 3em;
 }
+
+.tooltip.filelist .tooltip-inner {
+	max-width: none;
+}
+.tooltip.filelist .tooltip-inner > ul {
+	list-style-type: none;
+	padding-left: 0;
+	margin: 0;
+	margin-left: calc(var(--fa-li-margin,2em) - .5rem);
+	text-align: left;
+}
+.tooltip.filelist .tooltip-inner > ul > li {
+	position: relative;
+	white-space: nowrap;
+}
+.tooltip.filelist .tooltip-inner > ul > li:before {
+	content: "\f1c9";
+	font-weight: 900;
+	font-family: "Font Awesome 6 Free";
+	position: absolute;
+	left: calc(var(--fa-li-width, 2em)*-1);
+	text-align: center;
+	width: var(--fa-li-width,2em);
+}
+
