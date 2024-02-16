@@ -546,6 +546,6 @@
 		@import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css");
 	</style>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-	<script>hljs.highlightAll();</script>
+	<script>hljs.configure({cssSelector:'pre code:not([data-highlighted="yes"])'});hljs.highlightAll();</script>
 
 <?php $this->load->view('templates/FHC-Footer', $includesArray); ?>
