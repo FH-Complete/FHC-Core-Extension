@@ -73,11 +73,9 @@ const app = Vue.createApp({
 					}
 				)
 				.then(result => {
-					console.log(result);
 					this.$fhcAlert.alertSuccess(result.data);
 				})
 				.catch(this.$fhcAlert.handleSystemError);
-			// TODO(chris): IMPLEMENT!
 		}
 	},
 	template: `
