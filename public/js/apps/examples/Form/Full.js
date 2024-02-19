@@ -17,13 +17,13 @@
 
 // Load Plugins:
 // ============
-import FhcApi from "../../../../../js/plugin/FhcApi.js";
+import FhcApi from "../../../../../../js/plugin/FhcApi.js";
 
 // Load Components:
 // ===============
-import FhcForm from "../../../../../js/components/Form/Form.js";
-import FormInput from "../../../../../js/components/Form/Input.js";
-import FormValidation from "../../../../../js/components/Form/Validation.js";
+import FhcForm from "../../../../../../js/components/Form/Form.js";
+import FormInput from "../../../../../../js/components/Form/Input.js";
+import FormValidation from "../../../../../../js/components/Form/Validation.js";
 
 // Create App:
 // ==========
@@ -51,7 +51,7 @@ const app = Vue.createApp({
 			if (this.$refs.form) // We can only send when $refs is ready
 				this.$refs.form
 					.post(
-						'extensions/FHC-Core-Extension/components/form/form1',
+						'extensions/FHC-Core-Extension/components/form/full',
 						this.formData
 					)
 					.then(result => {
@@ -193,4 +193,4 @@ app
 
 	// Start the App:
 	// =============
-	.mount('#example-form-1');
+	.mount('#example-form-full');

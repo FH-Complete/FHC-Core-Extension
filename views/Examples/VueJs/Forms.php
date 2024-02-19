@@ -20,7 +20,7 @@
 			'public/extensions/FHC-Core-Extension/js/apps/examples/Form/Validation.js',
 			'public/extensions/FHC-Core-Extension/js/apps/examples/Form/Form.js',
 			'public/extensions/FHC-Core-Extension/js/apps/examples/Form/Modal.js',
-			'public/extensions/FHC-Core-Extension/js/apps/examples/Form1.js'
+			'public/extensions/FHC-Core-Extension/js/apps/examples/Form/Full.js'
 		]
 	];
 	$this->load->view('templates/FHC-Header', $includesArray);
@@ -48,6 +48,7 @@
 					<a href="#formcomponent-methods" class="list-group-item list-group-item-action">- Methods</a>
 					<a href="#formcomponent-factory" class="list-group-item list-group-item-action">- API Factory</a>
 					<a href="#formcomponent-modal" class="list-group-item list-group-item-action">- Use in Modal</a>
+					<a href="#example" class="list-group-item list-group-item-action">Full Example</a>
 				</div>
 			</aside>
 			<main class="col-lg-9">
@@ -600,14 +601,27 @@
 				<section class="border p-3 mb-3">
 					<div id="example-form-modal"></div>
 				</section>
-				TODO(chris): examples
 
 
-				<h6 class="text-muted text-end">public/js/apps/examples/Form1.js</h6>
-				<section class="border p-3">
-					<div id="example-form-1"></div>
+				<h2 id="example" class="h3 mt-5">Full Example</h3>
+				<div class="alert alert-danger">TODO(chris): examples</div>
+				<div class="d-flex justify-content-between">
+					<h6>Example:</h6>
+					<a
+						href="#"
+						onclick="event.preventDefault()"
+						data-bs-files="FHC-Core-Extension
+						public/js/apps/examples/Form/Full.js, FHC-Core-Extension/controllers/components/Form.php::full()" data-bs-toggle="tooltip"
+						data-bs-placement="left"
+						data-bs-html="true"
+						data-bs-custom-class="filelist"
+						>
+						<i class="fa-solid fa-circle-info"></i>
+					</a>
+				</div>
+				<section class="border p-3 mb-3">
+					<div id="example-form-full"></div>
 				</section>
-				<pre class="border border-top-0"><code class="language-html"><?= htmlentities('<div class="test">testy</div>'); ?></code></pre>
 			</main>
 		</div>
 	</div>

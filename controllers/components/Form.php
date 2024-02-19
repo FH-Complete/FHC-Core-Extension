@@ -9,41 +9,12 @@ class Form extends FHCAPI_Controller
 	public function __construct()
 	{
 		parent::__construct([
-			'index' => 'admin:r', // TODO(chris): permissions
-			'postExample' => 'admin:r',
+			'postExample' => 'admin:r', // TODO(chris): permissions
 			'modal' => 'admin:r',
-			'form1' => 'admin:r'
+			'full' => 'admin:r'
 		]);
 	}
 		
-	/**
-	 * Index Controller
-	 * @return void
-	 */
-	public function index()
-	{
-		$this->terminateWithValidationErrors(['test' => 'msg']);
-		$this->setData([
-			'$_POST' => $_POST,
-			'$_GET' => $_GET,
-			'$_FILES' => $_FILES . FAL,
-		]);
-		#trigger_error('$message', E_USER_ERROR);
-		$this->load->model('person/Person_model', 'PersonModel');
-		/*$this->PersonModel->addSelect('testy');
-		$res = $this->PersonModel->load(1);
-		if (isError($res))
-			$this->addError(getError($res), self::ERROR_TYPE_DB);*/
-
-		/*$this->PersonModel->insert([
-			'ersatzkennzeichen' => '0016173190'
-		]);*/
-		#show_404();
-		#show_error(['test','testy']);
-		#var_dump('test');
-		#$this->terminateWithValidationErrors(['test' => 'Test Error Message']);
-	}
-
 	/**
 	 * Post Example
 	 * @see FHC-Core-Extension/public/js/apps/examples/Form/Form.js
@@ -93,7 +64,12 @@ class Form extends FHCAPI_Controller
 		$this->terminateWithSuccess($this->input->post('value1'));
 	}
 
-	public function form1()
+	/**
+	 * Full Example
+	 * @see FHC-Core-Extension/public/js/apps/examples/Form/Full.js
+	 * @return void
+	 */
+	public function full()
 	{
 		// Load the library
 		$this->load->library('form_validation');
@@ -150,11 +126,6 @@ class Form extends FHCAPI_Controller
 
 		// Return success
 		$this->terminateWithSuccess();
-	}
-	
-	public function test()
-	{
-		$test = FALS;
 	}
 }
 
