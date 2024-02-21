@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS extension.tbl_exampledata (
     dateval date,
     booleanval boolean,
     moneyval numeric (8, 2),
-    dokument_bezeichnung varchar(64) NOT NULL,
+    dokument_bezeichnung varchar(64),
     dokument_id integer,
     textval text,
     examplestatus_kurzbz varchar(32) NOT NULL,
