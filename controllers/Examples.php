@@ -10,11 +10,10 @@ class Examples extends Auth_Controller
 	{
 		parent::__construct([
 			'index' => 'admin:rw',
-			'viewTabulatorOnly' => 'admin:rw',
-			'viewTabulatorFilter' => 'admin:rw',
-			'viewExampleTabulatorOnly' => 'admin:rw',
-			'viewExampleTabulatorFilter' => 'admin:rw',
-			'viewIcons' => 'admin:rw',
+			'tabulatorOnly' => 'admin:rw',
+			'tabulatorFilter' => 'admin:rw',
+			'myExtension' => 'admin:rw',
+			'icons' => 'admin:rw',
 			'vuejs' => 'admin:rw',
 			'getExampledata' => 'admin:rw',
 			'getExamplestatusList' => 'admin:rw',
@@ -36,27 +35,22 @@ class Examples extends Auth_Controller
 		$this->load->view('extensions/FHC-Core-Extension/Examples/BaseLayout');
 	}
 
-	public function viewTabulatorOnly()
+	public function tabulatorOnly()
 	{
 		$this->load->view('extensions/FHC-Core-Extension/Examples/TabulatorOnly');
 	}
 
-	public function viewTabulatorFilter()
+	public function tabulatorFilter()
 	{
 		$this->load->view('extensions/FHC-Core-Extension/Examples/TabulatorFilter');
 	}
 
-	public function viewExampleTabulatorOnly()
+	public function myExtension()
 	{
-		$this->load->view('extensions/FHC-Core-Extension/Examples/ExampleTabulatorOnly');
+		$this->load->view('extensions/FHC-Core-Extension/MyExtension');
 	}
 
-	public function viewExampleTabulatorFilter()
-	{
-		$this->load->view('extensions/FHC-Core-Extension/Examples/ExampleTabulatorFilter');
-	}
-
-	public function viewIcons()
+	public function icons()
 	{
 		$this->load->view('extensions/FHC-Core-Extension/Examples/Icons');
 	}

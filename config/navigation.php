@@ -24,12 +24,12 @@ $config['navigation_menu']['extensions/FHC-Core-Extension/examples/*'] = [
 		'icon' => ''
 	],
 	'tabulator' => [
-		'link' => site_url('extensions/FHC-Core-Extension/examples/viewTabulatorOnly'),
+		'link' => site_url('extensions/FHC-Core-Extension/examples/tabulatorOnly'),
 		'description' => 'Tabulator',
 		'icon' => ''
 	],
 	'tabulatorFilter' => [
-		'link' => site_url('extensions/FHC-Core-Extension/examples/viewTabulatorFilter'),
+		'link' => site_url('extensions/FHC-Core-Extension/examples/tabulatorFilter'),
 		'description' => 'Tabulator mit Filter',
 		'icon' => ''
 	],
@@ -49,18 +49,13 @@ $config['navigation_menu']['extensions/FHC-Core-Extension/examples/*'] = [
 		'icon' => 'brands fa-vuejs',
 	],
 	'icons' => [
-		'link' => site_url('extensions/FHC-Core-Extension/examples/viewIcons'),
+		'link' => site_url('extensions/FHC-Core-Extension/examples/icons'),
 		'description' => 'Icons',
 		'icon' => 'fa-brands fa-font-awesome',
 	],
-//	'extensionTabulatorOnly' => [
-//		'link' => site_url('extensions/FHC-Core-Extension/examples/viewExampleTabulatorOnly'),
-//		'description' => 'Example 1: Tabelle ohne Filter',
-//		'icon' => ''
-//	],
-	'exampleTabulatorFilter' => [
-		'link' => site_url('extensions/FHC-Core-Extension/examples/viewExampleTabulatorFilter'),
-		'description' => 'Example: Tabelle mit Filter',
+	'myExtension' => [
+		'link' => site_url('extensions/FHC-Core-Extension/examples/myExtension'),
+		'description' => 'Full Template Example',
 		'icon' => ''
 	],
 ];
