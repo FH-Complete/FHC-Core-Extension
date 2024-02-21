@@ -33,51 +33,21 @@ export default {
 		docTabulatorFilterDataset,
 		docTabulatorFilterFiltersupdate
 	},
-	methods: {
-		getAnrechnungstatusList(){
-			CoreRESTClient
-				.get('/extensions/FHC-Core-Extension/FhcTemplate/getAnrechnungstatusList')
-				.then(result => result.data)
-				.then(result => {
-					this.anrechnungstatusList = CoreRESTClient.getData(result).map(x => x.bezeichnung_mehrsprachig);
-				})
-				.catch(error => { this.$fhcAlert.handleSystemError(error); });
-		},
-		addAnrechnung(){
-			this.modalTitel = 'Anrechnung anlegen';
-			this.$refs.modalContainer.show();
-		},
-		editAnrechnung(id) {
-			this.modalTitel = 'Anrechnung ändern';
-			this.$refs.modalContainer.show();
-		},
-		async deleteAnrechnung(id) {
-			if (await this.$fhcAlert.confirmDelete() === false) return;
-			this.$fhcAlert.alertSuccess('ID' + id + ' deleted')
-		},
-		changeAnrechnungstatus(cell){
-			let anrechnungId = cell.getRow().getIndex();
-			let status = cell.getValue();
-			this.$fhcAlert.alertSuccess('Status changed');
-		},
-		acceptAnrechnung(){ this.$fhcAlert.alertSuccess('Accepted')},
-		rejectAnrechnung(){ this.$fhcAlert.alertSuccess('Rejected')}
-	},
-	data: function() {
+	data: () => {
 		return {
 			modalTitel: '',
-			anrechnungstatusList: null,
+			examplestatusList: null
 		}
 	},
 	computed: {
 		tabulatorOptions() {
 			return {
 				// Unique ID
-				index: 'anrechnung_id',
+				index: 'exampledata_id',
 				
 				// @see: https://tabulator.info/docs/5.2/layout#layout
 				// This is the default option and can be omitted.
-				layout: 'fitDataStretch',
+				layout: 'fitColumns',
 
 				// Column definitions
 				columns: [
@@ -91,41 +61,65 @@ export default {
 						frozen: true,
 						width: 70
 					},
-					{title: 'Anrechnung-ID', field: 'anrechnung_id', headerFilter: true, hozAlign: 'right', frozen: true},
-					{title: 'Prestudent-ID', field: 'prestudent_id', headerFilter: true, hozAlign: 'right', frozen: true},
-					{title: 'Stg-Kz', field: 'studiengang_kz', headerFilter: true, width: 50, hozAlign: 'right', frozen: true},
-					{title: 'Studiengang', field: 'stg_bezeichnung', headerFilter: true, frozen: true},
-					{title: 'Student', field: 'student', headerFilter: true, frozen: true},
-					{title: 'LV-ID', field: 'lehrveranstaltung_id', headerFilter: true, hozAlign: 'right'},
-					{title: 'LV', field: 'lv_bezeichnung', headerFilter: true},
-					{title: 'DMS-ID', field: 'dms_id', headerFilter: true, hozAlign: 'right'},
+					{title: 'ID', field: 'exampledata_id', headerFilter: true, width: 70, hozAlign: 'right', frozen: true, sorter: 'number'},
+					{title: 'Core Data', field: 'uid', headerFilter: true, frozen: true},
+					{title: 'String', field: 'stringval', headerFilter: true},
+					{title: 'Integer', field: 'integerval', headerFilter: true, hozAlign: 'right', sorter: 'number'},
+					{title: 'Date', field: 'dateval', headerFilter: true, hozAlign: 'center'},
 					{
-						title: 'Dokument',
+						title: 'Boolean',
+						field: 'booleanval',
+						formatter:"tickCross",
+						headerFilter:"tickCross",
+						headerFilterParams:{"tristate": true},
+						hozAlign:"center",
+						formatterParams: {
+							tickElement: '<i class="fa fa-check text-success"></i>',
+							crossElement: '<i class="fa fa-xmark text-danger"></i>'
+						}
+					},
+					{
+						title:"Money",
+						field:"moneyval",
+						formatter:"money",
+						formatterParams:{
+							decimal:",",
+							thousand:".",
+							symbol:"€",
+							symbolAfter:true
+						},
+						sorter: 'number'
+					},
+					{
+						title: 'Files',
 						field: 'dokument_bezeichnung',
 						headerFilter: true,
 						formatter:"link",
 						formatterParams: cell => {
 							return {
 								labelField:"dokument_bezeichnung",
-								url: CoreRESTClient._generateRouterURI('extensions/FHC-Core-Extension/FhcTemplate/download/' + cell.getData().dms_id),
+								url: CoreRESTClient._generateRouterURI('extensions/FHC-Core-Extension/Examples/download/' + cell.getData().dms_id),
 								target:"_blank"
 							}
 						}
 					},
-					{title: 'Anmerkung', field: 'anmerkung_student', headerFilter: true},
+					{title: 'Anmerkung', field: 'textval', headerFilter: true},
 					{
-						title: 'Status',
-						field: 'status_kurzbz',
+						title: 'Liste',
+						field: 'examplestatus_kurzbz',
 						editor: "list",
-						editorParams:{values: this.anrechnungstatusList },
+						editorParams: { values: this.examplestatusList },
 						headerFilter: true,
-						headerFilterParams:{values: this.anrechnungstatusList },
+						headerFilterParams: { values: this.examplestatusList },
+						formatter: (cell) => this.examplestatusList[cell.getValue()],
 						frozen: true
 					},
 					{
 						title: 'Aktionen',
 						field: 'actions',
-						width: 85,	// Ensures Action-buttons will be always fully displayed
+						width: 105,	// Ensures Action-buttons will be always fully displayed
+						minWidth: 105,	// Ensures Action-buttons will be always fully displayed
+						maxWidth: 105,	// Ensures Action-buttons will be always fully displayed
 						formatter: (cell, formatterParams, onRendered) => {
 							let container = document.createElement('div');
 							container.className = "d-flex gap-2";
@@ -134,7 +128,7 @@ export default {
 							button.className = 'btn btn-outline-secondary';
 							button.innerHTML = '<i class="fa fa-edit"></i>';
 							button.addEventListener('click', (event) =>
-								this.editAnrechnung(cell.getRow().getIndex())
+								this.editData(cell.getRow().getIndex())
 							);
 							container.append(button);
 
@@ -142,12 +136,11 @@ export default {
 							button.className = 'btn btn-outline-secondary';
 							button.innerHTML = '<i class="fa fa-xmark"></i>';
 							button.addEventListener('click', () =>
-								this.deleteAnrechnung(cell.getRow().getIndex())
+								this.deleteData(cell.getRow().getIndex())
 							);
 							container.append(button);
 
 							return container;
-
 						},
 						frozen: true
 					}
@@ -156,8 +149,124 @@ export default {
 		}
 	},
 	created(){
-		// Get initial Anrechnungstatuslist
-		this.getAnrechnungstatusList();
+		// Get initial Examplestatuslist
+		this.getExamplestatusList();
+	},
+	methods: {
+		addData(){
+			this.modalTitel = 'Datensatz anlegen';
+			this.$refs.modalContainer.show();
+		},
+		editData(id) {
+			this.modalTitel = 'Datensatz ändern';
+			this.$refs.modalContainer.show();
+		},
+		async deleteData(exampledata_id) {
+			if (await this.$fhcAlert.confirmDelete() === false) return;
+
+			CoreRESTClient
+				.post('/extensions/FHC-Core-Extension/Examples/deleteExampledata', {
+					exampledata_id: exampledata_id
+				})
+				.then(result => {
+					this.$refs.myTabulatorFilter.tabulator.deleteRow(exampledata_id)
+				})
+				.then(() => {
+					this.$fhcAlert.alertSuccess('Deleted');
+				})
+				.catch(this.$fhcAlert.handleSystemError);
+		},
+		acceptData() {
+			let exampledata_ids = this.$refs.myTabulatorFilter.tabulator.getSelectedRows().map(row => row.getIndex());
+
+			if (exampledata_ids.length === 0) {
+				return this.$fhcAlert.alertInfo('Select rows');
+			}
+
+			for (const exampledata_id of exampledata_ids) {
+
+				let examplestatus_kurzbz = 'akzeptiert';
+
+				CoreRESTClient
+					.post('/extensions/FHC-Core-Extension/Examples/updateExamplestatus', {
+						exampledata_id: exampledata_id,
+						examplestatus_kurzbz: examplestatus_kurzbz
+					})
+					.then(result => {
+						this.$refs.myTabulatorFilter.tabulator.updateData([{
+							exampledata_id: exampledata_id,
+							examplestatus_kurzbz: examplestatus_kurzbz,
+							bezeichnung: this.examplestatusList[examplestatus_kurzbz]
+						}])
+					})
+					.catch(this.$fhcAlert.handleSystemError);
+			}
+
+			this.$fhcAlert.alertSuccess('All accepted')
+		},
+		rejectData() {
+			let exampledata_ids = this.$refs.myTabulatorFilter.tabulator
+				.getSelectedRows()
+				.map(row => row.getIndex());
+
+			if (exampledata_ids.length === 0) return this.$fhcAlert.alertInfo('Select rows');
+
+			for (const exampledata_id of exampledata_ids) {
+
+				let examplestatus_kurzbz = 'abgelehnt';
+
+				CoreRESTClient
+					.post('/extensions/FHC-Core-Extension/Examples/updateExamplestatus', {
+						exampledata_id: exampledata_id,
+						examplestatus_kurzbz: examplestatus_kurzbz
+					})
+					.then(result => {
+						this.$refs.myTabulatorFilter.tabulator.updateData([{
+							exampledata_id: exampledata_id,
+							examplestatus_kurzbz: examplestatus_kurzbz,
+							bezeichnung: this.examplestatusList[examplestatus_kurzbz]
+						}])
+					})
+					.catch(this.$fhcAlert.handleSystemError);
+			}
+
+			this.$fhcAlert.alertSuccess('All rejected')
+		},
+		getExamplestatusList() {
+			return CoreRESTClient
+				.get('/extensions/FHC-Core-Extension/Examples/getExamplestatusList')
+				.then(result => result.data)
+				.then(result => {
+					// Reduce array of objects into one object
+					return this.examplestatusList = CoreRESTClient.getData(result).reduce((o, x) => {
+						o[x.examplestatus_kurzbz] = x.bezeichnung;
+						return o;
+					}, {});
+				})
+				.catch(error => {
+					this.$fhcAlert.handleSystemError(error);
+				});
+		},
+		updateExamplestatus(cell) {
+			let exampledata_id = cell.getRow().getIndex();
+			let examplestatus_kurzbz = cell.getValue();
+
+			CoreRESTClient
+				.post('/extensions/FHC-Core-Extension/Examples/updateExamplestatus', {
+					exampledata_id: exampledata_id,
+					examplestatus_kurzbz: examplestatus_kurzbz
+				})
+				.then(result => {
+					cell.getTable().updateData([{
+						exampledata_id: exampledata_id,
+						examplestatus_kurzbz: examplestatus_kurzbz,
+						bezeichnung: this.examplestatusList[examplestatus_kurzbz]
+					}]).then(() => {
+						this.$fhcAlert.alertSuccess('Gespeichert');
+					});
+				})
+				.catch(this.$fhcAlert.handleSystemError);
+		}
 	},
 	template: `
 		<!-- Navigation -->
@@ -170,22 +279,22 @@ export default {
 		:subtitle="$p.t('global', 'beschreibung')">
 		<template #main>		
 			<h3 class="h4 mt-3">Tabulator with Filter</h3>
-			<core-filter-cmpt v-if="anrechnungstatusList"
-		ref="anrechnungTable"
-		filter-type="Anrechnungen"
-		:side-menu="false"
-		:tabulator-options="tabulatorOptions"
-		:tabulator-events="[{ event: 'cellEdited', handler: changeAnrechnungstatus }]"
-		new-btn-label="Anrechnung"
-		new-btn-show
-		@click:new="addAnrechnung"
-		reload
-		>
-		<template #actions>
-			<button class="btn btn-primary" @click="acceptAnrechnung">Genehmigen</button>
-			<button class="btn btn-danger" @click="rejectAnrechnung">Ablehnen</button>
-		</template>
-	</core-filter-cmpt>
+			<core-filter-cmpt v-if="examplestatusList"
+				ref="myTabulatorFilter"
+				filter-type="Exampledata"
+				:side-menu="false"
+				:tabulator-options="tabulatorOptions"
+				:tabulator-events="[{ event: 'cellEdited', handler: updateExamplestatus }]"
+				new-btn-label="Datensatz"
+				new-btn-show
+				@click:new="addData"
+				reload
+			>
+			<template #actions>
+				<button class="btn btn-primary" @click="acceptData">Datensatz genehmigen</button>
+				<button class="btn btn-danger" @click="rejectData">Datensatz ablehnen</button>
+			</template>
+		</core-filter-cmpt>
 	
 			<!-- Code Documentation -->
 			<doc-tabulator-filter></doc-tabulator-filter>
