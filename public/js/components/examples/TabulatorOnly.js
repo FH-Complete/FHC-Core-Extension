@@ -53,7 +53,7 @@ export default {
 				.then(result => {
 					this.$refs.myTabulatorOnly.tabulator.deleteRow(exampledata_id)
 				}).then(() => {
-				this.$fhcAlert.alertSuccess('Deleted');
+				this.$fhcAlert.alertSuccess(this.$p.t('global', 'geloescht'));
 			})
 				.catch(this.$fhcAlert.handleSystemError);
 		},
@@ -81,7 +81,7 @@ export default {
 					.catch(this.$fhcAlert.handleSystemError);
 			}
 
-			this.$fhcAlert.alertSuccess('All accepted')
+			this.$fhcAlert.alertSuccess(this.$p.t('global', 'alleAkzeptiert'))
 		},
 		rejectData() {
 			let exampledata_ids = this.$refs.myTabulatorOnly.tabulator.getSelectedRows().map(row => row.getIndex());
@@ -107,7 +107,7 @@ export default {
 					.catch(this.$fhcAlert.handleSystemError);
 			}
 
-			this.$fhcAlert.alertSuccess('All rejected')
+			this.$fhcAlert.alertSuccess(this.$p.t('global', 'alleAbgelehnt'))
 		},
 		getExamplestatusList() {
 			return CoreRESTClient
@@ -139,7 +139,7 @@ export default {
 						examplestatus_kurzbz: examplestatus_kurzbz,
 						bezeichnung: this.examplestatusList[examplestatus_kurzbz]
 					}]).then(() => {
-						this.$fhcAlert.alertSuccess('Gespeichert');
+						this.$fhcAlert.alertSuccess(this.$p.t('ui', 'gespeichert'));
 					});
 				})
 				.catch(this.$fhcAlert.handleSystemError);

@@ -33,7 +33,7 @@ export default {
 						this.formData
 					)
 					.then(result => {
-						this.$fhcAlert.alertSuccess('Form Successful sent');
+						this.$fhcAlert.alertSuccess(this.$p.t('ui', 'gespeichert'));
 					})
 					.catch(this.$fhcAlert.handleSystemError);
 		},
@@ -164,7 +164,7 @@ export default {
 					
 				</template>
 				<template #footer>
-					<button type="button" class="btn btn-primary" @click="sendForm">{{ modalTitel }}</button>
+					<button type="button" class="btn btn-primary" @click="sendForm">{{ $p.t('ui', 'speichern') }}</button>
 				</template>
 			</core-bs-modal>
 

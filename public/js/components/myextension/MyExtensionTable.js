@@ -143,10 +143,10 @@ export default {
 	},
 	methods: {
 		addData(){
-			this.$refs.myExtensionForm.openModal(this.$p.t('global', 'antragAnlegen'));
+			this.$refs.myExtensionForm.openModal(this.$p.t('global', 'datensatzAnlegen'));
 		},
 		editData(id) {
-			this.$refs.myExtensionForm.openModal(this.$p.t('global', 'antragBearbeiten'));
+			this.$refs.myExtensionForm.openModal(this.$p.t('global', 'datensatzBearbeiten'));
 		},
 		async deleteData(exampledata_id) {
 			if (await this.$fhcAlert.confirmDelete() === false) return;
@@ -159,7 +159,7 @@ export default {
 					this.$refs.myExtensionTable.tabulator.deleteRow(exampledata_id)
 				})
 				.then(() => {
-					this.$fhcAlert.alertSuccess('Deleted');
+					this.$fhcAlert.alertSuccess(this.$p.t('global', 'geloescht'));
 				})
 				.catch(this.$fhcAlert.handleSystemError);
 		},
@@ -189,7 +189,7 @@ export default {
 					.catch(this.$fhcAlert.handleSystemError);
 			}
 
-			this.$fhcAlert.alertSuccess('All accepted')
+			this.$fhcAlert.alertSuccess(this.$p.t('global', 'alleAkzeptiert'))
 		},
 		rejectData() {
 			let exampledata_ids = this.$refs.myExtensionTable.tabulator
@@ -217,7 +217,7 @@ export default {
 					.catch(this.$fhcAlert.handleSystemError);
 			}
 
-			this.$fhcAlert.alertSuccess('All rejected')
+			this.$fhcAlert.alertSuccess(this.$p.t('global', 'alleAbgelehnt'))
 		},
 		getExamplestatusList() {
 			return CoreRESTClient
@@ -249,7 +249,7 @@ export default {
 						examplestatus_kurzbz: examplestatus_kurzbz,
 						bezeichnung: this.examplestatusList[examplestatus_kurzbz]
 					}]).then(() => {
-						this.$fhcAlert.alertSuccess('Gespeichert');
+						this.$fhcAlert.alertSuccess(this.$p.t('ui', 'gespeichert'));
 					});
 				})
 				.catch(this.$fhcAlert.handleSystemError);
@@ -263,7 +263,7 @@ export default {
 		:side-menu="false"
 		:tabulator-options="tabulatorOptions"
 		:tabulator-events="[{ event: 'cellEdited', handler: updateExamplestatus }]"
-		:new-btn-label="$p.t('anrechnung', 'anrechnung')"
+		:new-btn-label="$p.t('global', 'datensatz')"
 		new-btn-show
 		new-btn-class="btn-primary"
 		@click:new="addData"
@@ -271,8 +271,8 @@ export default {
 		>
 		<!-- Action Buttons -->
 		<template #actions>
-			<button class="btn btn-primary" @click="acceptData">{{ $p.t('global', 'genehmigen') }}</button>
-			<button class="btn btn-danger" @click="rejectData">{{ $p.t('global', 'ablehnen') }}</button>
+			<button class="btn btn-primary" @click="acceptData">{{ $p.t('global', 'datensatzGenehmigen') }}</button>
+			<button class="btn btn-danger" @click="rejectData">{{ $p.t('global', 'datensatzAblehnen') }}</button>
 		</template>
 	</core-filter-cmpt>
 	
