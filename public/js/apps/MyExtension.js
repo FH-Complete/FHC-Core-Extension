@@ -16,11 +16,10 @@
  */
 
 import BaseLayout from '../components/examples/BaseLayout.js';
-import ExampleTabulatorOnly from '../components/examples/ExampleTabulatorOnly.js';
-import ExampleTabulatorFilter from '../components/examples/ExampleTabulatorFilter.js';
-import Icons from '../components/examples/Icons.js';
 import TabulatorOnly from '../components/examples/TabulatorOnly.js';
 import TabulatorFilter from '../components/examples/TabulatorFilter.js';
+import Icons from '../components/examples/Icons.js';
+import MyExtension from '../components/myextension/MyExtension.js';
 import FhcAlert from '../../../../js/plugin/FhcAlert.js';
 import Phrasen from '../../../../js/plugin/Phrasen.js';
 import FhcApi from "../../../../js/plugin/FhcApi.js";
@@ -29,9 +28,8 @@ const app = Vue.createApp({
 		BaseLayout,
 		TabulatorOnly,
 		TabulatorFilter,
-		ExampleTabulatorOnly,
-		ExampleTabulatorFilter,
-		Icons
+		Icons,
+		MyExtension
 	}
 });
 

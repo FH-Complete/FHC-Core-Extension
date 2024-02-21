@@ -18,7 +18,7 @@ $this->load->view('templates/FHC-Header', $includesArray);
 ?>
 
 <div id="main">
-	<example-tabulator-only></example-tabulator-only>
+	<my-extension></my-extension>
 </div>
 
 <?php $this->load->view('templates/FHC-Footer', $includesArray); ?>

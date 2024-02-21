@@ -16,12 +16,12 @@
  */
 import {CoreFilterCmpt} from '../../../../../js/components/filter/Filter.js';
 import {CoreRESTClient} from '../../../../../../public/js/RESTClient.js';
-import MyForm from './MyForm.js';
+import MyExtensionForm from './MyExtensionForm.js';
 
 export default {
 	components: {
 		CoreFilterCmpt,
-		MyForm
+		MyExtensionForm
 	},
 	data: () => {
 		return {
@@ -143,10 +143,10 @@ export default {
 	},
 	methods: {
 		addData(){
-			this.$refs.myForm.openModal(this.$p.t('global', 'antragAnlegen'));
+			this.$refs.myExtensionForm.openModal(this.$p.t('global', 'antragAnlegen'));
 		},
 		editData(id) {
-			this.$refs.myForm.openModal(this.$p.t('global', 'antragBearbeiten'));
+			this.$refs.myExtensionForm.openModal(this.$p.t('global', 'antragBearbeiten'));
 		},
 		async deleteData(exampledata_id) {
 			if (await this.$fhcAlert.confirmDelete() === false) return;
@@ -256,6 +256,7 @@ export default {
 		}
 	},
 	template: `
+	<!-- Tabulator with Dropdown-Filter-->
 	<core-filter-cmpt v-if="examplestatusList"
 		ref="myExtensionTable"
 		filter-type="Exampledata"
@@ -268,6 +269,7 @@ export default {
 		@click:new="addData"
 		reload
 		>
+		<!-- Action Buttons -->
 		<template #actions>
 			<button class="btn btn-primary" @click="acceptData">{{ $p.t('global', 'genehmigen') }}</button>
 			<button class="btn btn-danger" @click="rejectData">{{ $p.t('global', 'ablehnen') }}</button>
@@ -275,6 +277,6 @@ export default {
 	</core-filter-cmpt>
 	
 	<!-- Form -->
-	<my-form ref="myForm"></my-form>
+	<my-extension-form ref="myExtensionForm"></my-extension-form>
 `
 };

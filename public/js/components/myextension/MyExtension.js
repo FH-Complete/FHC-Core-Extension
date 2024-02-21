@@ -14,33 +14,42 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import {CoreNavigationCmpt} from '../../../../../../public/js/components/navigation/Navigation.js';
 import CoreBaseLayout from '../../../../../../public/js/components/layout/BaseLayout.js';
-import MyTabulatorFilter from "./MyTabulatorFilter.js"
+import MyExtensionTable from "./MyExtensionTable.js"
+import Faqs from "../examples/Faqs";
 
 export default {
 	components: {
 		CoreNavigationCmpt,
 		CoreBaseLayout,
-		MyTabulatorFilter
+		MyExtensionTable,
+		Faqs
 	},
-	data: function() {
-		return {
-		}
+	data: () => {
+		return { }
 	},
 	template: `
 	<!-- Navigation -->
 	<core-navigation-cmpt></core-navigation-cmpt>
 
-	<!-- Content -->
+	<!-- Base Layout Structure -->
 	<core-base-layout
 		:title="$p.t('global', 'titel')"
 		:subtitle="$p.t('global', 'beschreibung')"
-		>
+		mainCols="9"
+		asideCols="3">
+		
+		<!-- Main Content-->
 		<template #main>
-			<my-tabulator-filter></my-tabulator-filter>
+			<my-extension-table></my-extension-table>
 		</template>
+		
+		<!-- Side Content -->
+		<template #aside>
+			<faqs></faqs>
+		</template>
+		
 	</core-base-layout>
 	`
 };

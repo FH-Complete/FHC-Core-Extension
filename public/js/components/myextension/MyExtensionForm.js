@@ -1,14 +1,14 @@
-import FhcForm from "../../../../../js/components/Form/Form.js";
-import FormInput from "../../../../../js/components/Form/Input.js";
-import FormValidation from "../../../../../js/components/Form/Validation.js";
-import BsModal from '../../../../../js/components/Bootstrap/Modal.js';
+import CoreForm from "../../../../../js/components/Form/Form.js";
+import CoreFormInput from "../../../../../js/components/Form/Input.js";
+import CoreFormValidation from "../../../../../js/components/Form/Validation.js";
+import CoreBsModal from '../../../../../js/components/Bootstrap/Modal.js';
 
 export default {
 	components: {
-		FhcForm,
-		FormInput,
-		FormValidation,
-		BsModal
+		CoreForm,
+		CoreFormInput,
+		CoreFormValidation,
+		CoreBsModal
 	},
 	data() {
 		return {
@@ -45,54 +45,54 @@ export default {
 	},
 	template: `
 	<div class="app-example-form-1">
-		<fhc-form ref="form" @submit.prevent="sendForm">
-			<bs-modal ref="modalContainer" class="bootstrap-prompt">
+		<core-form ref="form" @submit.prevent="sendForm">
+			<core-bs-modal ref="modalContainer" class="bootstrap-prompt">
 				<template #title>{{ modalTitel }}</template>
 				<template #default>
 					<!-- Formular -->
-					<form-validation></form-validation>
+					<core-form-validation></core-form-validation>
 					<div class="row row-cols-3">
 				<div class="col">
-					<form-input
+					<core-form-input
 						v-model="formData.mystring"
 						name="mystring"
 						label="MyString*"
 						>
-					</form-input>
+					</core-form-input>
 					<div class="form-text">A required String not containing an 'a'</div>
 				</div>
 				<div class="col">
-					<form-input
+					<core-form-input
 						type="password"
 						v-model="formData.mypassword"
 						name="mypassword"
 						label="MyPassword*"
 						>
-					</form-input>
+					</core-form-input>
 					<div class="form-text">A required Password with at least 3 letters</div>
 				</div>
 				<div class="col">
-					<form-input
+					<core-form-input
 						type="number"
 						v-model="formData.mynumber"
 						name="mynumber"
 						label="MyNumber"
 						>
-					</form-input>
+					</core-form-input>
 					<div class="form-text">A number less than 10</div>
 				</div>
 				<div class="col">
-					<form-input
+					<core-form-input
 						type="textarea"
 						v-model="formData.mytext"
 						name="mytext"
 						label="MyText"
 						>
-					</form-input>
+					</core-form-input>
 					<div class="form-text text-end" :class="{'text-danger': formData.mytext.length > 10}">{{formData.mytext.length}}/10</div>
 				</div>
 				<div class="col">
-					<form-input
+					<core-form-input
 						type="select"
 						v-model="formData.myselect"
 						name="myselect"
@@ -101,63 +101,63 @@ export default {
 						<option value="">No Option</option>
 						<option value="somevalue">Some Value</option>
 						<option value="othervalue">Other Value</option>
-					</form-input>
+					</core-form-input>
 					<div class="form-text">Since 'No Option' has an empty string for a value and the 'required' rule is set in the backend, selecting it will give you an error.</div>
 				</div>
 				<div class="col">
 					<div>MySingleChoice</div>
-					<form-input
+					<core-form-input
 						type="radio"
 						v-model="formData.mysinglechoice"
 						name="mysinglechoice"
 						label="Yes"
 						value="yes"
 						>
-					</form-input>
-					<form-input
+					</core-form-input>
+					<core-form-input
 						type="radio"
 						v-model="formData.mysinglechoice"
 						name="mysinglechoice"
 						label="No"
 						value="no"
 						>
-					</form-input>
-					<form-input
+					</core-form-input>
+					<core-form-input
 						type="radio"
 						v-model="formData.mysinglechoice"
 						name="mysinglechoice"
 						label="Maybe"
 						value="maybe"
 						>
-					</form-input>
+					</core-form-input>
 					<div class="form-text">Only 'Yes' or 'Maybe' are valid options.</div>
 				</div>
 				<div class="col">
 					<div>MyMultipleChoice</div>
-					<form-input
+					<core-form-input
 						type="checkbox"
 						v-model="formData.mymultiplechoice"
 						name="mymultiplechoice[]"
 						label="Orange"
 						value="orange"
 						>
-					</form-input>
-					<form-input
+					</core-form-input>
+					<core-form-input
 						type="checkbox"
 						v-model="formData.mymultiplechoice"
 						name="mymultiplechoice[]"
 						label="Banana"
 						value="banana"
 						>
-					</form-input>
-					<form-input
+					</core-form-input>
+					<core-form-input
 						type="checkbox"
 						v-model="formData.mymultiplechoice"
 						name="mymultiplechoice[]"
 						label="Apple"
 						value="apple"
 						>
-					</form-input>
+					</core-form-input>
 					<div class="form-text">Select at least two.</div>
 				</div>
 			</div>
@@ -166,8 +166,8 @@ export default {
 				<template #footer>
 					<button type="button" class="btn btn-primary" @click="sendForm">{{ modalTitel }}</button>
 				</template>
-			</bs-modal>
+			</core-bs-modal>
 
-		</fhc-form>
+		</core-form>
 	</div>`
 }
