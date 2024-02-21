@@ -27,18 +27,18 @@ import { CoreRESTClient } from "../../../../../../js/RESTClient.js";
 // ==========
 const app = Vue.createApp({
 	methods: {
-		getFullName(){
+		getActualDate(){
 			CoreRESTClient
-				.get('/extensions/FHC-Core-Extension/FhcTemplate/getFullName')
+				.get('/extensions/FHC-Core-Extension/Examples/getActualDate')
 				.then(result => result.data)
-				.then(result => { this.$fhcAlert.alertInfo('Mein Name ist ' + CoreRESTClient.getData(result)); })
+				.then(result => { this.$fhcAlert.alertInfo( CoreRESTClient.getData(result)); })
 				.catch(this.$fhcAlert.handleSystemError);
 		}
 	},
 	template: `
 	<div class="app-example-alerts-example1">
-		<button class="btn btn-primary" @click="getFullName">
-			Namen anzeigen
+		<button class="btn btn-primary" @click="getActualDate">
+			Datum anzeigen
 		</button>
 	</div>`
 });

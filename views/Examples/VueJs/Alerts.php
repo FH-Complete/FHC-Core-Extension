@@ -116,17 +116,17 @@
 				</section>
 				<pre class="border border-bottom-0 mb-0"><code class="language-html"><?= htmlentities(
 					'<!-- Button calls function -->' . "\n" .
-					'<button class="btn btn-primary" @click="getFullName">Namen anzeigen</button>'
+					'<button class="btn btn-primary" @click="getActualDate">Datum anzeigen</button>'
 				); ?></code></pre>
 				<pre class="border"><code class="language-js"><?= htmlentities(
 					'// Function' . "\n" .
-					'getFullName() {' . "\n" .
+					'getActualDate() {' . "\n" .
 					'	CoreRESTClient' . "\n" .
-					'		.get(\'/extensions/FHC-Core-Extension/FhcTemplate/getFullName\')' . "\n" .
+					'		.get(\'/extensions/FHC-Core-Extension/Examples/getActualDate\')' . "\n" .
 					'		.then(result => result.data)' . "\n" .
 					'		// Alert on success' . "\n" .
 					'		.then(result => {' . "\n" .
-					'			this.$fhcAlert.alertInfo(\'Mein Name ist \' + CoreRESTClient.getData(result));' . "\n" .
+					'			this.$fhcAlert.alertInfo(CoreRESTClient.getData(result));' . "\n" .
 					'		})' . "\n" .
 					'		// Alert on failure' . "\n" .
 					'		.catch(this.$fhcAlert.handleSystemError);' . "\n" .

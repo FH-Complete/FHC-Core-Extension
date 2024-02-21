@@ -67,11 +67,11 @@ export const Alerts = {
 		async confirmDelete(){
 			if (await this.$fhcAlert.confirmDelete() === false) return;
 		},
-		getFullName(){
+		getActualDate(){
 			CoreRESTClient
-				.get('/extensions/FHC-Core-Extension/FhcTemplate/getFullName')
+				.get('/extensions/FHC-Core-Extension/Examples/getActualDate')
 				.then(result => result.data)
-				.then(result => { this.$fhcAlert.alertInfo('Mein Name ist ' + CoreRESTClient.getData(result)); })
+				.then(result => { this.$fhcAlert.alertInfo( CoreRESTClient.getData(result)); })
 				.catch(error => { this.$fhcAlert.handleSystemError(error); });
 		},
 		async deleteData(id){
@@ -182,7 +182,7 @@ this.$fhcAlert.alertMultiple(msgArr, 'success', 'Sticky success messages', true)
 	</div>
 	<div class="row-col mb-5">
 		<h3 class="h4">Example 1: Display Info Alert on Success and handle System Error</h3><br>
-		<div class="mb-3"><button class="btn btn-primary" @click="getFullName">Namen anzeigen</button></div>
+		<div class="mb-3"><button class="btn btn-primary" @click="getActualDate">Datum anzeigen</button></div>
 		<!-- Code Documentation -->	
 		<doc-alert-example></doc-alert-example>
 	</div>
