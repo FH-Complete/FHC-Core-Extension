@@ -32,7 +32,7 @@ const app = Vue.createApp({
 				return;
 
 			CoreRESTClient
-				.post('/extensions/FHC-Core-Extension/FhcTemplate/deleteData/' + id)
+				.post('/extensions/FHC-Core-Extension/Examples/deleteData/' + id)
 				.then(result => {
 					this.$fhcAlert.alertSuccess('Datensatz ' + CoreRESTClient.getData(result.data) + ' gelöscht!');
 				})

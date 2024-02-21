@@ -78,7 +78,7 @@ export const Alerts = {
 			if (await this.$fhcAlert.confirmDelete() === false) return;
 
 			CoreRESTClient
-				.post('/extensions/FHC-Core-Extension/FhcTemplate/deleteData/' + id)
+				.post('/extensions/FHC-Core-Extension/Examples/deleteData/' + id)
 				.then(result => { this.$fhcAlert.alertSuccess('Datensatz ' + CoreRESTClient.getData(result.data) + ' gelöscht!') })
 				.catch(error => { this.$fhcAlert.handleSystemError(error); });
 		}

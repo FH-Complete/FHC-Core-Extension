@@ -19,7 +19,8 @@ class Examples extends Auth_Controller
 			'getExamplestatusList' => 'admin:rw',
 			'updateExamplestatus' => 'admin:rw',
 			'deleteExampledata' => 'admin:rw',
-			'getActualDate' => 'admin:rw'
+			'getActualDate' => 'admin:rw',
+			'deleteData' => 'admin:rw'
 		]);
 
 		$this->load->model('extensions/FHC-Core-Extension/Exampledata_model', 'ExampledataModel');
@@ -136,6 +137,12 @@ class Examples extends Auth_Controller
 	public function getActualDate()
 	{
 		$this->outputJsonSuccess(date('d.m.Y'));
+	}
+
+	public function deleteData($id)
+	{
+		// Pseudo success object mit retval
+		$this->outputJsonSuccess($id);
 	}
 
 	private function _getLanguageIndex()

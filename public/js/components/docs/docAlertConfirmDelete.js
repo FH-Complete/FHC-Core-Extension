@@ -11,7 +11,7 @@ async deleteData(id){
 
 <span class="text-muted">// Confirmed! You can go on...</span>
 CoreRESTClient
-	.post('/extensions/FHC-Core-Extension/FhcTemplate/deleteData/' + id)
+	.post('/extensions/FHC-Core-Extension/Examples/deleteData/' + id)
 	.then(result => { this.$fhcAlert.alertSuccess('Datensatz ' + CoreRESTClient.getData(result.data) + ' gelöscht!') })<span class="text-muted">\t// Alert on success</span>
 	.catch(error => { this.$fhcAlert.handleSystemError(error); });<span class="text-muted">\t// Alert on error</span>
 }
