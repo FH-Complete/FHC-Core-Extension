@@ -40,35 +40,130 @@ export default {
 			this.modalTitel = 'Datensatz ändern';
 			this.$refs.modalContainer.show();
 		},
-		manipulateData(id) { this.$fhcAlert.alertInfo('ID' + id + ' do some Action') },
-		async deleteData(id) {
-			if (await this.$fhcAlert.confirmDelete() === false) return;
-			this.$fhcAlert.alertSuccess('ID' + id + ' deleted')
+		manipulateData(exampledata_id) {
+			this.$fhcAlert.alertInfo('ID' + id + ' do some Action')
 		},
-		acceptData(){ this.$fhcAlert.alertSuccess('Accepted')},
-		rejectData(){ this.$fhcAlert.alertSuccess('Rejected')},
-		changeListData(){this.$fhcAlert.alertSuccess('Changed')}
+		async deleteData(exampledata_id) {
+			if (await this.$fhcAlert.confirmDelete() === false) return;
+
+			CoreRESTClient
+				.post('/extensions/FHC-Core-Extension/Examples/deleteExampledata', {
+					exampledata_id: exampledata_id
+				})
+				.then(result => {
+					this.$refs.myTabulatorOnly.tabulator.deleteRow(exampledata_id)
+				}).then(() => {
+				this.$fhcAlert.alertSuccess('Deleted');
+			})
+				.catch(this.$fhcAlert.handleSystemError);
+		},
+		acceptData() {
+			let exampledata_ids = this.$refs.myTabulatorOnly.tabulator.getSelectedRows().map(row => row.getIndex());
+
+			if (exampledata_ids.length === 0) return this.$fhcAlert.alertInfo('Select rows');
+
+			for (const exampledata_id of exampledata_ids) {
+
+				let examplestatus_kurzbz = 'akzeptiert';
+
+				CoreRESTClient
+					.post('/extensions/FHC-Core-Extension/Examples/updateExamplestatus', {
+						exampledata_id: exampledata_id,
+						examplestatus_kurzbz: examplestatus_kurzbz
+					})
+					.then(result => {
+						this.$refs.myTabulatorOnly.tabulator.updateData([{
+							exampledata_id: exampledata_id,
+							examplestatus_kurzbz: examplestatus_kurzbz,
+							bezeichnung: this.examplestatusList[examplestatus_kurzbz]
+						}])
+					})
+					.catch(this.$fhcAlert.handleSystemError);
+			}
+
+			this.$fhcAlert.alertSuccess('All accepted')
+		},
+		rejectData() {
+			let exampledata_ids = this.$refs.myTabulatorOnly.tabulator.getSelectedRows().map(row => row.getIndex());
+
+			if (exampledata_ids.length === 0) return this.$fhcAlert.alertInfo('Select rows');
+
+			for (const exampledata_id of exampledata_ids) {
+
+				let examplestatus_kurzbz = 'abgelehnt';
+
+				CoreRESTClient
+					.post('/extensions/FHC-Core-Extension/Examples/updateExamplestatus', {
+						exampledata_id: exampledata_id,
+						examplestatus_kurzbz: examplestatus_kurzbz
+					})
+					.then(result => {
+						this.$refs.myTabulatorOnly.tabulator.updateData([{
+							exampledata_id: exampledata_id,
+							examplestatus_kurzbz: examplestatus_kurzbz,
+							bezeichnung: this.examplestatusList[examplestatus_kurzbz]
+						}])
+					})
+					.catch(this.$fhcAlert.handleSystemError);
+			}
+
+			this.$fhcAlert.alertSuccess('All rejected')
+		},
+		getExamplestatusList() {
+			return CoreRESTClient
+				.get('/extensions/FHC-Core-Extension/Examples/getExamplestatusList')
+				.then(result => result.data)
+				.then(result => {
+					// Reduce array of objects into one object
+					return this.examplestatusList = CoreRESTClient.getData(result).reduce((o, x) => {
+						o[x.examplestatus_kurzbz] = x.bezeichnung;
+						return o;
+					}, {});
+				})
+				.catch(error => {
+					this.$fhcAlert.handleSystemError(error);
+				});
+		},
+		updateExamplestatus(cell) {
+			let exampledata_id = cell.getRow().getIndex();
+			let examplestatus_kurzbz = cell.getValue();
+
+			CoreRESTClient
+				.post('/extensions/FHC-Core-Extension/Examples/updateExamplestatus', {
+					exampledata_id: exampledata_id,
+					examplestatus_kurzbz: examplestatus_kurzbz
+				})
+				.then(result => {
+					cell.getTable().updateData([{
+						exampledata_id: exampledata_id,
+						examplestatus_kurzbz: examplestatus_kurzbz,
+						bezeichnung: this.examplestatusList[examplestatus_kurzbz]
+					}]).then(() => {
+						this.$fhcAlert.alertSuccess('Gespeichert');
+					});
+				})
+				.catch(this.$fhcAlert.handleSystemError);
+		}
 	},
 	data: () => {
 		return {
 			modalTitel: '',
+			examplestatusList: null
 		}
 	},
 	computed: {
 		tabulatorOptions() {
 			return {
 				// Data source
-				ajaxURL: CoreRESTClient._generateRouterURI('/extensions/FHC-Core-Extension/FhcTemplate/getTestData'),
-				ajaxResponse(url, params, response) {
-					return CoreRESTClient.getData(response);
-				},
-				
+				ajaxURL: CoreRESTClient._generateRouterURI('/extensions/FHC-Core-Extension/Examples/getExampledata'),
+				ajaxResponse(url, params, response) { return CoreRESTClient.getData(response) },
+
 				// Unique ID
-				index: 'id',
+				index: 'exampledata_id',
 				
 				// @see: https://tabulator.info/docs/5.2/layout#layout
 				// This is the default option and can be omitted.
-				layout: 'fitDataStretch',
+				layout: 'fitColumns', // TODO check auch das, geht nicht...
 				
 				// Column definitions
 				columns: [
@@ -82,14 +177,14 @@ export default {
 						frozen: true,
 						width: 70
 					},
-					{title: 'ID', field: 'id', headerFilter: true, width: 70, hozAlign: 'right', frozen: true, sorter: 'number'},
-					{title: 'Core Data', field: 'coreData', headerFilter: true, frozen: true},
-					{title: 'Integer', field: 'number', headerFilter: true, hozAlign: 'right', sorter: 'number'},
-					{title: 'String', field: 'text', headerFilter: true},
-					{title: 'Date', field: 'datum', headerFilter: true, hozAlign: 'center'},
+					{title: 'ID', field: 'exampledata_id', headerFilter: true, width: 70, hozAlign: 'right', frozen: true, sorter: 'number'},
+					{title: 'Core Data', field: 'uid', headerFilter: true, frozen: true},
+					{title: 'String', field: 'stringval', headerFilter: true},
+					{title: 'Integer', field: 'integerval', headerFilter: true, hozAlign: 'right', sorter: 'number'},
+					{title: 'Date', field: 'dateval', headerFilter: true, hozAlign: 'center'},
 					{
 						title: 'Boolean',
-						field: 'bool',
+						field: 'booleanval',
 						formatter:"tickCross",
 						headerFilter:"tickCross",
 						headerFilterParams:{"tristate": true},
@@ -101,7 +196,7 @@ export default {
 					},
 					{
 						title:"Money",
-						field:"money",
+						field:"moneyval",
 						formatter:"money",
 						formatterParams:{
 							decimal:",",
@@ -119,19 +214,20 @@ export default {
 						formatterParams: cell => {
 							return {
 								labelField:"dokument_bezeichnung",
-								url: CoreRESTClient._generateRouterURI('extensions/FHC-Core-Extension/FhcTemplate/download/' + cell.getData().dms_id),
+								url: CoreRESTClient._generateRouterURI('extensions/FHC-Core-Extension/Examples/download/' + cell.getData().dms_id),
 								target:"_blank"
 							}
 						}
 					},
-					{title: 'Anmerkung', field: 'anmerkung', headerFilter: true},
+					{title: 'Anmerkung', field: 'textval', headerFilter: true},
 					{
 						title: 'Liste',
-						field: 'liste',
+						field: 'examplestatus_kurzbz',
 						editor: "list",
-						editorParams:{values:['Neu', 'Genehmigt', 'Abgelehnt']},
+						editorParams: { valuesLookup: this.getExamplestatusList },
 						headerFilter: true,
-						headerFilterParams:{values:['Neu', 'Genehmigt', 'Abgelehnt']},
+						headerFilterParams: { valuesLookup: this.getExamplestatusList },
+						formatter: (cell) => this.examplestatusList[cell.getValue()],
 						frozen: true
 					},
 					{
@@ -191,11 +287,11 @@ export default {
 			You can easily add an Add-Button, Refresh-Button and Action-Buttons to handle multiple rows at once. Column formatters are used to keep same look&feel.
 			</p>
 			<core-filter-cmpt
-				ref="myTabulator"
+				ref="myTabulatorOnly"
 				table-only
 				:side-menu="false"
 				:tabulator-options="tabulatorOptions"
-				:tabulator-events="[{ event: 'cellEdited', handler: changeListData }]"
+				:tabulator-events="[{ event: 'cellEdited', handler: updateExamplestatus }]"
 				new-btn-label="Datensatz"
 				new-btn-show		
 				@click:new="addData"
