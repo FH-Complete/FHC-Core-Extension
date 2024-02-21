@@ -87,6 +87,7 @@ class Examples extends Auth_Controller
 			examplestatus_kurzbz,
 			bezeichnung[(' . $this->_getLanguageIndex() . ')]');
 		$this->ExampledataModel->addJoin('extension.tbl_examplestatus', 'examplestatus_kurzbz');
+		$this->ExampledataModel->addOrder('exampledata_id');
 		$result = $this->ExampledataModel->load();
 
 		// On error

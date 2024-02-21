@@ -20,6 +20,7 @@ $filterCmptArray = array(
 			extension.tbl_exampledata
 		JOIN
 			extension.tbl_examplestatus USING (examplestatus_kurzbz)
+		ORDER BY exampledata_id
 		',
 	'requiredPermissions' => 'admin'
 );
