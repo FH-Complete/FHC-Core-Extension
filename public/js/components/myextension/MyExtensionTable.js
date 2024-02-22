@@ -253,6 +253,9 @@ export default {
 					});
 				})
 				.catch(this.$fhcAlert.handleSystemError);
+		},
+		addRow(formData){
+			this.$refs.myExtensionTable.tabulator.addRow(formData, true);
 		}
 	},
 	template: `
@@ -277,6 +280,6 @@ export default {
 	</core-filter-cmpt>
 	
 	<!-- Form -->
-	<my-extension-form ref="myExtensionForm"></my-extension-form>
+	<my-extension-form ref="myExtensionForm" :examplestatusList="examplestatusList" @addRow="addRow"></my-extension-form>
 `
 };
