@@ -17,6 +17,7 @@
 import {CoreNavigationCmpt} from '../../../../../../public/js/components/navigation/Navigation.js';
 import CoreBaseLayout from '../../../../../../public/js/components/layout/BaseLayout.js';
 import MyExtensionTable from "./MyExtensionTable.js"
+import MyExtensionSidewidget from "./MyExtensionSidewidget.js"
 import Faqs from "../examples/Faqs";
 
 export default {
@@ -24,6 +25,7 @@ export default {
 		CoreNavigationCmpt,
 		CoreBaseLayout,
 		MyExtensionTable,
+		MyExtensionSidewidget,
 		Faqs
 	},
 	data: () => {
@@ -48,6 +50,9 @@ export default {
 		<!-- Side Content -->
 		<template #aside>
 			<faqs></faqs>
+			<my-extension-sidewidget></my-extension-sidewidget>
+			<my-extension-sidewidget></my-extension-sidewidget>
+			<my-extension-sidewidget></my-extension-sidewidget>
 		</template>
 		
 	</core-base-layout>
