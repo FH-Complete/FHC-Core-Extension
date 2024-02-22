@@ -72,7 +72,8 @@ class Examples extends Auth_Controller
 		// Get Exampledata
 		$this->ExampledataModel->addSelect('
 			exampledata_id, 
-			uid, stringval,
+			uid,
+			stringval,
 			integerval,
 			dateval,
 			booleanval, 

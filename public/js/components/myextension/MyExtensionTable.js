@@ -87,7 +87,7 @@ export default {
 						formatterParams: cell => {
 							return {
 								labelField:"dokument_bezeichnung",
-								url: CoreRESTClient._generateRouterURI('extensions/FHC-Core-Extension/Examples/download/' + cell.getData().dms_id),
+								url: CoreRESTClient._generateRouterURI('extensions/FHC-Core-Extension/MyExtension/download/' + cell.getData().dms_id),
 								target:"_blank"
 							}
 						}
@@ -152,7 +152,7 @@ export default {
 			if (await this.$fhcAlert.confirmDelete() === false) return;
 
 			CoreRESTClient
-				.post('/extensions/FHC-Core-Extension/Examples/deleteExampledata', {
+				.post('/extensions/FHC-Core-Extension/MyExtension/deleteExampledata', {
 					exampledata_id: exampledata_id
 				})
 				.then(result => {
@@ -175,7 +175,7 @@ export default {
 				let examplestatus_kurzbz = 'akzeptiert';
 
 				CoreRESTClient
-					.post('/extensions/FHC-Core-Extension/Examples/updateExamplestatus', {
+					.post('/extensions/FHC-Core-Extension/MyExtension/updateExamplestatus', {
 						exampledata_id: exampledata_id,
 						examplestatus_kurzbz: examplestatus_kurzbz
 					})
@@ -203,7 +203,7 @@ export default {
 				let examplestatus_kurzbz = 'abgelehnt';
 
 				CoreRESTClient
-					.post('/extensions/FHC-Core-Extension/Examples/updateExamplestatus', {
+					.post('/extensions/FHC-Core-Extension/MyExtension/updateExamplestatus', {
 						exampledata_id: exampledata_id,
 						examplestatus_kurzbz: examplestatus_kurzbz
 					})
@@ -221,7 +221,7 @@ export default {
 		},
 		getExamplestatusList() {
 			return CoreRESTClient
-				.get('/extensions/FHC-Core-Extension/Examples/getExamplestatusList')
+				.get('/extensions/FHC-Core-Extension/MyExtension/getExamplestatusList')
 				.then(result => result.data)
 				.then(result => {
 					// Reduce array of objects into one object
@@ -239,7 +239,7 @@ export default {
 			let examplestatus_kurzbz = cell.getValue();
 
 			CoreRESTClient
-				.post('/extensions/FHC-Core-Extension/Examples/updateExamplestatus', {
+				.post('/extensions/FHC-Core-Extension/MyExtension/updateExamplestatus', {
 					exampledata_id: exampledata_id,
 					examplestatus_kurzbz: examplestatus_kurzbz
 				})
