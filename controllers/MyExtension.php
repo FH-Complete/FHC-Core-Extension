@@ -14,7 +14,6 @@ class MyExtension extends Auth_Controller
 			'getExamplestatusList' => 'admin:rw',
 			'updateExamplestatus' => 'admin:rw',
 			'deleteExampledata' => 'admin:rw',
-			'addExampledata' => 'admin:rw',
 			'editExampledata' => 'admin:rw',
 		]);
 
@@ -64,26 +63,6 @@ class MyExtension extends Auth_Controller
 		$data = $this->getPostJson();
 
 		$result = $this->ExampledataModel->delete($data->exampledata_id);
-
-		// On error
-		if (isError($result)) $this->terminateWithJsonError(getError($result));
-
-		// On success
-		$this->outputJsonSuccess(hasData($result) ? getData($result) : []);
-	}
-
-	public function addExampledata(){
-		$data = $this->getPostJson();
-
-		$result = $this->ExampledataModel->insert(array(
-				'uid' => $data->uid,
-				'stringval' => $data->stringval,
-				'integerval' => $data->integerval,
-				'textval' => $data->textval,
-				'examplestatus_kurzbz' => $data->examplestatus_kurzbz,
-				'booleanval' => $data->booleanval,
-			)
-		);
 
 		// On error
 		if (isError($result)) $this->terminateWithJsonError(getError($result));

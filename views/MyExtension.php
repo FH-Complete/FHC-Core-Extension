@@ -10,8 +10,11 @@ $includesArray = array(
 	'navigationcomponent' => true,
 	'filtercomponent' => true,
 	'customJSModules' => array('public/extensions/FHC-Core-Extension/js/apps/MyExtension.js'),
-	'customCSSs' => array('public/extensions/FHC-Core-Extension/css/FhcMain.css')
-
+	'customCSSs' => array(
+        'public/extensions/FHC-Core-Extension/css/FhcMain.css',
+	    'public/css/components/vue-datepicker.css',
+        'public/css/components/primevue.css'
+	)
 );
 
 $this->load->view('templates/FHC-Header', $includesArray);
