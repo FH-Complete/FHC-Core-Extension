@@ -603,7 +603,7 @@
 				</section>
 
 
-				<h2 id="example" class="h3 mt-5">Full Example</h3>
+				<h2 id="example" class="h3 mt-5">Full Example</h2>
 				<div class="alert alert-danger">TODO(chris): examples</div>
 				<div class="d-flex justify-content-between">
 					<h6>Example:</h6>
