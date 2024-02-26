@@ -32,6 +32,11 @@ export default {
 	},
 	data: function() {
 		return {
+			tabs: {
+				tab1: { title: 'Tab 1', component: '../../extensions/FHC-Core-Extension/js/components/myextension/MyExtensionWidget.js'},
+				tab2: { title: 'Tab 2', component: '../../extensions/FHC-Core-Extension/js/components/myextension/MyExtensionWidget.js'},
+				tab3: { title: 'Tab 3', component: '../../extensions/FHC-Core-Extension/js/components/myextension/MyExtensionWidget.js'}
+			}
 		}
 	},
 	template: `
@@ -95,12 +100,7 @@ export default {
 				subtitle="Subtitle">	
 				<template #main>
 					<!-- Core Tabs-->
-					<core-tabs class="mb-5" :config="{start: { title: 'Start', component: '../../extensions/FHC-Core-Extension/js/components/examples/Alerts.js'}, end: { title: 'Ende', component: '../../extensions/FHC-Core-Extension/js/components/examples/Status.js'}}"></core-tabs>
-			
-					<div class="row-col card card-body h-100">
-						<h5>#main slot</h5>
-						 mainCols: 12 cols (default)
-					</div>
+					<core-tabs class="mb-5" :config="tabs"></core-tabs>
 				</template>
 			</core-base-layout>
 		</div>

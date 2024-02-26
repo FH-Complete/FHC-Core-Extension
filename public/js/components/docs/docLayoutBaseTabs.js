@@ -11,6 +11,16 @@ export const myComponent = {
 	  CoreBaseLayout, 
 	  CoreTabs 
 	},
+	data: () => {
+	  return {
+        <span class="text-muted">// Define your tabs object like this</span>
+	    tabs : {
+          	tab1: { title: 'Tab 1', component: '../mypath/MyComponent1.js' },
+          	tab2: { title: 'Tab 2', component: '../mypath/MyComponent2.js' },
+          	tab3: { title: 'Tab 3', component: '../mypath/MyComponent3.js' }
+	    }
+	  }
+	},
 },
 
 &lt;core-base-layout
@@ -18,7 +28,7 @@ export const myComponent = {
 	subtitle="Subtitle"&gt;
 	&lt;template #main&gt;	
 	    <span class="text-muted">// Your Core Tabs Component here</span>
-	    &lt;core-tabs :config="{ start: { title: 'Start', component: '../../extensions/FHC-Core-Extension/js/components/startCmpt.js'}, end: { title: 'Ende', component: '../../extensions/FHC-Core-Extension/js/components/endCmpt.js'}}"&gt;&lt;/core-tabs&gt;
+	    &lt;core-tabs :config="tabs"&gt;&lt;/core-tabs&gt;
 	&lt;/template&gt;
 &lt;/core-base-layout&gt;			
 </pre></code>
