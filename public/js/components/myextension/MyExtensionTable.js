@@ -31,14 +31,8 @@ export default {
 	computed: {
 		tabulatorOptions() {
 			return {
-				// Unique ID
 				index: 'exampledata_id',
-				
-				// @see: https://tabulator.info/docs/5.2/layout#layout
-				// This is the default option and can be omitted.
 				layout: 'fitData',
-
-				// Column definitions
 				columns: [
 					{
 						formatter: 'rowSelection',
@@ -97,10 +91,12 @@ export default {
 						title: 'Liste',
 						field: 'examplestatus_kurzbz',
 						editor: "list",
-						editorParams: { values: this.examplestatusList },
+						editorParams: { valuesLookup: this.getExamplestatusList },
 						headerFilter: true,
-						headerFilterParams: { values: this.examplestatusList },
-						formatter: (cell) => this.examplestatusList[cell.getValue()],
+						headerFilterParams: { valuesLookup: this.getExamplestatusList },
+						formatter: (cell) => this.examplestatusList
+							? this.examplestatusList[cell.getValue()]
+							: cell.getData().bezeichnung,
 						frozen: true
 					},
 					{
@@ -136,10 +132,6 @@ export default {
 				]
 			}
 		}
-	},
-	created(){
-		// Get initial Examplestatuslist
-		this.getExamplestatusList();
 	},
 	methods: {
 		addData(){
@@ -260,7 +252,7 @@ export default {
 	},
 	template: `
 	<!-- Tabulator with Dropdown-Filter-->
-	<core-filter-cmpt v-if="examplestatusList"
+	<core-filter-cmpt
 		ref="myExtensionTable"
 		filter-type="Exampledata"
 		:side-menu="false"
