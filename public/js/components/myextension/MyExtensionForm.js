@@ -13,7 +13,7 @@ export default {
 	props: {
 		examplestatusList: []
 	},
-	emit: ['addRow'],
+	emit: ['dataSaved'],
 	data() {
 		return {
 			modalTitel: '',
@@ -38,7 +38,7 @@ export default {
 						this.formData
 					)
 					.then(result => {
-						this.$emit('addRow', {...this.formData, ...{'exampledata_id': result.data}});
+						this.$emit('dataSaved', {...this.formData, ...{'exampledata_id': result.data}});
 						this.$fhcAlert.alertSuccess(this.$p.t('ui', 'gespeichert'));
 						this.$refs.modalContainer.hide();
 					})

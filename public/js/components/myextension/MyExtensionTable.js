@@ -272,6 +272,6 @@ export default {
 	</core-filter-cmpt>
 	
 	<!-- Form -->
-	<my-extension-form ref="myExtensionForm" :examplestatusList="examplestatusList" @addRow="addRow"></my-extension-form>
+	<my-extension-form ref="myExtensionForm" :examplestatusList="examplestatusList" @dataSaved="addRow"></my-extension-form>
 `
 };
