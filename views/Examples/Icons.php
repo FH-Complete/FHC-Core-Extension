@@ -9,7 +9,7 @@ $includesArray = array(
 	'primevue3' => true,
 	'navigationcomponent' => true,
 	'filtercomponent' => true,
-	'customJSModules' => array('public/extensions/FHC-Core-Extension/js/apps/MyExtension.js'),
+	'customJSModules' => array('public/extensions/FHC-Core-Extension/js/apps/Examples2.js'),
 	'customCSSs' => array('public/extensions/FHC-Core-Extension/css/FhcMain.css')
 
 );
