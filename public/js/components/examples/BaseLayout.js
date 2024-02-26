@@ -17,18 +17,23 @@
 import {CoreNavigationCmpt} from '../../../../../../public/js/components/navigation/Navigation.js';
 import CoreBaseLayout from '../../../../../../public/js/components/layout/BaseLayout.js';
 import CoreTabs from '../../../../../../public/js/components/Tabs.js';
-import docLayoutBase from "../docs/docLayoutBase";
-import docLayoutBaseSide from "../docs/docLayoutBaseSide";
-import docLayoutBaseTabs from "../docs/docLayoutBaseTabs";
+import CoreVerticalsplit from '../../../../../../public/js/components/verticalsplit/verticalsplit.js';
+
+import docLayoutBase from "../docs/docLayoutBase.js";
+import docLayoutBaseSide from "../docs/docLayoutBaseSide.js";
+import docLayoutBaseTabs from "../docs/docLayoutBaseTabs.js";
+import docLayoutBaseVerticalsplit from "../docs/docLayoutBaseVerticalsplit.js";
 
 export default {
 	components: {
 		CoreNavigationCmpt,
 		CoreBaseLayout,
 		CoreTabs,
+		CoreVerticalsplit,
 		docLayoutBase,
 		docLayoutBaseSide,
-		docLayoutBaseTabs
+		docLayoutBaseTabs,
+		docLayoutBaseVerticalsplit
 	},
 	data: function() {
 		return {
@@ -106,6 +111,32 @@ export default {
 		</div>
 		<!-- Code Documentation -->
 		<doc-layout-base-tabs></doc-layout-base-tabs>
+	</div>
+	
+	<div class="row-cols">
+		<h3 class="h4">Base Layout + Verticalsplit</h3>
+		<div class="row-col card card-body p-4 mt-3">
+			<core-base-layout
+				title="Title"
+				subtitle="Subtitle">	
+				<template #main>
+					<core-verticalsplit>
+						<template #top>
+							<div class="card h-100">
+								<div class="card-body py-5 h5">#top slot</div>			
+							</div>
+						</template>
+						<template #bottom>
+							<div class="card h-100">
+								<div class="card-body py-5 h5">#bottom slot</div>			
+							</div>
+						</template>
+					</core-verticalsplit>
+				</template>
+			</core-base-layout>
+		</div>
+		<!-- Code Documentation -->
+		<doc-layout-base-verticalsplit></doc-layout-base-verticalsplit>
 	</div>
 	`
 };

@@ -11,9 +11,10 @@ $includesArray = array(
 	'filtercomponent' => true,
 	'customJSModules' => array('public/extensions/FHC-Core-Extension/js/apps/MyExtension.js'),
 	'customCSSs' => array(
-        'public/extensions/FHC-Core-Extension/css/FhcMain.css',
 	    'public/css/components/vue-datepicker.css',
-        'public/css/components/primevue.css'
+        'public/css/components/primevue.css',
+		'public/css/components/verticalsplit.css',
+		'public/extensions/FHC-Core-Extension/css/FhcMain.css'
 	)
 );
 
