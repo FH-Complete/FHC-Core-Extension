@@ -7,15 +7,6 @@ $config['navigation_header']['*']['FhcTemplate'] = array(
 		'sort' => 100
 	);
 
-// Add Header-Menu-Entry to Extension Page with DropDown
-$config['navigation_header']['extensions/FHC-Core-Extension/examples'] = array(
-		'FHC-Core-Extension-Advanced-Menu' => array(
-		'link' => '#',
-		'icon' => '',
-		'description' => 'FHC Template',
-		'sort' => 100
-	));
-
 // Add Side-Menu-Entry to Extension Page
 $config['navigation_menu']['extensions/FHC-Core-Extension/examples/*'] = [
 	'layout' => [
@@ -59,3 +50,6 @@ $config['navigation_menu']['extensions/FHC-Core-Extension/examples/*'] = [
 		'icon' => ''
 	],
 ];
+
+$config['navigation_menu']['extensions/FHC-Core-Extension/MyExtension/index'] =
+	$config['navigation_menu']['extensions/FHC-Core-Extension/examples/*'];
