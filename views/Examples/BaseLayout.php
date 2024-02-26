@@ -10,7 +10,10 @@ $includesArray = array(
 	'navigationcomponent' => true,
 	'filtercomponent' => true,
 	'customJSModules' => array('public/extensions/FHC-Core-Extension/js/apps/Examples2.js'),
-	'customCSSs' => array('public/extensions/FHC-Core-Extension/css/FhcMain.css')
+	'customCSSs' => array(
+		'public/css/components/verticalsplit.css',
+        'public/extensions/FHC-Core-Extension/css/FhcMain.css'
+    )
 
 );
 
