@@ -108,10 +108,12 @@ export default {
 						title: 'Liste',
 						field: 'examplestatus_kurzbz',
 						editor: "list",
-						editorParams: { values: this.examplestatusList },
+						editorParams: { valuesLookup: this.getExamplestatusList },
 						headerFilter: true,
-						headerFilterParams: { values: this.examplestatusList },
-						formatter: (cell) => this.examplestatusList[cell.getValue()],
+						headerFilterParams: { valuesLookup: this.getExamplestatusList },
+						formatter: (cell) => this.examplestatusList
+							? this.examplestatusList[cell.getValue()]	// to dynamically refresh after an update
+							: cell.getData().bezeichnung,	// to initially set label (in case async examplestatusList may not be ready here)
 						frozen: true
 					},
 					{
@@ -147,10 +149,6 @@ export default {
 				]
 			}
 		}
-	},
-	created(){
-		// Get initial Examplestatuslist
-		this.getExamplestatusList();
 	},
 	methods: {
 		addData(){
@@ -279,7 +277,7 @@ export default {
 		:subtitle="$p.t('global', 'beschreibung')">
 		<template #main>		
 			<h3 class="h4 mt-3">Tabulator with Filter</h3>
-			<core-filter-cmpt v-if="examplestatusList"
+			<core-filter-cmpt
 				ref="myTabulatorFilter"
 				filter-type="Exampledata"
 				:side-menu="false"

@@ -227,7 +227,9 @@ export default {
 						editorParams: { valuesLookup: this.getExamplestatusList },
 						headerFilter: true,
 						headerFilterParams: { valuesLookup: this.getExamplestatusList },
-						formatter: (cell) => this.examplestatusList[cell.getValue()],
+						formatter: (cell) => this.examplestatusList
+							? this.examplestatusList[cell.getValue()]	// to dynamically refresh after an update
+							: cell.getData().bezeichnung,	// to initially set label (in case async examplestatusList may not be ready here)
 						frozen: true
 					},
 					{
