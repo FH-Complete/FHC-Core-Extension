@@ -17,9 +17,8 @@
 import {CoreNavigationCmpt} from '../../../../../../public/js/components/navigation/Navigation.js';
 import CoreBaseLayout from '../../../../../../public/js/components/layout/BaseLayout.js';
 import CoreTabs from '../../../../../../public/js/components/Tabs.js';
-import MyExtensionTable from "./MyExtensionTable.js"
-import MyExtensionSidewidget from "./MyExtensionSidewidget.js"
-import Faqs from "../examples/Faqs";
+import MyExtensionTable from "./MyExtensionTable.js";
+import MyExtensionWidget from "./MyExtensionWidget.js";
 
 export default {
 	components: {
@@ -27,8 +26,7 @@ export default {
 		CoreBaseLayout,
 		CoreTabs,
 		MyExtensionTable,
-		MyExtensionSidewidget,
-		Faqs
+		MyExtensionWidget
 	},
 	data: () => {
 		return {
@@ -56,10 +54,9 @@ export default {
 		
 		<!-- Side Content -->
 		<template #aside>
-			<faqs></faqs>
-			<my-extension-sidewidget></my-extension-sidewidget>
-			<my-extension-sidewidget></my-extension-sidewidget>
-			<my-extension-sidewidget></my-extension-sidewidget>
+			<my-extension-widget></my-extension-widget>
+			<my-extension-widget></my-extension-widget>
+			<my-extension-widget></my-extension-widget>
 		</template>
 		
 	</core-base-layout>
