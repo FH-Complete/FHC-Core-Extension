@@ -16,6 +16,7 @@
  */
 import {CoreNavigationCmpt} from '../../../../../../public/js/components/navigation/Navigation.js';
 import CoreBaseLayout from '../../../../../../public/js/components/layout/BaseLayout.js';
+import CoreTabs from '../../../../../../public/js/components/Tabs.js';
 import MyExtensionTable from "./MyExtensionTable.js"
 import MyExtensionSidewidget from "./MyExtensionSidewidget.js"
 import Faqs from "../examples/Faqs";
@@ -24,12 +25,18 @@ export default {
 	components: {
 		CoreNavigationCmpt,
 		CoreBaseLayout,
+		CoreTabs,
 		MyExtensionTable,
 		MyExtensionSidewidget,
 		Faqs
 	},
 	data: () => {
-		return { }
+		return {
+			tabs : {
+				tab1: { title: 'Tab 1', component: '../../extensions/FHC-Core-Extension/js/components/myextension/MyExtensionTable.js'},
+				tab2: { title: 'Tab 2', component: '../../extensions/FHC-Core-Extension/js/components/myextension/MyExtensionContent.js'}
+			}
+		}
 	},
 	template: `
 	<!-- Navigation -->
@@ -44,7 +51,7 @@ export default {
 		
 		<!-- Main Content-->
 		<template #main>
-			<my-extension-table></my-extension-table>
+			<core-tabs class="mb-5" :config="tabs"></core-tabs>
 		</template>
 		
 		<!-- Side Content -->
