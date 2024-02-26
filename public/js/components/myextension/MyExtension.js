@@ -32,7 +32,7 @@ export default {
 		return {
 			tabs : {
 				tab1: { title: 'Tab 1', component: '../../extensions/FHC-Core-Extension/js/components/myextension/MyExtensionTable.js'},
-				tab2: { title: 'Tab 2', component: '../../extensions/FHC-Core-Extension/js/components/myextension/MyExtensionContent.js'}
+				tab2: { title: 'Tab 2', component: '../../extensions/FHC-Core-Extension/js/components/myextension/MyExtensionSplittedSite.js'}
 			}
 		}
 	},
@@ -49,6 +49,7 @@ export default {
 		
 		<!-- Main Content-->
 		<template #main>
+			<!-- Tabs -->
 			<core-tabs class="mb-5" :config="tabs"></core-tabs>
 		</template>
 		
