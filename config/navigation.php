@@ -46,7 +46,7 @@ $config['navigation_menu']['extensions/FHC-Core-Extension/examples/*'] = [
 	],
 	'myExtension' => [
 		'link' => site_url('extensions/FHC-Core-Extension/examples/myExtension'),
-		'description' => 'Full Template Example',
+		'description' => 'Full Example Template',
 		'icon' => ''
 	],
 ];
