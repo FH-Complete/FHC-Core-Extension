@@ -15,20 +15,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import BaseLayout from '../components/examples/BaseLayout.js';
-import TabulatorOnly from '../components/examples/TabulatorOnly.js';
-import TabulatorFilter from '../components/examples/TabulatorFilter.js';
-import Icons from '../components/examples/Icons.js';
 import MyExtension from '../components/myextension/MyExtension.js';
 import FhcAlert from '../../../../js/plugin/FhcAlert.js';
 import Phrasen from '../../../../js/plugin/Phrasen.js';
 import FhcApi from "../../../../js/plugin/FhcApi.js";
 const app = Vue.createApp({
 	components: {
-		BaseLayout,
-		TabulatorOnly,
-		TabulatorFilter,
-		Icons,
 		MyExtension
 	}
 });
