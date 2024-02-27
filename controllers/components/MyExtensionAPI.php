@@ -9,26 +9,24 @@ class MyExtensionAPI extends FHCAPI_Controller
 	public function __construct()
 	{
 		parent::__construct([
-			'addExampledata' => 'admin:rw',
+			'saveExampledata' => 'admin:rw',
 		]);
 
 		$this->load->model('extensions/FHC-Core-Extension/Exampledata_model', 'ExampledataModel');
 		$this->load->model('extensions/FHC-Core-Extension/Examplestatus_model', 'ExamplestatusModel');
 	}
 
-	public function addExampledata(){
+	public function saveExampledata(){
 		$this->_postValidation();
 
-		$result = $this->ExampledataModel->insert(array(
-				'uid' => $this->input->post('uid'),
-				'stringval' => $this->input->post('stringval'),
-				'integerval' => $this->input->post('integerval'),
-				'textval' => $this->input->post('textval'),
-				'examplestatus_kurzbz' => $this->input->post('examplestatus_kurzbz'),
-				'booleanval' => $this->input->post('booleanval'),
-				'dateval' => $this->input->post('dateval')
-			)
-		);
+		if (is_null($this->input->post('exampledata_id')))
+		{
+			$result = $this->ExampledataModel->insert($this->input->post());
+		}
+		else
+		{
+			$result = $this->ExampledataModel->update($this->input->post('exampledata_id'), $this->input->post());
+		}
 
 		// On error
 		if (isError($result)) $this->terminateWithError(getError($result), FHCAPI_Controller::ERROR_TYPE_DB);
