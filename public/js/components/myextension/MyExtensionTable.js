@@ -246,7 +246,7 @@ export default {
 				})
 				.catch(this.$fhcAlert.handleSystemError);
 		},
-		updateTable(formData){
+		onDataSaved(formData){
 			// If index already exists (when data was edited)
 			this.$refs.myExtensionTable.tabulator.getRow(formData.exampledata_id)
 				// ...updateRow
@@ -277,6 +277,6 @@ export default {
 	</core-filter-cmpt>
 	
 	<!-- Form -->
-	<my-extension-form ref="myExtensionForm" :examplestatusList="examplestatusList" @dataSaved="updateTable"></my-extension-form>
+	<my-extension-form ref="myExtensionForm" :examplestatusList="examplestatusList" @dataSaved="onDataSaved"></my-extension-form>
 `
 };

@@ -50,6 +50,5 @@ class MyExtensionAPI extends FHCAPI_Controller
 			$this->terminateWithValidationErrors($this->form_validation->error_array());
 		}
 	}
-
 }
 
