@@ -2,6 +2,7 @@ import CoreForm from "../../../../../js/components/Form/Form.js";
 import CoreFormInput from "../../../../../js/components/Form/Input.js";
 import CoreFormValidation from "../../../../../js/components/Form/Validation.js";
 import CoreBsModal from '../../../../../js/components/Bootstrap/Modal.js';
+import {CoreRESTClient} from '../../../../../../public/js/RESTClient.js';
 
 export default {
 	components: {
@@ -24,8 +25,7 @@ export default {
 				textval: '',
 				examplestatus_kurzbz: '',
 				booleanval: false,
-				dateval: null,
-				myfile: []
+				dateval: null
 			}
 		};
 	},
@@ -33,10 +33,7 @@ export default {
 		sendForm() {
 			if (this.$refs.form) // We can only send when $refs is ready
 				this.$refs.form
-					.post(
-						'extensions/FHC-Core-Extension/components/MyExtensionAPI/addExampledata',
-						this.formData
-					)
+					.post('extensions/FHC-Core-Extension/components/MyExtensionAPI/saveExampledata', this.formData)
 					.then(result => {
 						this.$emit('dataSaved', {...this.formData, ...{'exampledata_id': result.data}});
 						this.$fhcAlert.alertSuccess(this.$p.t('ui', 'gespeichert'));
@@ -44,11 +41,32 @@ export default {
 					})
 					.catch(this.$fhcAlert.handleSystemError);
 		},
-		openModal(modalTitel) {
-			this.modalTitel = modalTitel;
+		openModal(exampledata_id = null) {
+			// When editing Dataset
+			if (exampledata_id !== null)
+			{
+				this.prefillFormdata(exampledata_id);
+				this.modalTitel = this.$p.t('global', 'datensatzBearbeiten');
+			}
+			// When adding new Dataset
+			else
+			{
+				this.formData = { ...this.$options.data().formData };	// Reset form
+				this.modalTitel = this.$p.t('global', 'datensatzAnlegen');
+			}
+
 			this.$refs.form.clearValidation();
 			this.$refs.modalContainer.show();
-		}
+		},
+		prefillFormdata(exampledata_id){
+			CoreRESTClient
+				.get('/extensions/FHC-Core-Extension/MyExtension/getExampledata', { exampledata_id: exampledata_id })
+				.then(result => result.data)
+				.then(result => { this.formData = CoreRESTClient.getData(result)[0];})
+				.catch(error => {
+					this.$fhcAlert.handleSystemError(error);
+				});
+		},
 	},
 	template: `
 	<div class="app-example-form-1">
@@ -58,6 +76,7 @@ export default {
 				<template #default>
 					<!-- Formular -->
 					<core-form-validation></core-form-validation>
+					<input v-if="formData.exampledata_id !== null" type="hidden" name="exampledata_id" value="formData.exampledata_id">
 					<div class="row row-cols-2">
 						<div class="col">
 							<core-form-input
@@ -76,7 +95,6 @@ export default {
 								>
 							</core-form-input>
 						</div>
-					
 						<div class="col">
 							<core-form-input
 								type="number"
@@ -123,15 +141,6 @@ export default {
 								v-model="formData.dateval"
 								name="dateval"
 								label="Datum"
-								>
-							</core-form-input>
-						</div>
-						<div class="col-6">
-							<core-form-input
-								type="uploadfile"
-								v-model="formData.myfile"
-								name="myfile"
-								label="MyFile"
 								>
 							</core-form-input>
 						</div>

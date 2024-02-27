@@ -135,10 +135,10 @@ export default {
 	},
 	methods: {
 		addData(){
-			this.$refs.myExtensionForm.openModal(this.$p.t('global', 'datensatzAnlegen'));
+			this.$refs.myExtensionForm.openModal();
 		},
-		editData(id) {
-			this.$refs.myExtensionForm.openModal(this.$p.t('global', 'datensatzBearbeiten'));
+		editData(exampledata_id) {
+			this.$refs.myExtensionForm.openModal(exampledata_id);
 		},
 		async deleteData(exampledata_id) {
 			if (await this.$fhcAlert.confirmDelete() === false) return;
@@ -246,8 +246,13 @@ export default {
 				})
 				.catch(this.$fhcAlert.handleSystemError);
 		},
-		addRow(formData){
-			this.$refs.myExtensionTable.tabulator.addRow(formData, true);
+		updateTable(formData){
+			// If index already exists (when data was edited)
+			this.$refs.myExtensionTable.tabulator.getRow(formData.exampledata_id)
+				// ...updateRow
+				? this.$refs.myExtensionTable.tabulator.updateRow(formData.exampledata_id, formData)
+				// ...else addRow (when data was added)
+				: this.$refs.myExtensionTable.tabulator.addRow(formData, true);
 		}
 	},
 	template: `
@@ -272,6 +277,6 @@ export default {
 	</core-filter-cmpt>
 	
 	<!-- Form -->
-	<my-extension-form ref="myExtensionForm" :examplestatusList="examplestatusList" @dataSaved="addRow"></my-extension-form>
+	<my-extension-form ref="myExtensionForm" :examplestatusList="examplestatusList" @dataSaved="updateTable"></my-extension-form>
 `
 };
