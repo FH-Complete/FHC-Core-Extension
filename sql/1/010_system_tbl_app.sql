@@ -1,3 +1,3 @@
 INSERT INTO system.tbl_app (app) VALUES
-    ('extension')
+    ('fhctemplate')
     ON CONFLICT (app) DO NOTHING;
