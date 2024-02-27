@@ -1,6 +1,6 @@
 <?php
 $filterCmptArray = array(
-	'app' => 'extension',
+	'app' => 'fhctemplate',
 	'datasetName' => 'exampledata',
 	'query' => '
 		SELECT 
