@@ -35,9 +35,6 @@ BEGIN
 ALTER TABLE extension.tbl_exampledata ADD CONSTRAINT tbl_exampledata_examplestatus_fk FOREIGN KEY (examplestatus_kurzbz)
     REFERENCES extension.tbl_examplestatus (examplestatus_kurzbz) MATCH FULL
     ON DELETE RESTRICT ON UPDATE CASCADE;
-EXCEPTION WHEN OTHERS THEN
-    RAISE NOTICE 'Could not create foreign key constraint on tbl_exampledata_examplestatus_fk.';
-END;
 END $$;
 
 -- Add comment to table
