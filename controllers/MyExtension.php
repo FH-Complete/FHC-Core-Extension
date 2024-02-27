@@ -13,6 +13,7 @@ class MyExtension extends Auth_Controller
 			'getExampledata' => 'admin:rw',
 			'getExamplestatusList' => 'admin:rw',
 			'updateExamplestatus' => 'admin:rw',
+			'getExampledata' => 'admin:rw',
 			'deleteExampledata' => 'admin:rw',
 			'editExampledata' => 'admin:rw',
 		]);
@@ -59,6 +60,18 @@ class MyExtension extends Auth_Controller
 		$this->outputJsonSuccess(hasData($result) ? getData($result) : []);
 	}
 
+	public function getExampledata()
+	{
+		// Get all Exampledata
+		$result = $this->ExampledataModel->load($this->input->get('exampledata_id'));
+
+		// On error
+		if (isError($result)) $this->terminateWithJsonError(getError($result));
+
+		// On success
+		$this->outputJsonSuccess(hasData($result) ? getData($result) : []);
+	}
+
 	public function deleteExampledata(){
 		$data = $this->getPostJson();
 
@@ -69,12 +82,6 @@ class MyExtension extends Auth_Controller
 
 		// On success
 		$this->outputJsonSuccess(hasData($result) ? getData($result) : []);
-	}
-
-	public function editExampledata(){
-		$data = $this->getPostJson();
-		echo "<pre>"; print_r($data); echo "</pre>";
-
 	}
 
 	private function _getLanguageIndex()
