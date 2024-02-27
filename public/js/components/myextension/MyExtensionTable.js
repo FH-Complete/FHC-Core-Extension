@@ -48,7 +48,7 @@ export default {
 					{title: 'Core Data', field: 'uid', headerFilter: true, frozen: true},
 					{title: 'String', field: 'stringval', headerFilter: true},
 					{title: 'Integer', field: 'integerval', headerFilter: true, hozAlign: 'right', sorter: 'number'},
-					{title: 'Date', field: 'dateval', headerFilter: true, hozAlign: 'center'},
+					{title: this.$p.t('global', 'datum'), field: 'dateval', headerFilter: true, hozAlign: 'center'},
 					{
 						title: 'Boolean',
 						field: 'booleanval',
@@ -74,7 +74,7 @@ export default {
 						sorter: 'number'
 					},
 					{
-						title: 'Files',
+						title: this.$p.t('global', 'dokument'),
 						field: 'dokument_bezeichnung',
 						headerFilter: true,
 						formatter:"link",
@@ -86,7 +86,7 @@ export default {
 							}
 						}
 					},
-					{title: 'Anmerkung', field: 'textval', headerFilter: true},
+					{title: this.$p.t('global', 'anmerkung'), field: 'textval', headerFilter: true},
 					{
 						title: 'Liste',
 						field: 'examplestatus_kurzbz',
@@ -100,7 +100,7 @@ export default {
 						frozen: true
 					},
 					{
-						title: 'Aktionen',
+						title: this.$p.t('global', 'aktionen'),
 						field: 'actions',
 						width: 105,	// Ensures Action-buttons will be always fully displayed
 						minWidth: 105,	// Ensures Action-buttons will be always fully displayed
@@ -159,7 +159,7 @@ export default {
 			let exampledata_ids = this.$refs.myExtensionTable.tabulator.getSelectedRows().map(row => row.getIndex());
 
 			if (exampledata_ids.length === 0) {
-				return this.$fhcAlert.alertInfo('Select rows');
+				return this.$fhcAlert.alertInfo(this.$p.t('table', 'zeilenAuswaehlen'));
 			}
 
 			for (const exampledata_id of exampledata_ids) {
@@ -188,7 +188,7 @@ export default {
 				.getSelectedRows()
 				.map(row => row.getIndex());
 
-			if (exampledata_ids.length === 0) return this.$fhcAlert.alertInfo('Select rows');
+			if (exampledata_ids.length === 0) return this.$fhcAlert.alertInfo(this.$p.t('table', 'zeilenAuswaehlen'));
 
 			for (const exampledata_id of exampledata_ids) {
 

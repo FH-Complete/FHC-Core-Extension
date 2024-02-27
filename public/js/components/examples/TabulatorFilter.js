@@ -178,7 +178,7 @@ export default {
 			let exampledata_ids = this.$refs.myTabulatorFilter.tabulator.getSelectedRows().map(row => row.getIndex());
 
 			if (exampledata_ids.length === 0) {
-				return this.$fhcAlert.alertInfo('Select rows');
+				return this.$fhcAlert.alertInfo(this.$p.t('table', 'zeilenAuswaehlen'));
 			}
 
 			for (const exampledata_id of exampledata_ids) {
@@ -207,7 +207,7 @@ export default {
 				.getSelectedRows()
 				.map(row => row.getIndex());
 
-			if (exampledata_ids.length === 0) return this.$fhcAlert.alertInfo('Select rows');
+			if (exampledata_ids.length === 0) return this.$fhcAlert.alertInfo(this.$p.t('table', 'zeilenAuswaehlen'));
 
 			for (const exampledata_id of exampledata_ids) {
 

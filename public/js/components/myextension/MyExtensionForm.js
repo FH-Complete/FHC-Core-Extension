@@ -109,7 +109,7 @@ export default {
 								type="textarea"
 								v-model="formData.textval"
 								name="textval"
-								label="Anmerkung"
+								:label="$p.t('global', 'anmerkung')"
 								>
 							</core-form-input>
 							<div class="form-text text-end" :class="{'text-danger': formData.textval.length > 10}">{{formData.textval.length}}/10</div>
@@ -140,7 +140,7 @@ export default {
 								type="datepicker"
 								v-model="formData.dateval"
 								name="dateval"
-								label="Datum"
+								:label="$p.t('global', 'datum')"
 								>
 							</core-form-input>
 						</div>

@@ -60,7 +60,7 @@ export default {
 		acceptData() {
 			let exampledata_ids = this.$refs.myTabulatorOnly.tabulator.getSelectedRows().map(row => row.getIndex());
 
-			if (exampledata_ids.length === 0) return this.$fhcAlert.alertInfo('Select rows');
+			if (exampledata_ids.length === 0) return this.$fhcAlert.alertInfo(this.$p.t('table', 'zeilenAuswaehlen'));
 
 			for (const exampledata_id of exampledata_ids) {
 
@@ -86,7 +86,7 @@ export default {
 		rejectData() {
 			let exampledata_ids = this.$refs.myTabulatorOnly.tabulator.getSelectedRows().map(row => row.getIndex());
 
-			if (exampledata_ids.length === 0) return this.$fhcAlert.alertInfo('Select rows');
+			if (exampledata_ids.length === 0) return this.$fhcAlert.alertInfo(this.$p.t('table', 'zeilenAuswaehlen'));
 
 			for (const exampledata_id of exampledata_ids) {
 
